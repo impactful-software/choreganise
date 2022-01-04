@@ -1,7 +1,7 @@
 import './Edit.css'
 import { Link, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
 function Edit (props) {
@@ -99,6 +99,10 @@ function Edit (props) {
 
             <button className="submitButton" type="submit">
               submit
+            </button>
+            <br/>
+            <button className="deleteButton" type="delete">
+              Delete task
             </button>
           </form>
         </section>

@@ -13,3 +13,7 @@ label{
   margin-top: 0.6em;
   display: block;
 }
+
+.deleteButton{
+  color: red;
+}
