@@ -1,0 +1,75 @@
+
+.nextLinks{
+  background-color: #83aab4;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.7rem;
+  width: 100%;
+  height: 3.4rem;
+  line-height: 1;
+  align-items: center;
+  position: fixed;
+}
+
+.locationAndDuration{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+}
+
+.taskNameAndIcon{
+  width: 100%;
+}
+
+.sessionTimer{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  margin: 0 0.1em 0 0.5em;
+  display: inline;
+  width: 1.2em;
+}
+
+.taskLocation{
+  background-color: white;
+  border-radius: 20px;
+  padding: 0.4em;
+  color: #33405a;
+}
+
+.taskIcon{
+  font-size: 3.5em;
+  color: #83aab4;
+}
+
+.taskName{
+  font-size: 1.7em;
+  position: relative;
+  padding: 0.7em 
+}
+
+.controls{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.stopButton, .forwardButton{
+  background-color: #383e4b;
+  border: none;
+  color: #83aab4;
+  padding: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  border-radius: 50px;
+  line-height: 0px;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  margin: 0.3em;
+}

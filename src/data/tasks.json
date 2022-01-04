@@ -1,0 +1,560 @@
+[
+  {
+    "name": "hoover hall floor",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 3,
+    "frequencyUnit": "days",
+    "location": "Hall, stairs and Landing",
+    "dateCompleted": "2022-01-02"
+  },
+  {
+    "name": "mop floor",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Hall, stairs and Landing",
+    "dateCompleted": "2021-12-19"
+  },
+  {
+    "name": "hoover Stairs",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 1,
+    "frequencyUnit": "weeks",
+    "location": "Hall, stairs and Landing",
+    "dateCompleted": "2021-12-19"
+  },
+  {
+    "name": "clean litter trays",
+    "prioritise": false,
+    "duration": "0:25:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Cats",
+    "dateCompleted": "2021-12-10"
+  },
+  {
+    "name": "dust hall cabinet",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "months",
+    "location": "Hall, stairs and Landing",
+    "dateCompleted": "2021-12-01"
+  },
+  {
+    "name": "hoover landing",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 3,
+    "frequencyUnit": "days",
+    "location": "Hall, stairs and Landing",
+    "dateCompleted": "2022-01-02"
+  },
+  {
+    "name": "dust fixtures",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 8,
+    "frequencyUnit": "months",
+    "location": "Hall, stairs and Landing",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "hoover floor",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 1,
+    "frequencyUnit": "weeks",
+    "location": "Kitchen",
+    "dateCompleted": "2021-12-23"
+  },
+  {
+    "name": "mop floor",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Kitchen",
+    "dateCompleted": "2021-12-23"
+  },
+  {
+    "name": "wipe hob",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 1,
+    "frequencyUnit": "weeks",
+    "location": "Kitchen",
+    "dateCompleted": "2021-12-30"
+  },
+  {
+    "name": "deep clean counters",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Kitchen",
+    "dateCompleted": "2021-12-30"
+  },
+  {
+    "name": "clean sink and draining board",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Kitchen",
+    "dateCompleted": "2022-01-01"
+  },
+  {
+    "name": "clean oven",
+    "prioritise": false,
+    "duration": "1:30:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Kitchen",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "wipe cupboard fronts",
+    "prioritise": false,
+    "duration": "0:30:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Kitchen",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean hob hood",
+    "prioritise": false,
+    "duration": "0:30:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Kitchen",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean pantry",
+    "prioritise": false,
+    "duration": "1:00:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Kitchen",
+    "dateCompleted": "2021-05-10"
+  },
+  {
+    "name": "wipe top of cupboards",
+    "prioritise": false,
+    "duration": "1:30:00",
+    "frequency": 1,
+    "frequencyUnit": "years",
+    "location": "Kitchen",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean windows",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 4,
+    "frequencyUnit": "months",
+    "location": "Kitchen",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean toilet",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 1,
+    "frequencyUnit": "weeks",
+    "location": "Bathroom",
+    "dateCompleted": "2021-12-19"
+  },
+  {
+    "name": "clean floor",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Bathroom",
+    "dateCompleted": "2021-12-10"
+  },
+  {
+    "name": "clean sink",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Bathroom",
+    "dateCompleted": "2021-12-11"
+  },
+  {
+    "name": "clean shower",
+    "prioritise": false,
+    "duration": "0:30:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Bathroom",
+    "dateCompleted": "2021-12-11"
+  },
+  {
+    "name": "clean and tidy window ledge",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 2,
+    "frequencyUnit": "months",
+    "location": "Bathroom",
+    "dateCompleted": "2021-09-17"
+  },
+  {
+    "name": "clean windows",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 4,
+    "frequencyUnit": "months",
+    "location": "Bathroom",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "scrub grout",
+    "prioritise": false,
+    "duration": "1:00:00",
+    "frequency": 9,
+    "frequencyUnit": "months",
+    "location": "Bathroom",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "hoover",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-12-11"
+  },
+  {
+    "name": "hoover under furniture",
+    "prioritise": false,
+    "duration": "0:25:00",
+    "frequency": 3,
+    "frequencyUnit": "months",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-04-11"
+  },
+  {
+    "name": "change bedding",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Back Bedroom",
+    "dateCompleted": "2022-01-01"
+  },
+  {
+    "name": "dust surfaces",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 2,
+    "frequencyUnit": "months",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-12-19"
+  },
+  {
+    "name": "tidy wardrobe",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 2,
+    "frequencyUnit": "months",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-11-15"
+  },
+  {
+    "name": "go through charity shop clothes",
+    "prioritise": false,
+    "duration": "0:40:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-04-11"
+  },
+  {
+    "name": "tidy bookcase",
+    "prioritise": false,
+    "duration": "1:40:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-08-12"
+  },
+  {
+    "name": "tidy floor",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 1,
+    "frequencyUnit": "weeks",
+    "location": "Back Bedroom",
+    "dateCompleted": "2022-01-01"
+  },
+  {
+    "name": "dust fixtures",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 8,
+    "frequencyUnit": "months",
+    "location": "Back Bedroom",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "hoover flor",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Study",
+    "dateCompleted": "2021-12-11"
+  },
+  {
+    "name": "wipe desk",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Study",
+    "dateCompleted": "2021-12-12"
+  },
+  {
+    "name": "tidy surfaces",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 3,
+    "frequencyUnit": "months",
+    "location": "Study",
+    "dateCompleted": "2021-11-15"
+  },
+  {
+    "name": "clean windows",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Study",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "dust fixtures",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 8,
+    "frequencyUnit": "months",
+    "location": "Study",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "hoover ",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Lounge",
+    "dateCompleted": "2021-12-25"
+  },
+  {
+    "name": "hoover under furniture",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Lounge",
+    "dateCompleted": "2021-08-12"
+  },
+  {
+    "name": "clean surfaces",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 2,
+    "frequencyUnit": "months",
+    "location": "Lounge",
+    "dateCompleted": "2021-12-25"
+  },
+  {
+    "name": "tidy coffee table",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Lounge",
+    "dateCompleted": "2021-12-25"
+  },
+  {
+    "name": "clean windows",
+    "prioritise": false,
+    "duration": "0:25:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Lounge",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "dust fixtures",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 8,
+    "frequencyUnit": "months",
+    "location": "Lounge",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean dining table",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Dining room",
+    "dateCompleted": "2022-01-01"
+  },
+  {
+    "name": "tidy and dust dresser",
+    "prioritise": false,
+    "duration": "0:40:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Dining room",
+    "dateCompleted": "2021-08-12"
+  },
+  {
+    "name": "tidy bookcase",
+    "prioritise": false,
+    "duration": "0:30:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Dining room",
+    "dateCompleted": "2021-08-13"
+  },
+  {
+    "name": "hoover floor",
+    "prioritise": false,
+    "duration": "0:10:00",
+    "frequency": 1,
+    "frequencyUnit": "days",
+    "location": "Dining room",
+    "dateCompleted": "2021-12-25"
+  },
+  {
+    "name": "mop floor",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "weeks",
+    "location": "Dining room",
+    "dateCompleted": "2021-12-19"
+  },
+  {
+    "name": "dust fixtures",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 8,
+    "frequencyUnit": "months",
+    "location": "Dining room",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "hoover floor",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 3,
+    "frequencyUnit": "months",
+    "location": "Utility Room",
+    "dateCompleted": "2021-08-12"
+  },
+  {
+    "name": "tidy floor",
+    "prioritise": false,
+    "duration": "1:40:00",
+    "frequency": 5,
+    "frequencyUnit": "months",
+    "location": "Utility Room",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean fridge",
+    "prioritise": false,
+    "duration": "1:40:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Utility Room",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "clean laundry area",
+    "prioritise": false,
+    "duration": "0:30:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Utility Room",
+    "dateCompleted": "2021-05-05"
+  },
+  {
+    "name": "tidy floor",
+    "prioritise": false,
+    "duration": "1:20:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Garage",
+    "dateCompleted": "2021-08-05"
+  },
+  {
+    "name": "clean worm cupboard",
+    "prioritise": false,
+    "duration": "1:00:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Garage",
+    "dateCompleted": "2021-07-13"
+  },
+  {
+    "name": "clean bike chains",
+    "prioritise": false,
+    "duration": "0:40:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Garage",
+    "dateCompleted": "2021-07-13"
+  },
+  {
+    "name": "wipe table ",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 6,
+    "frequencyUnit": "months",
+    "location": "Garage",
+    "dateCompleted": "2021-09-13"
+  },
+  {
+    "name": "clean feeders",
+    "prioritise": false,
+    "duration": "0:20:00",
+    "frequency": 3,
+    "frequencyUnit": "weeks",
+    "location": "Cats",
+    "dateCompleted": "2021-12-12"
+  },
+  {
+    "name": "wash bedding",
+    "prioritise": false,
+    "duration": "0:15:00",
+    "frequency": 2,
+    "frequencyUnit": "months",
+    "location": "Cats",
+    "dateCompleted": "2021-11-26"
+  },
+  {
+    "name": "sort and order cat food",
+    "prioritise": false,
+    "duration": "0:30:00",
+    "frequency": 1,
+    "frequencyUnit": "months",
+    "location": "Cats",
+    "dateCompleted": "2021-11-26"
+  }
+]

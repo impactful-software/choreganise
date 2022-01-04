@@ -1,0 +1,24 @@
+.App {
+  background-color: #6c7ba0;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  min-height: 100vh;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+a,
+a:active,
+a:link,
+a:visited{
+  color: #ffffff;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+
+a:hover{
+  border: 1px solid white;
+}
