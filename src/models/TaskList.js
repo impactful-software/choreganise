@@ -1,40 +1,33 @@
-import { find, remove } from 'lodash'
+import { BSON } from 'realm-web'
 
 class TaskList {
-  constructor (tasks) {
-    this.tasks = tasks.map((task, index) => ({
-      id: ''.concat(index),
-      ...task
-    }))
+  constructor (db) {
+    this.db = db
+    this.collection = db.collection('tasks')
   }
 
   create (props) {
-    this.tasks.push(props)
+    return this.collection.insertOne(props)
   }
 
-  delete (taskId) {
-    remove(this.tasks, {id: taskId})
+  deleteById (id) {
+    return this.collection.deleteOne({ _id: BSON.ObjectID(id) })
   }
 
-  findAll () {
-    return this.tasks.sort((a, b) => {
-      if (a.dateCompleted < b.dateCompleted) {
-        return -1
-      } else if (a.dateCompleted === b.dateCompleted) {
-        return 0
-      } else {
-        return 1
-      }
-    })
+  findAll (props = {}) {
+    return this.collection.find(props)
   }
 
-  findById(taskId) {
-    return find(this.tasks, {id: taskId})
+  findById (id) {
+    return this.collection.findOne({ _id: BSON.ObjectID(id) })
   }
 
-  update (props) {
-    const task = this.findById(props.id)
-    Object.assign(task, props)
+  updateById (id, props) {
+    return this.collection.updateOne ({ _id: BSON.ObjectID(id) }, props)
+  }
+
+  watch (filter, ids) {
+    return this.collection.watch(filter, ids)
   }
 }
 
