@@ -3,13 +3,13 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBroom, faPlay, faThList } from '@fortawesome/free-solid-svg-icons'
 
-function Home() {
+function Home ({ timer }) {
   return (
     <div className="next">
-      <nav className="homeLinks"> 
+      <nav className="homeLinks">
         <Link to="/view" className="viewTasks">
           <FontAwesomeIcon className="taskListPicture" icon={faThList} />
-        </Link> 
+        </Link>
       </nav>
       <div className="page">
         <section className="titleIcon">

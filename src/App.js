@@ -4,21 +4,26 @@ import {
   Routes,
   Route
 } from "react-router-dom"
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import * as Realm from "realm-web"
 import Edit from './routes/Edit'
 import Home from './routes/Home'
 import View from './routes/View'
 import Next from './routes/Next'
 import TaskList from './models/TaskList'
+import Timer from './models/Timer'
 
 const REALM_APP_ID = 'choreganise-production-tqrpe'
 const realmApp = new Realm.App({ id: REALM_APP_ID })
 
 function App () {
   const [loading, setLoading] = useState(false)
-  const [taskList, setTaskList] = useState(undefined)
+  const [taskList, setTaskList] = useState()
+  const [timer, setTimer] = useState()
+  const [timeRemaining, setTimeRemaining] = useState('00:00:00')
+  const [timerIsPaused, setTimerIsPaused] = useState(false)
   const [user, setUser] = useState(realmApp.currentUser)
+
 
   useEffect(() => {
     async function authenticateSession() {
@@ -56,6 +61,45 @@ function App () {
     }
   })
 
+  useEffect(() => {
+    console.debug('Creating timer.')
+    setTimer(new Timer())
+  }, [])
+
+  const startTimer = useCallback(
+    (duration) => {
+      timer.start(
+        duration,
+        () => setTimeRemaining(timer.render())
+      )
+    },
+    [timer]
+  )
+
+  const stopTimer = useCallback(
+    () => {
+      timer.stop()
+      setTimerIsPaused(true)
+      setTimeRemaining(timer.render())
+    },
+    [timer]
+  )
+
+  const toggleTimerPause = useCallback(
+    () => {
+      if (timer.timeRemaining > 0) {
+        if (timer.timerIsPaused) {
+          timer.resume()
+          setTimerIsPaused(false)
+        } else {
+          timer.pause()
+          setTimerIsPaused(true)
+        }
+      }
+    },
+    [timer]
+  )
+
   return (
     <div className="App">
       {loading ? (
@@ -71,7 +115,7 @@ function App () {
             <Route path="/edit/:taskId" element={<Edit taskList={taskList} />} />
             <Route path="/edit" element={<Edit taskList={taskList} />} />
             <Route path="/view" element={<View taskList={taskList} />} />
-            <Route path="/next" element={<Next taskList={taskList} />} />
+            <Route path="/next" element={<Next timerIsPaused={timerIsPaused} timeRemaining={timeRemaining} startTimer={startTimer} stopTimer={stopTimer} toggleTimerPause={toggleTimerPause} taskList={taskList} />} />
           </Routes>
         </BrowserRouter>
       )}
