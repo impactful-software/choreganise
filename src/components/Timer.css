@@ -1,42 +1,15 @@
-.titleIcon{
-  position: relative;
-}
-
-.logoPicture{
-  font-size: 11rem;
-  padding: 20px;
-  margin: auto;
-  color: rgb(182, 192, 211);
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 0;
-}
-
-.titleText{
-  position: relative;
-  z-index: 1;
-  font-size: 3rem;
-}
-
-.bottomHalf{
-  width: 100%;
-}
-
-.timerForm{
+.timer {
   background-color: #33405a;
   border-radius: 20px;
   padding: 1em;
   text-align: center;
-  width: 100%;
 }
 
-.inputTimer{
+.timer .time {
   font-size: 1.5em;
 }
 
-.hoursMins{
+.timer .time .timePart {
   background-color: transparent;
   border: none;
   color: white;
@@ -47,15 +20,20 @@
   text-align: right;
 }
 
-.playButton{
+.timer .controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer .controls .control {
   background-color: #383e4b;
   border: none;
-  color: white;
-  padding: none;
+  color: #83aab4;
+  padding: 0;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 40px;
+  font-size: 30px;
   border-radius: 50px;
   line-height: 0px;
   position: relative;
@@ -63,4 +41,9 @@
   width: 50px;
   cursor: pointer;
   margin: 0.3em;
+}
+
+.timer .controls .control.primaryControl {
+  color: white;
+  font-size: 40px;
 }

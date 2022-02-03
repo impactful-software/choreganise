@@ -1,18 +1,11 @@
-.App {
-  background-color: #6c7ba0;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  min-height: 100vh;
-}
-
-*{
+* {
   box-sizing: border-box;
 }
 
 a,
 a:active,
 a:link,
-a:visited{
+a:visited {
   color: #ffffff;
   padding: 5px 10px;
   display: inline-block;
@@ -21,4 +14,57 @@ a:visited{
 
 a:hover{
   border: 1px solid white;
+}
+
+.button {
+  background-color: inherit;
+  border: 2px solid white;
+  border-radius: 2em;
+  color: white;
+  font-size: inherit;
+  padding: 0.5em;
+}
+
+.button:hover {
+  background-color: #83aab4;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: translate(0, 2px);
+}
+
+.App {
+  background-color: #6c7ba0;
+  color: white;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: calc(10px + 2vmin);
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.header {
+  background-color: #83aab4;
+  flex: 0 0 fit-content;
+  font-size: 2.7rem;
+  line-height: 1;
+  width: 100%;
+}
+
+.main {
+  flex: 1 1 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.footer {
+  flex: 0 0 fit-content;
+  padding: 1rem;
+  width: 100%;
 }

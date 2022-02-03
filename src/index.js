@@ -1,12 +1,23 @@
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
+
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { store } from './store'
+import RealmApp from './components/RealmApp'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <RealmApp>
+          <App />
+        </RealmApp>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

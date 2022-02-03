@@ -1,0 +1,7 @@
+export const ACTION_STATUS_IDLE = 'idle'
+export const ACTION_STATUS_LOADING = 'loading'
+export const ACTION_STATUS_REJECTED = 'rejected'
+export const ACTION_STATUS_SUCCEEDED = 'succeeded'
+export const REALM_APP_ID = 'choreganise-production-tqrpe'
+export const REALM_CLIENT_TYPE = 'mongodb-atlas'
+export const REALM_DB_NAME = 'production'
