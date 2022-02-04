@@ -17,13 +17,11 @@ export const timerSlice = createSlice({
       state.startTime = initialState.startTime
     },
 
-    resume: (state, action) => {
-      state.paused = false
-      state.startTime = getTimeInSeconds(new Date())
+    setDuration: (state, action) => {
+      state.duration = +action.payload
     },
 
     start: (state, action) => {
-      state.duration = action.payload
       state.paused = false
       state.startTime = getTimeInSeconds(new Date())
     },
@@ -36,7 +34,7 @@ export const timerSlice = createSlice({
   }
 })
 
-export const { pause, resume, start, stop } = timerSlice.actions
+export const { pause, setDuration, start, stop } = timerSlice.actions
 
 export const selectTimerStarted = (state) => !!state.timer.startTime
 
