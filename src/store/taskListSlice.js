@@ -7,6 +7,7 @@ import {
   ACTION_STATUS_REJECTED,
   ACTION_STATUS_SUCCEEDED
 } from '../utility/config'
+import sortTasksByPriority from '../utility/sortTasksByPriority'
 
 export const defaultTask = {
   _id: '',
@@ -50,7 +51,8 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async ({ db, filt
   console.debug('Fetching tasks.', { filter })
   const tasksCollection = db.collection('tasks')
   const tasks = await tasksCollection.find(filter)
-  return keyBy(tasks.map(normalizeTask), '_id')
+  const sortedTasks = sortTasksByPriority(tasks)
+  return keyBy(sortedTasks.map(normalizeTask), '_id')
 })
 
 export const fetchTaskById = createAsyncThunk('tasks/fetchTaskById', async ({ db, id }, { dispatch, getState }) => {
@@ -79,7 +81,12 @@ export const watchTasks = createAsyncThunk('tasks/watchTasks', async ({ db, filt
 export const taskListSlice = createSlice({
   name: 'taskList',
   initialState,
-  reducers: {},
+  reducers: {
+    resetTasks: (state, action) => {
+      state.status.fetchTasks = initialState.status.fetchTasks
+      state.tasks = initialState.tasks
+    }
+  },
   extraReducers(builder) {
     builder
       // fetchTasks
@@ -96,18 +103,10 @@ export const taskListSlice = createSlice({
   }
 })
 
+export const { resetTasks } = taskListSlice.actions
+
 export function selectPrioritisedTasks (state) {
-  return Object.values(state.taskList.tasks).sort((a, b) => {
-    if (a.lastCompleted < b.lastCompleted) {
-      return -1
-    }
-
-    if (a.lastCompleted > b.lastCompleted) {
-      return 1
-    }
-
-    return 0
-  })
+  return sortTasksByPriority(state.taskList.tasks)
 }
 
 export default taskListSlice.reducer

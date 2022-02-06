@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { fetchTasks, selectPrioritisedTasks } from '../store/taskListSlice'
 import { useRealmApp } from '../components/RealmApp'
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
+import calculateTaskPriority from '../utility/calculateTaskPriority'
 
 function View ({ taskList }) {
   const { db } = useRealmApp()
@@ -39,6 +40,7 @@ function View ({ taskList }) {
         <table>
           <thead>
             <tr>
+              <th>Priority</th>
               <th className="taskColumn">Task</th>
               <th className="locationColumn">
                 <select className="selectRoom" type="text" name="taskLocation" defaultValue=''>
@@ -63,6 +65,9 @@ function View ({ taskList }) {
           <tbody>
             {tasks.map(task => (
               <tr key={task._id}>
+                <td>
+                  {calculateTaskPriority(task).toFixed(1)}
+                </td>
                 <td className="taskColumn">
                   {task.name}
                 </td>

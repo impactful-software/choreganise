@@ -1,5 +1,9 @@
 import { add, getUnixTime } from "date-fns"
 
+export function getTaskDueDate(task) {
+  return add(new Date(task.dateCompleted), { [task.frequencyUnit]: task.frequency })
+}
+
 export function getWholeHours (seconds) {
   return Math.floor(seconds / 3600) || 0
 }
