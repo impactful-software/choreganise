@@ -306,7 +306,7 @@
     "dateCompleted": "2021-05-05"
   },
   {
-    "name": "hoover flor",
+    "name": "hoover floor",
     "prioritise": false,
     "duration": "00:10:00",
     "frequency": 3,
@@ -435,7 +435,7 @@
     "name": "hoover floor",
     "prioritise": false,
     "duration": "00:10:00",
-    "frequency": 1,
+    "frequency": 10,
     "frequencyUnit": "days",
     "location": "dining room",
     "dateCompleted": "2021-12-25"
