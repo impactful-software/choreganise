@@ -7,7 +7,7 @@ import {
   ACTION_STATUS_SUCCEEDED
 } from '../utility/config'
 import defaultTasks from '../data/defaultTasks.json'
-import { fetchTasks } from './taskListSlice'
+import { resetTasks } from './taskListSlice'
 
 const initialState = {
   status: {
@@ -22,7 +22,7 @@ export const resetDatabase = createAsyncThunk('settings/resetDatabase', async ({
   console.debug('Deleted all tasks.')
   await tasksCollection.insertMany(defaultTasks)
   console.debug('Inserted default tasks.')
-  dispatch(fetchTasks({ db }))
+  dispatch(resetTasks())
 })
 
 export const settomgsSlice = createSlice({

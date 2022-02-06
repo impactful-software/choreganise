@@ -5,10 +5,11 @@ import toast from 'react-hot-toast'
 import { RealmAppContext } from '../components/RealmApp'
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
 import { useNavigate, useParams } from 'react-router-dom'
-import { defaultTask } from '../store/taskListSlice'
+import { defaultTask, resetTasks } from '../store/taskListSlice'
 import normalizeTask from '../utility/normalizeTask'
+import { useDispatch } from 'react-redux'
 
-class Edit extends Component {
+class EditClass extends Component {
   static contextType = RealmAppContext
 
   constructor (props) {
@@ -169,6 +170,8 @@ class Edit extends Component {
 
       this.setState({ saveTaskStatus: ACTION_STATUS_SUCCEEDED })
       toast.success('Task updated.')
+
+      this.props.dispatch(resetTasks())
     } else {
       this.setState({ saveTaskStatus: ACTION_STATUS_LOADING })
 
@@ -179,6 +182,8 @@ class Edit extends Component {
         saveTaskStatus: ACTION_STATUS_SUCCEEDED
       })
       toast.success('Task created.')
+
+      this.props.dispatch(resetTasks())
 
       navigate(`./${insertedId}`)
     }
@@ -316,6 +321,12 @@ class Edit extends Component {
   }
 }
 
-const EditWithRouterProps = (props) => <Edit params={useParams()} navigate={useNavigate()} {...props} />
+const Edit = (props) =>
+  <EditClass
+    dispatch={useDispatch()}
+    navigate={useNavigate()}
+    params={useParams()}
+    {...props}
+  />
 
-export default EditWithRouterProps
+export default Edit
