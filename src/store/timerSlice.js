@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import getTimeInSeconds from "../utility/getTimeInSeconds"
+import { getUnixTime } from "date-fns"
 
 const initialState = {
   duration: 0,
@@ -12,7 +12,7 @@ export const timerSlice = createSlice({
   initialState,
   reducers: {
     pause: (state, action) => {
-      state.duration = state.duration - (getTimeInSeconds(new Date()) - state.startTime)
+      state.duration = state.duration - (getUnixTime(new Date()) - state.startTime)
       state.paused = true
       state.startTime = initialState.startTime
     },
@@ -23,7 +23,7 @@ export const timerSlice = createSlice({
 
     start: (state, action) => {
       state.paused = false
-      state.startTime = getTimeInSeconds(new Date())
+      state.startTime = getUnixTime(new Date())
     },
 
     stop: (state, action) => {

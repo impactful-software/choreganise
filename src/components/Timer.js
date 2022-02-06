@@ -2,10 +2,10 @@ import './Timer.css'
 import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getUnixTime } from 'date-fns'
+import { isEqual } from 'lodash'
 import { pause, selectTimerStarted, setDuration, start, stop } from '../store/timerSlice'
 import getTimeRemaining, { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/getTimeRemaining'
-import getTimeInSeconds from '../utility/getTimeInSeconds'
-import { isEqual } from 'lodash'
 
 class Timer extends Component {
   constructor (props) {
@@ -18,7 +18,7 @@ class Timer extends Component {
     this.tick = this.tick.bind(this)
 
     this.state = {
-      currentTickTime: getTimeInSeconds(new Date())
+      currentTickTime: getUnixTime(new Date())
     }
   }
 
@@ -44,7 +44,7 @@ class Timer extends Component {
   tick () {
     const { duration, started, startTime } = this.props
 
-    const currentTickTime = getTimeInSeconds(new Date())
+    const currentTickTime = getUnixTime(new Date())
 
     if (started && currentTickTime >= startTime + duration) {
       this.stop()

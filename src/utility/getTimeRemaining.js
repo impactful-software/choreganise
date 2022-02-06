@@ -1,4 +1,4 @@
-import getTimeInSeconds from "./getTimeInSeconds"
+import { add, getUnixTime } from "date-fns"
 
 export function getWholeHours (seconds) {
   return Math.floor(seconds / 3600) || 0
@@ -16,7 +16,7 @@ export default function getTimeRemaining ({ duration, paused = false, startTime 
   if (paused) {
     return duration || 0
   } else {
-    return Math.max(0, startTime + duration - getTimeInSeconds(new Date())) || 0
+    return Math.max(0, startTime + duration - getUnixTime(new Date())) || 0
   }
 }
 
