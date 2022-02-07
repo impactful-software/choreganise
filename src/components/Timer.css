@@ -43,7 +43,15 @@
   margin: 0.3em;
 }
 
+.timer .controls .control.secondaryControl:disabled {
+  visibility: hidden;
+}
+
 .timer .controls .control.primaryControl {
   color: white;
   font-size: 40px;
+}
+
+.timer .controls .control.primaryControl:disabled {
+  opacity: 0.6;
 }
