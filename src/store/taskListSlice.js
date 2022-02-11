@@ -1,6 +1,5 @@
 import { BSON } from 'realm-web'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { keyBy } from 'lodash'
 import {
   ACTION_STATUS_IDLE,
   ACTION_STATUS_LOADING,
@@ -25,7 +24,7 @@ const initialState = {
   status: {
     fetchTasks: ACTION_STATUS_IDLE
   },
-  tasks: {}
+  tasks: []
 }
 
 function normalizeTask (task) {
@@ -51,8 +50,7 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async ({ db, filt
   console.debug('Fetching tasks.', { filter })
   const tasksCollection = db.collection('tasks')
   const tasks = await tasksCollection.find(filter)
-  const sortedTasks = sortTasksByPriority(tasks)
-  return keyBy(sortedTasks.map(normalizeTask), '_id')
+  return sortTasksByPriority(tasks.map(normalizeTask))
 })
 
 export const fetchTaskById = createAsyncThunk('tasks/fetchTaskById', async ({ db, id }, { dispatch, getState }) => {
@@ -82,6 +80,9 @@ export const taskListSlice = createSlice({
   name: 'taskList',
   initialState,
   reducers: {
+    prioritiseTasks: (state, action) => {
+      state.tasks = sortTasksByPriority(state.tasks)
+    },
     resetTasks: (state, action) => {
       state.status.fetchTasks = initialState.status.fetchTasks
       state.tasks = initialState.tasks
@@ -104,9 +105,5 @@ export const taskListSlice = createSlice({
 })
 
 export const { resetTasks } = taskListSlice.actions
-
-export function selectPrioritisedTasks (state) {
-  return sortTasksByPriority(state.taskList.tasks)
-}
 
 export default taskListSlice.reducer

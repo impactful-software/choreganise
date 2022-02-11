@@ -1,5 +1,15 @@
 import { add, getUnixTime } from "date-fns"
 
+export function convertSecondsToTimeString(seconds) {
+  const hours = Math.floor(seconds / 3600)
+  const redsidualMinutes = Math.floor(seconds / 60) % 60 // Modulo 60 removes whole hours
+  const residualSeconds = seconds % 60 // Modulo 60 removes whole minutes
+
+  return [hours, redsidualMinutes, residualSeconds]
+    .map(part => part.toString().padStart(2, '0'))
+    .join(':')
+}
+
 export function getTaskDueDate(task) {
   return add(new Date(task.dateCompleted), { [task.frequencyUnit]: task.frequency })
 }
@@ -24,6 +34,28 @@ export default function getTimeRemaining ({ duration, paused = false, startTime 
   }
 }
 
-export function sumTimeComponents({ hours, minutes, seconds }) {
-  return seconds + 60 * minutes + 3600 * hours || 0
+export function parseTimeString (time) {
+  const [hours, minutes, seconds] = time.split(':').map(part => +part)
+
+  if (Number.isNaN(hours)) {
+    throw Error(`Invalid hours value '${hours}' in time string '${time}'.`)
+  }
+
+  if (Number.isNaN(minutes)) {
+    throw Error(`Invalid minutes value '${minutes}' in time string '${time}'.`)
+  }
+
+  if (seconds !== undefined && Number.isNaN(seconds)) {
+    throw Error(`Invalid seconds value '${seconds}' in time string '${time}'.`)
+  }
+
+  return { hours, minutes, seconds: seconds || 0 }
+}
+
+export function sumTimeComponents ({ hours, minutes, seconds }) {
+  if ([hours, minutes, seconds].filter(isNaN).length !== 0) {
+    console.error('Cannot sum non-numeric time components.', { hours, minutes, seconds })
+    throw Error('Cannot sum non-numeric time components.')
+  }
+  return +seconds + 60 * +minutes + 3600 * +hours || 0
 }

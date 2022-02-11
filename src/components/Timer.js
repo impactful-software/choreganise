@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getUnixTime } from 'date-fns'
 import { isEqual } from 'lodash'
-import { pause, setDuration, start, stop } from '../store/timerSlice'
-import getTimeRemaining, { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions'
+import { pause, resume, selectTimeRemaining, setDuration, start, stop } from '../store/timerSlice'
+import { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions'
 
 class Timer extends Component {
   constructor (props) {
@@ -16,7 +16,8 @@ class Timer extends Component {
     this.handleSecondsChange = this.handleSecondsChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.stop = this.stop.bind(this)
-    this.tick = this.tick.bind(this)
+    this.togglePause = this.togglePause.bind(this)
+    this.handleAnimationFrame = this.handleAnimationFrame.bind(this)
 
     this.state = {
       currentTickTime: getUnixTime(new Date())
@@ -24,7 +25,7 @@ class Timer extends Component {
   }
 
   componentDidMount () {
-    this.frameId = requestAnimationFrame(this.tick)
+    this.frameId = requestAnimationFrame(this.handleAnimationFrame)
   }
 
   componentWillUnmount () {
@@ -32,18 +33,8 @@ class Timer extends Component {
     cancelAnimationFrame(this.frameId)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const propsModified = !isEqual(nextProps, this.props)
-    const stateModified = !isEqual(nextState, this.state)
-    return propsModified || stateModified
-  }
-
-  stop () {
-    this.props.stop()
-  }
-
-  tick () {
-    const { duration, paused, started, startTime } = this.props
+  handleAnimationFrame () {
+    const { duration, paused, started, startTime } = this.props.timer
 
     const now = getUnixTime(new Date())
 
@@ -52,25 +43,35 @@ class Timer extends Component {
         // Timer is running; update tick time
         this.setState(
           { now },
-          () => this.frameId = requestAnimationFrame(this.tick)
+          () => this.frameId = requestAnimationFrame(this.handleAnimationFrame)
         )
       } else {
         // Timer passed end time; pause the timer
         this.props.pause()
-        this.frameId = requestAnimationFrame(this.tick)
+        this.frameId = requestAnimationFrame(this.handleAnimationFrame)
       }
     } else {
       // Timer not started, do nothing this frame
-      this.frameId = requestAnimationFrame(this.tick)
+      this.frameId = requestAnimationFrame(this.handleAnimationFrame)
+    }
+  }
+
+  stop () {
+    this.props.stop()
+  }
+
+  togglePause () {
+    if (this.props.timer.paused) {
+      this.props.resume()
+    } else {
+      this.props.pause()
     }
   }
 
   handleSubmit (event) {
     event.preventDefault()
 
-    const { paused } = this.props
-
-    if (paused) {
+    if (this.props.timer.paused) {
       this.props.start()
     } else {
       this.props.pause()
@@ -80,7 +81,7 @@ class Timer extends Component {
   handleHoursChange (event) {
     const duration = sumTimeComponents({
       hours: +event.target.value || 0,
-      minutes: getWholeMinutes(this.props.duration),
+      minutes: getWholeMinutes(this.props.timer.duration),
       seconds: 0
     })
     this.props.setDuration(duration)
@@ -88,7 +89,7 @@ class Timer extends Component {
 
   handleMinutesChange (event) {
     const duration = sumTimeComponents({
-      hours: getWholeHours(this.props.duration),
+      hours: getWholeHours(this.props.timer.duration),
       minutes: +event.target.value || 0,
       seconds: 0
     })
@@ -97,18 +98,19 @@ class Timer extends Component {
 
   handleSecondsChange (event) {
     const duration = sumTimeComponents({
-      hours: getWholeHours(this.props.duration),
-      minutes: getWholeMinutes(this.props.duration),
+      hours: getWholeHours(this.props.timer.duration),
+      minutes: getWholeMinutes(this.props.timer.duration),
       seconds: +event.target.value || 0
     })
     this.props.setDuration(duration)
   }
 
   render () {
-    const { duration, paused, started, startTime } = this.props
+    const { timer } = this.props
+    const { duration, paused, started } = timer
     const initialHours = getWholeHours(duration)
     const initialMinutes = getWholeMinutes(duration)
-    const timeRemaining = getTimeRemaining({ duration, paused, startTime })
+    const timeRemaining = selectTimeRemaining({ timer })
     const hours = getWholeHours(timeRemaining)
     const minutes = getWholeMinutes(timeRemaining)
     const seconds = getResidualSeconds(timeRemaining)
@@ -149,13 +151,27 @@ class Timer extends Component {
         <hr />
 
         <section className="controls">
-          <button className="control secondaryControl" disabled={!started} onClick={this.stop} type="button">
+          <button
+            className="control secondaryControl"
+            disabled={!started}
+            onClick={this.stop}
+            type="button"
+          >
             <FontAwesomeIcon icon='stop' />
           </button>
-          <button className="control primaryControl" disabled={!initialHours && !initialMinutes && !started} type="submit">
+          <button
+            className="control primaryControl"
+            disabled={!initialHours && !initialMinutes && !started}
+            onClick={started ? this.togglePause : null}
+            type={started? 'button' : 'submit'}
+          >
             <FontAwesomeIcon icon={paused ? 'play' : 'pause'} />
           </button>
-          <button className="control secondaryControl" disabled={!started} type="button">
+          <button
+            className="control secondaryControl"
+            disabled={!started}
+            type="button"
+          >
             <FontAwesomeIcon icon='fast-forward' />
           </button>
         </section>
@@ -165,17 +181,12 @@ class Timer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  duration: state.timer.duration,
-  initialHours: getWholeHours(state.timer.duration),
-  initialMinutes: getWholeMinutes(state.timer.duration),
-  initialSeconds: getResidualSeconds(state.timer.duration),
-  paused: state.timer.paused,
-  started: state.timer.started,
-  startTime: state.timer.startTime
+  timer: state.timer
 })
 
 const mapDispatchToProps = {
   pause: () => pause(),
+  resume: () => resume(),
   setDuration: (duration) => setDuration(duration),
   start: (duration) => start(duration),
   stop: () => stop()
