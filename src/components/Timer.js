@@ -107,7 +107,7 @@ class Timer extends Component {
 
   render () {
     const { timer } = this.props
-    const { duration, paused, started } = timer
+    const { activeTask, duration, paused, started } = timer
     const initialHours = getWholeHours(duration)
     const initialMinutes = getWholeMinutes(duration)
     const timeRemaining = selectTimeRemaining({ timer })
@@ -161,7 +161,7 @@ class Timer extends Component {
           </button>
           <button
             className="control primaryControl"
-            disabled={!initialHours && !initialMinutes && !started}
+            disabled={started ? !activeTask : (!initialHours && !initialMinutes)}
             onClick={started ? this.togglePause : null}
             type={started? 'button' : 'submit'}
           >
@@ -169,7 +169,7 @@ class Timer extends Component {
           </button>
           <button
             className="control secondaryControl"
-            disabled={!started}
+            disabled={!activeTask}
             type="button"
           >
             <FontAwesomeIcon icon='fast-forward' />

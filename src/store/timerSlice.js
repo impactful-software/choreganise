@@ -51,9 +51,11 @@ export const timerSlice = createSlice({
       const nextTask = action.payload.find(
         task => sumTimeComponents(parseTimeString(task.duration)) <= selectTimeRemaining({ timer: state })
       )
-      state.activeTask = nextTask
-      state.paused = false
-      state.segments.push(createTimerSegment(nextTask))
+      if (nextTask) {
+        state.activeTask = nextTask
+        state.paused = false
+        state.segments.push(createTimerSegment(nextTask))
+      }
     },
 
     stop: (state, action) => {
