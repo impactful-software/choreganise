@@ -1,12 +1,13 @@
+import './ActiveTask.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { fetchTasks } from '../store/taskListSlice'
-import { useRealmApp } from '../components/RealmApp'
-import './ActiveTask.css'
+
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED } from '../utility/config'
-import toast from 'react-hot-toast'
+import { fetchTasks } from '../store/taskListSlice'
 import { startNextTask } from '../store/timerSlice'
+import { useRealmApp } from '../components/RealmApp'
 
 function ActiveTask () {
   const dispatch = useDispatch()
@@ -78,21 +79,21 @@ function ActiveTask () {
     <p>No tasks found that are due and fit within the remaining session time.</p>
   ) : (
     <section className="activeTask">
-      <div className="locationAndDuration">
-        <div className="taskLocation">
+      <div className="durationAndLocation">
+        <div className="duration">
           <FontAwesomeIcon icon='hourglass-start' />
           &nbsp;
           {activeTask.duration}
         </div>
-        <div className="taskLocation">
+        <div className="location">
           {activeTask.location}
         </div>
       </div>
-      <div className="taskNameAndIcon">
-        <div className="taskIcon">
+      <div>
+        <div className="icon">
           {activeTask.icon && <FontAwesomeIcon icon={activeTask.icon} />}
         </div>
-        <div className="taskName">
+        <div className="name">
           {activeTask.name}
         </div>
       </div>
