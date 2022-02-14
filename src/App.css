@@ -21,17 +21,28 @@ a:hover{
   border: 2px solid white;
   border-radius: 2em;
   color: white;
+  cursor: pointer;
   font-size: inherit;
   padding: 0.5em;
 }
 
-.button:hover {
-  background-color: #83aab4;
-  cursor: pointer;
-}
-
 .button:active {
   transform: translate(0, 2px);
+}
+
+.button:focus,
+.button:hover {
+  background-color: #83aab4;
+}
+
+.button.dangerButton {
+  color: red;
+}
+
+.button.dangerButton:focus,
+.button.dangerButton:hover {
+  background-color: red;
+  color: white;
 }
 
 .App {

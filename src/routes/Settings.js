@@ -23,7 +23,7 @@ function Settings () {
         <p>
           Pressing buttons below here may cause irrevocable changes to data.
         </p>
-        <button className='button' type='button' onClick={handleResetDatabaseClick}>
+        <button className='button dangerButton' type='button' onClick={handleResetDatabaseClick}>
           Reset database
         </button>
       </section>
