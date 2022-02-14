@@ -3,7 +3,6 @@ import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getUnixTime } from 'date-fns'
-import { isEqual } from 'lodash'
 import { pause, resume, selectTimeRemaining, setDuration, start, stop } from '../store/timerSlice'
 import { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions'
 
