@@ -7,7 +7,7 @@ import {
   ACTION_STATUS_SUCCEEDED
 } from '../utility/config'
 import defaultTasks from '../data/defaultTasks.json'
-import { resetTasks } from './taskListSlice'
+import { deNormalizeTask, resetTasks } from './taskListSlice'
 
 const initialState = {
   status: {
@@ -17,16 +17,18 @@ const initialState = {
 
 export const resetDatabase = createAsyncThunk('settings/resetDatabase', async ({ db }, {dispatch, getState}) => {
   console.debug('Resetting database.')
+  const encodedDefaultTasks = defaultTasks.map(deNormalizeTask)
+  console.debug('Encoded default tasks.', encodedDefaultTasks)
   const tasksCollection = db.collection('tasks')
   await tasksCollection.deleteMany({})
   console.debug('Deleted all tasks.')
-  await tasksCollection.insertMany(defaultTasks)
+  await tasksCollection.insertMany(encodedDefaultTasks)
   console.debug('Inserted default tasks.')
   dispatch(resetTasks())
 })
 
-export const settomgsSlice = createSlice({
-  name: 'settomgs',
+export const settingsSlice = createSlice({
+  name: 'settings',
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -47,4 +49,4 @@ export const settomgsSlice = createSlice({
   }
 })
 
-export default settomgsSlice.reducer
+export default settingsSlice.reducer
