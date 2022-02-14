@@ -30,8 +30,13 @@ a:hover{
   transform: translate(0, 2px);
 }
 
-.button:focus,
-.button:hover {
+.button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.button:not(:disabled):focus,
+.button:not(:disabled):hover {
   background-color: #83aab4;
 }
 
@@ -39,8 +44,8 @@ a:hover{
   color: red;
 }
 
-.button.dangerButton:focus,
-.button.dangerButton:hover {
+.button.dangerButton:not(:disabled):focus,
+.button.dangerButton:not(:disabled):hover {
   background-color: red;
   color: white;
 }
