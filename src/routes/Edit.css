@@ -7,8 +7,16 @@
   display: block;
 }
 
-.editTaskForm .deleteButton{
-  color: red;
+.editTaskForm .buttonsWrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 1em auto;
+}
+
+.editTaskForm .completionSection {
+  text-align: center;
 }
 
 .editTaskForm .taskFormInput {
@@ -16,4 +24,23 @@
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+}
+
+.editTaskForm .completionList {
+  list-style: none;
+  padding: 0;
+}
+
+.editTaskForm .completionListItem {
+  font-size: 80%;
+}
+
+.editTaskForm .completionListItem .completionDuration {
+  margin: 0 1em;
+  font-style: italic;
+}
+
+.editTaskForm .placeholder {
+  font-size: 80%;
+  font-style: italic;
 }

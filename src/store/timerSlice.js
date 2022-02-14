@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { getUnixTime } from "date-fns"
 import { sum } from "lodash"
 import { parseTimeString, sumTimeComponents } from "../utility/dateTimeFunctions"
+import { createTaskCompletion, normalizeTask, updateTask } from "./taskListSlice"
 
 const initialState = {
   activeTask: null,
@@ -15,10 +16,28 @@ const initialState = {
 function createTimerSegment(task) {
   return {
     start: getUnixTime(new Date()),
-    end: 0,
+    end: null,
     task
   }
 }
+
+export const completeActiveTask = createAsyncThunk(
+  'tasks/completeActiveTask',
+  async ({ db }, { dispatch, getState }) => {
+    console.debug('Completing active task.')
+    const state = getState()
+    const activeTask = normalizeTask(state.timer.activeTask)
+
+    const duration = selectTimeSpentOnCurrentTask(state)
+    const completion = createTaskCompletion({ duration })
+
+    activeTask.completions.push(completion)
+
+    dispatch(updateTask({ db, props: activeTask }))
+
+    return activeTask
+  }
+)
 
 export const timerSlice = createSlice({
   name: 'timer',
@@ -51,11 +70,12 @@ export const timerSlice = createSlice({
       const nextTask = action.payload.find(
         task => sumTimeComponents(parseTimeString(task.duration)) <= selectTimeRemaining({ timer: state })
       )
-      if (nextTask) {
-        state.activeTask = nextTask
-        state.paused = false
-        state.segments.push(createTimerSegment(nextTask))
+      state.activeTask = typeof nextTask !== 'undefined' ? nextTask : initialState.activeTask
+      state.paused = false
+      if (state.segments.length > 0) {
+        state.segments[state.segments.length - 1].end = getUnixTime(new Date())
       }
+      state.segments.push(createTimerSegment(nextTask))
     },
 
     stop: (state, action) => {
@@ -70,6 +90,21 @@ export const timerSlice = createSlice({
 })
 
 export const { pause, resume, startNextTask, setDuration, start, stop } = timerSlice.actions
+
+export const selectTimeSpentOnCurrentTask = (state) => {
+  const { activeTask, segments } = state.timer
+  return sum(
+    segments
+      .filter(segment => segment.task._id === activeTask._id)
+      .map(segment => {
+        if (segment.end >= segment.start) {
+          return segment.end - segment.start
+        } else {
+          return getUnixTime(new Date()) - segment.start
+        }
+      })
+  )
+}
 
 export const selectTimeRemaining = (state) => {
   const { duration, segments } = state.timer

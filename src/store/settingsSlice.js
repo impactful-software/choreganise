@@ -7,7 +7,7 @@ import {
   ACTION_STATUS_SUCCEEDED
 } from '../utility/config'
 import defaultTasks from '../data/defaultTasks.json'
-import { deNormalizeTask, resetTasks } from './taskListSlice'
+import { encodeTask, resetTasks } from './taskListSlice'
 
 const initialState = {
   status: {
@@ -17,7 +17,7 @@ const initialState = {
 
 export const resetDatabase = createAsyncThunk('settings/resetDatabase', async ({ db }, {dispatch, getState}) => {
   console.debug('Resetting database.')
-  const encodedDefaultTasks = defaultTasks.map(deNormalizeTask)
+  const encodedDefaultTasks = defaultTasks.map(encodeTask)
   console.debug('Encoded default tasks.', encodedDefaultTasks)
   const tasksCollection = db.collection('tasks')
   await tasksCollection.deleteMany({})

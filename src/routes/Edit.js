@@ -1,13 +1,14 @@
 import './Edit.css'
 import { BSON } from 'realm-web'
-import { Component } from 'react'
+import { Component, Fragment } from 'react'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+
 import { RealmAppContext } from '../components/RealmApp'
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
-import { useNavigate, useParams } from 'react-router-dom'
-import { defaultTask, resetTasks } from '../store/taskListSlice'
-import normalizeTask from '../utility/normalizeTask'
-import { useDispatch } from 'react-redux'
+import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class EditClass extends Component {
   static contextType = RealmAppContext
@@ -57,7 +58,7 @@ class EditClass extends Component {
 
     if (taskId) {
       this.setState({ fetchTaskStatus: ACTION_STATUS_LOADING })
-      const task = await this.tasksCollection.findOne({_id: BSON.ObjectID(taskId)})
+      const task = decodeTask(await this.tasksCollection.findOne({_id: BSON.ObjectID(taskId)}))
 
       if (task === null) {
         toast.error('Task not found. Submitting this form will create a new task.')
@@ -151,7 +152,7 @@ class EditClass extends Component {
     const { taskId } = params
 
     const formData = new FormData(event.target)
-    const data = normalizeTask({
+    const data = {
       "name": formData.get('name'),
       "icon": formData.get('icon'),
       "prioritise": formData.has('prioritise'),
@@ -159,14 +160,15 @@ class EditClass extends Component {
       "frequency": formData.get('frequency'),
       "frequencyUnit": formData.get('frequencyUnit'),
       "location": formData.get('location'),
-      "dateCompleted": formData.get('dateCompleted')
-    })
+      "completions": task.completions
+    }
 
     if (taskId && !deleted) {
       this.setState({ saveTaskStatus: ACTION_STATUS_LOADING })
 
-      Object.assign(task, data)
-      await this.tasksCollection.updateOne({ _id: BSON.ObjectID(taskId) }, task)
+      const encodedData = encodeTask(Object.assign({}, task, data))
+
+      await this.tasksCollection.updateOne({ _id: BSON.ObjectID(taskId) }, encodedData)
 
       this.setState({ saveTaskStatus: ACTION_STATUS_SUCCEEDED })
       toast.success('Task updated.')
@@ -194,9 +196,13 @@ class EditClass extends Component {
     const { taskId } = this.props.params
 
     return fetchTaskStatus === ACTION_STATUS_LOADING || (fetchTaskStatus === ACTION_STATUS_IDLE && taskId) ? (
-      <p>Loading.</p>
+      <p>
+        <FontAwesomeIcon icon="spinner" spin />
+      </p>
     ) : fetchTaskStatus === ACTION_STATUS_REJECTED ? (
-      <p>Error finding task details.</p>
+      <p>
+        Error finding task details.
+      </p>
     ) : (
       <form action="/view" className="editTaskForm" onSubmit={this.handleFormSubmit}>
         <div>
@@ -295,27 +301,48 @@ class EditClass extends Component {
           </select>
         </div>
 
-        <div>
-          <label>Date last completed</label>
-          <input
-            className="taskFormInput"
-            name="dateCompleted"
-            onChange={this.handleFormFieldChange}
-            value={task.dateCompleted}
-            type="date"
-          />
+        <div className="buttonsWrap">
+          <button className="button submitButton" disabled={saveTaskStatus === ACTION_STATUS_SUCCEEDED} type="submit">
+            Save
+          </button>
+
+          {taskId && (
+            <button className="button dangerButton" type="delete" onClick={this.handleDeleteTaskClick}>
+              Delete task
+            </button>
+          )}
         </div>
 
-        <button className="submitButton" disabled={saveTaskStatus === ACTION_STATUS_SUCCEEDED} type="submit">
-          Save
-        </button>
-        <br/>
-
-        {taskId && (
-          <button className="deleteButton" type="delete" onClick={this.handleDeleteTaskClick}>
-            Delete task
-          </button>
-        )}
+        <section className="completionSection">
+          {task.completions.length === 0 ? (
+            <p className="placeholder">Not yet completed.</p>
+          ) : (
+            <Fragment>
+              <label>Completed {task.completions.length} times</label>
+              <ul className="completionList">
+                {task.completions.map((completion, index) => {
+                  const completionDate = new Date(completion.time * 1000)
+                  return (
+                    <li className="completionListItem" key={index}>
+                      <span className="completionDate">
+                        {completionDate.toLocaleDateString()}
+                      </span>
+                      &nbsp;
+                      at
+                      &nbsp;
+                      <span className="completionTime">
+                        {completionDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                      <span className="completionDuration">
+                        ({Math.floor(completion.duration / 60)} minutes)
+                      </span>
+                    </li>
+                  )
+                })}
+              </ul>
+              </Fragment>
+          )}
+        </section>
       </form>
     )
   }

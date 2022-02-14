@@ -1,9 +1,10 @@
-import { add, differenceInDays } from "date-fns"
+import { differenceInDays } from "date-fns"
+import { getDateLastCompleted, getDateNextDue } from "./dateTimeFunctions"
 
 export default function calculateTaskPriority(task) {
-  const dateCompleted = new Date(task.dateCompleted)
-  const dateDue = add(dateCompleted, { [task.frequencyUnit]: task.frequency })
-  const daysBetweenDueDates = differenceInDays(dateDue, dateCompleted)
+  const dateLastCompleted = getDateLastCompleted(task)
+  const dateDue = getDateNextDue(task)
+  const daysBetweenDueDates = differenceInDays(dateDue, dateLastCompleted)
   const daysPastDue = differenceInDays(new Date(), dateDue)
 
   return daysPastDue / daysBetweenDueDates

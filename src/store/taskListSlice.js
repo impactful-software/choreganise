@@ -7,10 +7,11 @@ import {
   ACTION_STATUS_SUCCEEDED
 } from '../utility/config'
 import sortTasksByPriority from '../utility/sortTasksByPriority'
+import { getUnixTime } from 'date-fns'
+import { defaultsDeep, findIndex } from 'lodash'
 
 export const defaultTask = {
-  _id: '',
-  dateCompleted: '',
+  completions: [],
   duration: '',
   frequency: 1,
   frequencyUnit: 'days',
@@ -22,15 +23,52 @@ export const defaultTask = {
 
 const initialState = {
   status: {
-    fetchTasks: ACTION_STATUS_IDLE
+    fetchTasks: ACTION_STATUS_IDLE,
+    updateTask: ACTION_STATUS_IDLE
   },
   tasks: []
 }
 
-function normalizeTask (task) {
+export function decodeTask (task) {
+  return defaultsDeep(
+    normalizeTask(task),
+    defaultTask
+  )
+}
+
+export function encodeTask (task) {
+  const normalizedTask = normalizeTask(task)
+  const encodedId = task._id ? { _id: BSON.ObjectID(task._id) } : {}
+  return defaultsDeep(
+    encodedId,
+    normalizedTask,
+    defaultTask
+  )
+}
+
+export function normalizeTask (task) {
+  const decodedId = task._id ? { _id: task._id.toString() } : {}
+  return defaultsDeep(
+    decodedId,
+    {
+      frequencyUnit: task.frequencyUnit ? task.frequencyUnit.toLowerCase() : '',
+      icon: task.icon ? task.icon.toLowerCase() : '',
+      location: task.location ? task.location.toLowerCase() : '',
+      name: task.name ? task.name.toLowerCase() : ''
+    },
+    task
+  )
+}
+
+export function createTaskCompletion({ duration, time }) {
+  if (Number.isNaN(time) && typeof time !== 'undefined') {
+    throw Error(`Cannot create task completion object with invalid time '${time}'.`)
+  }
+  const date = typeof time === 'undefined' ? new Date() : new Date(time)
+
   return {
-    ...task,
-    _id: task._id.toString()
+    duration,
+    time: getUnixTime(date)
   }
 }
 
@@ -50,24 +88,27 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async ({ db, filt
   console.debug('Fetching tasks.', { filter })
   const tasksCollection = db.collection('tasks')
   const tasks = await tasksCollection.find(filter)
-  return sortTasksByPriority(tasks.map(normalizeTask))
+  return sortTasksByPriority(tasks.map(decodeTask))
 })
 
 export const fetchTaskById = createAsyncThunk('tasks/fetchTaskById', async ({ db, id }, { dispatch, getState }) => {
   console.debug('Fetching task by ID.', { id })
   const tasksCollection = db.collection('tasks')
   const task = await tasksCollection.findOne({ _id: BSON.ObjectID(id) })
-  return normalizeTask(task)
+  return decodeTask(task)
 })
 
-export const updateTaskById = createAsyncThunk('tasks/updateTaskById', async ({ db, props }, { dispatch, getState }) => {
+export const updateTask = createAsyncThunk('tasks/updateTask', async ({ db, props }, { dispatch, getState }) => {
   console.debug('Updating task.', { props })
   if (!props._id) {
-    throw Error('ID missing from request to update task.')
+    throw Error('Cannot update task without an `_id` prop.')
   }
-  const _id = props._id = BSON.ObjectID(props._id)
   const tasksCollection = db.collection('tasks')
-  return await tasksCollection.updateOne({ _id }, props)
+  const result = await tasksCollection.updateOne({ _id: BSON.ObjectID(props._id) }, encodeTask(props))
+  if (result.modifiedCount !== 1) {
+    throw Error(`Failed to update task by ID. ${result.modifiedCount} rows affected.`)
+  }
+  return props
 })
 
 export const watchTasks = createAsyncThunk('tasks/watchTasks', async ({ db, filter, ids }, { dispatch, getState }) => {
@@ -101,9 +142,21 @@ export const taskListSlice = createSlice({
       .addCase(fetchTasks.rejected, (state, action) => {
         state.status.fetchTasks = ACTION_STATUS_REJECTED
       })
+      // updateTask
+      .addCase(updateTask.pending, (state, action) => {
+        state.status.updateTask = ACTION_STATUS_LOADING
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        state.status.updateTask = ACTION_STATUS_SUCCEEDED
+        const taskIndex = findIndex(state.tasks, { _id: action.payload._id })
+        state.tasks[taskIndex] = action.payload
+      })
+      .addCase(updateTask.rejected, (state, action) => {
+        state.status.updateTask = ACTION_STATUS_REJECTED
+      })
   }
 })
 
-export const { resetTasks } = taskListSlice.actions
+export const { prioritiseTasks, resetTasks } = taskListSlice.actions
 
 export default taskListSlice.reducer

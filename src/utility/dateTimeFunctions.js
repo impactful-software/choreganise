@@ -1,6 +1,6 @@
 import { add, getUnixTime } from "date-fns"
 
-export function convertSecondsToTimeString(seconds) {
+export function convertSecondsToTimeString (seconds) {
   const hours = Math.floor(seconds / 3600)
   const redsidualMinutes = Math.floor(seconds / 60) % 60 // Modulo 60 removes whole hours
   const residualSeconds = seconds % 60 // Modulo 60 removes whole minutes
@@ -10,8 +10,17 @@ export function convertSecondsToTimeString(seconds) {
     .join(':')
 }
 
-export function getTaskDueDate(task) {
-  return add(new Date(task.dateCompleted), { [task.frequencyUnit]: task.frequency })
+export function getDateNextDue (task) {
+  const dateLastCompleted = getDateLastCompleted(task)
+  return add(dateLastCompleted, { [task.frequencyUnit]: task.frequency })
+}
+
+export function getDateLastCompleted (task) {
+  if (task.completions && task.completions.length > 0) {
+    return new Date(task.completions[task.completions.length -1].time * 1000)
+  } else {
+    return new Date(0)
+  }
 }
 
 export function getWholeHours (seconds) {
