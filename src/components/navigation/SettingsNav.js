@@ -6,7 +6,7 @@ function SettingsNav () {
   return (
     <nav className='nav'>
       <Link to="/">
-        <FontAwesomeIcon icon='home' />
+        <FontAwesomeIcon icon='stopwatch' />
       </Link>
     </nav>
   )

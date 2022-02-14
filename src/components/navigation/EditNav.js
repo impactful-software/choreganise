@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function EditNav () {
   return (
     <nav className='nav'>
-      <Link to="/" className="homeLink">
-        <FontAwesomeIcon icon='home' />
+      <Link to="/">
+        <FontAwesomeIcon icon='stopwatch' />
       </Link>
-      <Link to="/view" className="alreadyDoneButton">
-        <FontAwesomeIcon icon='check-circle' />
+      <Link to="/view">
+        <FontAwesomeIcon icon='times' />
       </Link>
     </nav>
   )

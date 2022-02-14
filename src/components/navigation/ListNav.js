@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function ListNav () {
   return (
     <nav className='nav'>
-      <Link to="/" className="homeLink">
-        <FontAwesomeIcon icon='home' />
+      <Link to="/">
+        <FontAwesomeIcon icon='stopwatch' />
       </Link>
-      <Link to="/edit" className="addTaskLink">
+      <Link to="/edit">
         <FontAwesomeIcon icon='plus-circle' />
       </Link>
     </nav>
