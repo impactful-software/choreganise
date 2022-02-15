@@ -68,7 +68,7 @@ export const timerSlice = createSlice({
     startNextTask: (state, action) => {
       // Payload should be the full task list, in priority order
       const nextTask = action.payload.find(
-        task => sumTimeComponents(parseTimeString(task.duration)) <= selectTimeRemaining({ timer: state })
+        task => sumTimeComponents(parseTimeString(task.duration || '00:00')) <= selectTimeRemaining({ timer: state })
       )
       state.activeTask = typeof nextTask !== 'undefined' ? nextTask : initialState.activeTask
       state.paused = false

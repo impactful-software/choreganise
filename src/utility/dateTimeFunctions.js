@@ -54,7 +54,7 @@ export function parseTimeString (time) {
     throw Error(`Invalid minutes value '${minutes}' in time string '${time}'.`)
   }
 
-  if (seconds !== undefined && Number.isNaN(seconds)) {
+  if (typeof seconds !== 'undefined' && Number.isNaN(seconds)) {
     throw Error(`Invalid seconds value '${seconds}' in time string '${time}'.`)
   }
 
