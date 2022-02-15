@@ -1,14 +1,15 @@
 import './Edit.css'
 import { BSON } from 'realm-web'
 import { Component, Fragment } from 'react'
+import { sumBy } from 'lodash'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { RealmAppContext } from '../components/RealmApp'
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
 import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { RealmAppContext } from '../components/RealmApp'
 
 class EditClass extends Component {
   static contextType = RealmAppContext
@@ -194,6 +195,7 @@ class EditClass extends Component {
   render () {
     const { fetchTaskStatus, saveTaskStatus, task } = this.state
     const { taskId } = this.props.params
+    const averageDuration = sumBy(task.completions, completion => completion.duration || 0)
 
     return fetchTaskStatus === ACTION_STATUS_LOADING || (fetchTaskStatus === ACTION_STATUS_IDLE && taskId) ? (
       <p>
@@ -206,27 +208,103 @@ class EditClass extends Component {
     ) : (
       <form action="/view" className="editTaskForm" onSubmit={this.handleFormSubmit}>
         <div>
-          <label>Task name</label>
+          <label>Icon</label>
+          <p className="note">
+            Enter the name of a <a href="https://fontawesome.com/v5/cheatsheet" rel="noreferrer" target="_blank">free, solid Font Awesome icon</a>.
+          </p>
+          <input
+            className="taskFormInput"
+            name="icon"
+            onChange={this.handleFormFieldChange}
+            placeholder="Font Awesome icon name"
+            value={task.icon}
+            type="text"
+          />
+        </div>
+
+        <div>
+          <label>Do this</label>
           <input
             className="taskFormInput"
             name="name"
             onChange={this.handleFormFieldChange}
-            placeholder="enter name of task"
+            placeholder="task"
             value={task.name}
             type="text"
           />
         </div>
 
         <div>
-          <label>Icon</label>
-          <input
+          <label>in/at the</label>
+          <select
             className="taskFormInput"
-            name="icon"
+            name="location"
             onChange={this.handleFormFieldChange}
-            placeholder="enter name of icon from Font Awesome"
-            value={task.icon}
+            required
             type="text"
-          />
+            value={task.location}
+          >
+            <option disabled value="">location/category</option>
+            <option value="hall, stairs and landing">Hall, stairs and landing</option>
+            <option value="kitchen">Kitchen</option>
+            <option value="bathroom">Bathroom</option>
+            <option value="back bedroom">Back bedroom</option>
+            <option value="study">Study</option>
+            <option value="lounge">Lounge</option>
+            <option value="dining room">Dining room</option>
+            <option value="utility Room">Utility room</option>
+            <option value="garage">Garage</option>
+            <option value="cats">Cats</option>
+            <option value="food">Food</option>
+          </select>
+        </div>
+
+        <div>
+          <label>every</label>
+          <fieldset className="inlineFieldset">
+            <input
+              className="taskFormInput frequencyNumberInput"
+              name="frequency"
+              onChange={this.handleFormFieldChange}
+              placeholder="number"
+              value={task.frequency}
+              type="number"
+            />
+            <select
+              className="taskFormInput"
+              onChange={this.handleFormFieldChange}
+              name="frequencyUnit"
+              type="text"
+              value={task.frequencyUnit}
+            >
+              <option value="days">day(s)</option>
+              <option value="weeks">week(s)</option>
+              <option value="months">month(s)</option>
+              <option value="years">year(s)</option>
+            </select>
+          </fieldset>
+        </div>
+
+        <div>
+          <label>for</label>
+          <fieldset className="inlineFieldset">
+            <input
+              className="taskFormInput durationInput"
+              name="duration"
+              onChange={this.handleFormFieldChange}
+              placeholder="hh:mm:ss"
+              type="time"
+              value={task.duration}
+            />
+            <p>
+              hours : minutes
+            </p>
+          </fieldset>
+          {task.completions.length ? (
+            <p className="note">
+              Actual average: {Math.ceil(averageDuration / 60)} minutes
+            </p>
+          ) : null}
         </div>
 
         <div>
@@ -238,67 +316,6 @@ class EditClass extends Component {
             onChange={this.handleFormFieldChange}
             type="checkbox"
           />
-        </div>
-
-        <div>
-          <label>Duration</label>
-          <input
-            className="taskFormInput"
-            name="duration"
-            onChange={this.handleFormFieldChange}
-            placeholder="hh:mm:ss"
-            type="time"
-            value={task.duration}
-          />
-        </div>
-
-        <div>
-          <label>Frequency</label>
-          <input
-            className="taskFormInput"
-            name="frequency"
-            onChange={this.handleFormFieldChange}
-            placeholder="number"
-            value={task.frequency}
-            type="number"
-          />
-          <select
-            className="taskFormInput"
-            onChange={this.handleFormFieldChange}
-            name="frequencyUnit"
-            type="text"
-            value={task.frequencyUnit}
-          >
-            <option value="days">Day(s)</option>
-            <option value="weeks">Week(s)</option>
-            <option value="months">Month(s)</option>
-            <option value="years">Year(s)</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Location/Category</label>
-          <select
-            className="taskFormInput"
-            name="location"
-            onChange={this.handleFormFieldChange}
-            value={task.location}
-            type="text"
-          >
-            <option value="Hall, stairs and Landing">Hall, stairs and Landing</option>
-            <option value="Kitchen">Kitchen</option>
-            <option value="Bathroom">Bathroom</option>
-            <option value="Back Bedroom">Back Bedroom</option>
-            <option value="Study">Study</option>
-            <option value="Lounge">Lounge</option>
-            <option value="Dining room">Dining room</option>
-            <option value="Utility Room">Utility Room</option>
-            <option value="Garage">Garage</option>
-            <option value="Cats">Cats</option>
-            <option value="Laundry">Laundry</option>
-            <option value="Food">Food</option>
-            <option value="Shopping">Shopping</option>
-          </select>
         </div>
 
         <div className="buttonsWrap">
@@ -333,9 +350,11 @@ class EditClass extends Component {
                       <span className="completionTime">
                         {completionDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
-                      <span className="completionDuration">
-                        ({Math.floor(completion.duration / 60)} minutes)
-                      </span>
+                      {completion.duration && (
+                        <span className="completionDuration">
+                          ({Math.ceil(completion.duration / 60)} minutes)
+                        </span>
+                      )}
                     </li>
                   )
                 })}
