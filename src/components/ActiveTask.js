@@ -127,9 +127,11 @@ function ActiveTask () {
         </div>
       </div>
       <div>
-        <div className="icon">
-          {activeTask.icon && <FontAwesomeIcon icon={activeTask.icon} />}
-        </div>
+        {activeTask.icon && (
+          <div className="icon">
+            <FontAwesomeIcon icon={activeTask.icon} />
+          </div>
+        )}
         <div className="name">
           {activeTask.name}
         </div>
