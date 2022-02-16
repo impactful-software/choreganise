@@ -171,7 +171,7 @@ class Timer extends Component {
             disabled={!activeTask}
             type="button"
           >
-            <FontAwesomeIcon icon='fast-forward' />
+            <FontAwesomeIcon icon='forward-step' />
           </button>
         </section>
       </form>
