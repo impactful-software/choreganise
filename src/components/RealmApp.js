@@ -8,7 +8,7 @@ import {
   REALM_APP_ID,
   REALM_CLIENT_TYPE,
   REALM_DB_NAME
-} from "../utility/config"
+} from "../utility/config.js"
 
 export const RealmAppContext = React.createContext(null)
 

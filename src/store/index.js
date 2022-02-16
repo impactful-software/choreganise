@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
-import settingsSlice from './settingsSlice'
-import taskListSlice from './taskListSlice'
-import timerSlice from './timerSlice'
+import settingsSlice from './settingsSlice.js'
+import taskListSlice from './taskListSlice.js'
+import timerSlice from './timerSlice.js'
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) => {

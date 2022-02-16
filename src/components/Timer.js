@@ -3,8 +3,8 @@ import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getUnixTime } from 'date-fns'
-import { pause, resume, selectTimeRemaining, setDuration, start, stop } from '../store/timerSlice'
-import { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions'
+import { pause, resume, selectTimeRemaining, setDuration, start, stop } from '../store/timerSlice.js'
+import { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions.js'
 
 class Timer extends Component {
   constructor (props) {

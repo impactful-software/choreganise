@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { fetchTasks } from '../store/taskListSlice'
-import { useRealmApp } from '../components/RealmApp'
-import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
-import calculateTaskPriority from '../utility/calculateTaskPriority'
+import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config.js'
+import calculateTaskPriority from '../utility/calculateTaskPriority.js'
+import { fetchTasks } from '../store/taskListSlice.js'
+import { useRealmApp } from '../components/RealmApp.js'
 
 function View ({ taskList }) {
   const { db } = useRealmApp()

@@ -1,8 +1,8 @@
 import './Settings.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useRealmApp } from '../components/RealmApp'
-import { resetDatabase } from '../store/settingsSlice'
-import { ACTION_STATUS_LOADING } from '../utility/config'
+import { useRealmApp } from '../components/RealmApp.js'
+import { resetDatabase } from '../store/settingsSlice.js'
+import { ACTION_STATUS_LOADING } from '../utility/config.js'
 
 function Settings () {
   const { db } = useRealmApp()

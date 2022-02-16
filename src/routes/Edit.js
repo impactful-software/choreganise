@@ -1,15 +1,15 @@
 import './Edit.css'
 import { BSON } from 'realm-web'
 import { Component, Fragment } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { sumBy } from 'lodash'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
-import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { RealmAppContext } from '../components/RealmApp'
+import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config.js'
+import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice.js'
+import { RealmAppContext } from '../components/RealmApp.js'
 
 class EditClass extends Component {
   static contextType = RealmAppContext

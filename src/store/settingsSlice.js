@@ -5,9 +5,9 @@ import {
   ACTION_STATUS_LOADING,
   ACTION_STATUS_REJECTED,
   ACTION_STATUS_SUCCEEDED
-} from '../utility/config'
+} from '../utility/config.js'
 import defaultTasks from '../data/defaultTasks.json'
-import { encodeTask, resetTasks } from './taskListSlice'
+import { encodeTask, resetTasks } from './taskListSlice.js'
 
 const initialState = {
   status: {

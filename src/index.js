@@ -4,10 +4,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import './index.css'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
-import { store } from './store'
-import RealmApp from './components/RealmApp'
+import App from './App.js'
+import reportWebVitals from './reportWebVitals.js'
+import { store } from './store/index.js'
+import RealmApp from './components/RealmApp.js'
 
 ReactDOM.render(
   <React.StrictMode>

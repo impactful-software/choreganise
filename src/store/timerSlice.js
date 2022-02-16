@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { getUnixTime } from "date-fns"
 import { sum } from "lodash"
-import { parseTimeString, sumTimeComponents } from "../utility/dateTimeFunctions"
-import { createTaskCompletion, normalizeTask, updateTask } from "./taskListSlice"
+import { createTaskCompletion, normalizeTask, updateTask } from "./taskListSlice.js"
+import { parseTimeString, sumTimeComponents } from "../utility/dateTimeFunctions.js"
 
 const initialState = {
   activeTask: null,

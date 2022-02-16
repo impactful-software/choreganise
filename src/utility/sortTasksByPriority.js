@@ -1,5 +1,5 @@
 import { sortBy } from "lodash";
-import calculateTaskPriority from "./calculateTaskPriority";
+import calculateTaskPriority from "./calculateTaskPriority.js";
 
 export default function sortTasksByPriority (tasks) {
   return sortBy(

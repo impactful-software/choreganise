@@ -1,7 +1,7 @@
 import './Home.css'
 import { useSelector } from 'react-redux'
-import Title from '../components/Title'
-import ActiveTask from '../components/ActiveTask'
+import ActiveTask from '../components/ActiveTask.js'
+import Title from '../components/Title.js'
 
 function Home () {
   const timerStarted = useSelector(state => state.timer.started)

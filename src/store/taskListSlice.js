@@ -1,14 +1,14 @@
 import { BSON } from 'realm-web'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { defaultsDeep, findIndex } from 'lodash'
+import { getUnixTime } from 'date-fns'
 import {
   ACTION_STATUS_IDLE,
   ACTION_STATUS_LOADING,
   ACTION_STATUS_REJECTED,
   ACTION_STATUS_SUCCEEDED
-} from '../utility/config'
-import sortTasksByPriority from '../utility/sortTasksByPriority'
-import { getUnixTime } from 'date-fns'
-import { defaultsDeep, findIndex } from 'lodash'
+} from '../utility/config.js'
+import sortTasksByPriority from '../utility/sortTasksByPriority.js'
 
 export const defaultTask = {
   completions: [],

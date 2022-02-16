@@ -4,11 +4,11 @@ import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { useCallback, useEffect, useState } from 'react'
 
-import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config'
-import { fetchTasks, prioritiseTasks } from '../store/taskListSlice'
-import { completeActiveTask, startNextTask } from '../store/timerSlice'
-import { useRealmApp } from '../components/RealmApp'
-import IconButton from './IconButton'
+import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config.js'
+import { fetchTasks, prioritiseTasks } from '../store/taskListSlice.js'
+import { completeActiveTask, startNextTask } from '../store/timerSlice.js'
+import { useRealmApp } from '../components/RealmApp.js'
+import IconButton from './IconButton.js'
 
 function ActiveTask () {
   const dispatch = useDispatch()
