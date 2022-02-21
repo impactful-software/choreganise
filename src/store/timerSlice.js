@@ -9,8 +9,10 @@ const initialState = {
   duration: 0,
   paused: true,
   segments: [],
+  skippedTasks: [],
   started: false,
-  startTime: null
+  startTime: null,
+  tasks: []
 }
 
 function createTimerSegment(task) {
@@ -59,17 +61,29 @@ export const timerSlice = createSlice({
       state.duration = +action.payload
     },
 
+    skipActiveTask: (state, action) => {
+      state.skippedTasks.push(state.activeTask)
+      const nextTask = selectNextTask({ timer: state })
+      state.activeTask = typeof nextTask !== 'undefined' ? nextTask : initialState.activeTask
+      state.paused = false
+      if (state.segments.length > 0) {
+        state.segments[state.segments.length - 1].end = getUnixTime(new Date())
+      }
+      state.segments.push(createTimerSegment(nextTask))
+    },
+
+    setTasks: (state, action) => {
+      state.tasks = action.payload
+    },
+
     start: (state, action) => {
+      state.segments = initialState.segments
       state.started = true
       state.startTime = getUnixTime(new Date())
-      state.segments = initialState.segments
     },
 
     startNextTask: (state, action) => {
-      // Payload should be the full task list, in priority order
-      const nextTask = action.payload.find(
-        task => sumTimeComponents(parseTimeString(task.duration || '00:00')) <= selectTimeRemaining({ timer: state })
-      )
+      const nextTask = selectNextTask({ timer: state })
       state.activeTask = typeof nextTask !== 'undefined' ? nextTask : initialState.activeTask
       state.paused = false
       if (state.segments.length > 0) {
@@ -82,14 +96,29 @@ export const timerSlice = createSlice({
       state.activeTask = initialState.activeTask
       state.duration = initialState.duration
       state.paused = initialState.paused
+      state.segments = initialState.segments
+      state.skippedTasks = initialState.skippedTasks
       state.started = initialState.started
       state.startTime = initialState.startTime
-      state.segments = initialState.segments
+      state.tasks = initialState.tasks
     }
   }
 })
 
-export const { pause, resume, startNextTask, setDuration, start, stop } = timerSlice.actions
+export const { pause, resume, skipActiveTask, setDuration, setTasks, start, startNextTask, stop } = timerSlice.actions
+
+export const selectNextTask = (state) => {
+  const { skippedTasks, tasks } = state.timer
+  const taskIsNotSkipped = (task) => !skippedTasks.find(skippedTask => {
+    return skippedTask._id === task._id
+  })
+  const remainingTasks = tasks.filter(taskIsNotSkipped)
+  return remainingTasks.find(task => {
+    const taskDuration = sumTimeComponents(parseTimeString(task.duration || '00:00'))
+    const timeRemaining = selectTimeRemaining({ timer: state.timer })
+    return taskDuration <= timeRemaining
+  })
+}
 
 export const selectTimeSpentOnCurrentTask = (state) => {
   const { activeTask, segments } = state.timer

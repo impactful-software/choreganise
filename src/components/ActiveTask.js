@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config.js'
 import { fetchTasks, prioritiseTasks } from '../store/taskListSlice.js'
-import { completeActiveTask, startNextTask } from '../store/timerSlice.js'
+import { completeActiveTask, setTasks, startNextTask } from '../store/timerSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
 import IconButton from './IconButton.js'
 
@@ -17,12 +17,13 @@ function ActiveTask () {
   const tasksCollection = db.collection('tasks')
 
   const activeTask = useSelector(state => state.timer.activeTask)
+  const allTasks = useSelector(state => state.taskList.tasks)
   const fetchTasksStatus = useSelector(state => state.taskList.status.fetchTasks)
-  const tasks = useSelector(state => state.taskList.tasks)
+  const sessionTasks = useSelector(state => state.timer.tasks)
   const updateTaskStatus = useSelector(state => state.taskList.status.updateTask)
 
   const [deleted, setDeleted] = useState(false)
-  const [nextTaskRequired, setNextTaskRequired] = useState(true)
+  const [nextTaskRequired, setNextTaskRequired] = useState(false)
 
   const watchTask = useCallback(
     async (watchStream) => {
@@ -59,14 +60,20 @@ function ActiveTask () {
 
   useEffect(() => {
     if (
-      nextTaskRequired &&
       fetchTasksStatus === ACTION_STATUS_SUCCEEDED &&
       (updateTaskStatus === ACTION_STATUS_IDLE || updateTaskStatus === ACTION_STATUS_SUCCEEDED)
     ) {
-      dispatch(startNextTask(tasks))
+      dispatch(setTasks(allTasks))
+      setNextTaskRequired(true)
+    }
+  }, [dispatch, fetchTasksStatus, allTasks, updateTaskStatus])
+
+  useEffect(() => {
+    if (nextTaskRequired) {
+      dispatch(startNextTask(sessionTasks))
       setNextTaskRequired(false)
     }
-  }, [dispatch, fetchTasksStatus, nextTaskRequired, tasks, updateTaskStatus])
+  }, [dispatch, nextTaskRequired, sessionTasks])
 
   useEffect(() => {
     if (activeTask && !deleted) {

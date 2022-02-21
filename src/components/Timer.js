@@ -3,7 +3,7 @@ import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getUnixTime } from 'date-fns'
-import { pause, resume, selectTimeRemaining, setDuration, start, stop } from '../store/timerSlice.js'
+import { pause, resume, selectTimeRemaining, setDuration, skipActiveTask, start, stop } from '../store/timerSlice.js'
 import { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions.js'
 
 class Timer extends Component {
@@ -13,6 +13,7 @@ class Timer extends Component {
     this.handleHoursChange = this.handleHoursChange.bind(this)
     this.handleMinutesChange = this.handleMinutesChange.bind(this)
     this.handleSecondsChange = this.handleSecondsChange.bind(this)
+    this.handleSkipClick = this.handleSkipClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.stop = this.stop.bind(this)
     this.togglePause = this.togglePause.bind(this)
@@ -104,6 +105,10 @@ class Timer extends Component {
     this.props.setDuration(duration)
   }
 
+  handleSkipClick (event) {
+    this.props.skipActiveTask()
+  }
+
   render () {
     const { timer } = this.props
     const { activeTask, duration, paused, started } = timer
@@ -169,6 +174,7 @@ class Timer extends Component {
           <button
             className="control secondaryControl"
             disabled={!activeTask}
+            onClick={started ? this.handleSkipClick : null}
             type="button"
           >
             <FontAwesomeIcon icon='forward-step' />
@@ -187,7 +193,8 @@ const mapDispatchToProps = {
   pause: () => pause(),
   resume: () => resume(),
   setDuration: (duration) => setDuration(duration),
-  start: (duration) => start(duration),
+  skipActiveTask: () => skipActiveTask(),
+  start: () => start(),
   stop: () => stop()
 }
 
