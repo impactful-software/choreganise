@@ -2,7 +2,7 @@ import './Edit.css'
 import { BSON } from 'realm-web'
 import { Component, Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { sumBy } from 'lodash'
+import { mean } from 'lodash'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -195,7 +195,10 @@ class EditClass extends Component {
   render () {
     const { fetchTaskStatus, saveTaskStatus, task } = this.state
     const { taskId } = this.props.params
-    const averageDuration = sumBy(task.completions, completion => completion.duration || 0)
+    const completionDurations = task.completions
+      .filter(completion => completion.duration !== null)
+      .map(completion => +completion.duration)
+    const averageDuration = mean(completionDurations)
 
     return fetchTaskStatus === ACTION_STATUS_LOADING || (fetchTaskStatus === ACTION_STATUS_IDLE && taskId) ? (
       <p>
@@ -292,15 +295,15 @@ class EditClass extends Component {
               className="taskFormInput durationInput"
               name="duration"
               onChange={this.handleFormFieldChange}
-              placeholder="hh:mm:ss"
-              type="time"
+              placeholder="duration"
+              type="number"
               value={task.duration}
             />
             <p>
-              hours : minutes
+              minutes
             </p>
           </fieldset>
-          {task.completions.length ? (
+          {completionDurations.length ? (
             <p className="note">
               Actual average: {Math.ceil(averageDuration / 60)} minutes
             </p>

@@ -8,6 +8,8 @@ import {
 } from '../utility/config.js'
 import defaultTasks from '../data/defaultTasks.json'
 import { encodeTask, resetTasks } from './taskListSlice.js'
+import { parseTimeString, sumTimeComponents } from '../utility/dateTimeFunctions.js'
+import { getUnixTime } from 'date-fns'
 
 const initialState = {
   status: {
@@ -15,9 +17,24 @@ const initialState = {
   }
 }
 
+const parseDefaultTask = (defaultTask) => {
+  const completions = defaultTask.completions.map(
+    completion => ({
+      duration: completion.duration,
+      time: getUnixTime(new Date(completion.date))
+    })
+  )
+  const duration = Math.floor(sumTimeComponents(parseTimeString(defaultTask.duration)) / 60)
+  return {
+    ...defaultTask,
+    completions,
+    duration
+  }
+}
+
 export const resetDatabase = createAsyncThunk('settings/resetDatabase', async ({ db }, {dispatch, getState}) => {
   console.debug('Resetting database.')
-  const encodedDefaultTasks = defaultTasks.map(encodeTask)
+  const encodedDefaultTasks = defaultTasks.map(parseDefaultTask).map(encodeTask)
   console.debug('Encoded default tasks.', encodedDefaultTasks)
   const tasksCollection = db.collection('tasks')
   await tasksCollection.deleteMany({})
