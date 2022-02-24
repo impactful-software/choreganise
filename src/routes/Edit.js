@@ -36,17 +36,17 @@ class EditClass extends Component {
   }
 
   async componentWillUnmount () {
-    if (this.watchStream) {
+    if (this.changeStream) {
       const { taskId } = this.props.params
-      console.debug(`Closing watch stream for task ${taskId}.`, this.watchStream)
-      const result = await this.watchStream.return()
-      console.debug(`CLOSED watch stream for task ${taskId}.`, result, this.watchStream)
+      console.debug(`Closing watch stream for task ${taskId}.`, this.changeStream)
+      const result = await this.changeStream.return()
+      console.debug(`CLOSED watch stream for task ${taskId}.`, result, this.changeStream)
     }
   }
 
   async componentDidUpdate (prevProps, prevState) {
     if (this.state.deleted && !prevState.deleted) {
-      await this.watchStream.return()
+      await this.changeStream.return()
     }
 
     if (this.props.params !== prevProps.params) {
@@ -66,14 +66,13 @@ class EditClass extends Component {
         this.setState({ fetchTaskStatus: ACTION_STATUS_REJECTED })
       } else {
         console.debug('Task found, creating a watch stream.', task)
-        this.watchStream = this.tasksCollection.watch({}, [BSON.ObjectID(taskId)])
 
         this.setState({
           fetchTaskStatus: ACTION_STATUS_SUCCEEDED,
           task
         })
 
-        this.monitorWatchStream()
+        this.watchTask(taskId)
       }
     } else {
       this.setState({
@@ -83,8 +82,10 @@ class EditClass extends Component {
     }
   }
 
-  async monitorWatchStream () {
-    for await (const event of this.watchStream) {
+  async watchTask (taskId) {
+    this.changeStream = this.tasksCollection.watch({ ids: [BSON.ObjectID(taskId)]})
+
+    for await (const event of this.changeStream) {
       const { fetchTaskStatus } = this.state
 
       if (fetchTaskStatus === ACTION_STATUS_REJECTED) {
@@ -98,20 +99,19 @@ class EditClass extends Component {
       switch (event.operationType) {
         case 'update':
         case 'replace': {
-          console.debug('Task updated.', event, this.watchStream)
+          console.debug('Task updated.', event, this.changeStream)
           this.setState({ task: event.fullDocument })
           break
         }
 
         case 'delete': {
-          console.debug('Task deleted.', event, this.watchStream)
-          toast.error('This task has been deleted. Saving this form will create a new task.')
+          console.debug('Task deleted.', event, this.changeStream)
           this.setState({ deleted: true })
           break
         }
 
         default: {
-          console.debug('Unexpected task operation received.', event, this.watchStream)
+          console.debug('Unexpected task operation received.', event, this.changeStream)
         }
       }
     }
