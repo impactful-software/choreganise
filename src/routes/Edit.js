@@ -157,8 +157,8 @@ class EditClass extends Component {
       "name": formData.get('name'),
       "icon": formData.get('icon'),
       "prioritise": formData.has('prioritise'),
-      "duration": formData.get('duration'),
-      "frequency": formData.get('frequency'),
+      "duration": +formData.get('duration'),
+      "frequency": +formData.get('frequency'),
       "frequencyUnit": formData.get('frequencyUnit'),
       "location": formData.get('location'),
       "completions": task.completions

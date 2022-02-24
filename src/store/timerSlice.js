@@ -114,7 +114,7 @@ export const selectNextTask = (state) => {
   })
   const remainingTasks = tasks.filter(taskIsNotSkipped)
   return remainingTasks.find(task => {
-    const taskDuration = sumTimeComponents(parseTimeString(task.duration || '00:00'))
+    const taskDuration = sumTimeComponents({ minutes: +task.duration })
     const timeRemaining = selectTimeRemaining({ timer: state.timer })
     return taskDuration <= timeRemaining
   })

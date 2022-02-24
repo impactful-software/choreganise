@@ -127,7 +127,7 @@ function ActiveTask () {
         <div className="duration">
           <FontAwesomeIcon icon='hourglass-start' />
           &nbsp;
-          {activeTask.duration}
+          {activeTask.duration} minutes
         </div>
         <div className="location">
           {activeTask.location}

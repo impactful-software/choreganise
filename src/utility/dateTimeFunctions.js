@@ -61,7 +61,7 @@ export function parseTimeString (time) {
   return { hours, minutes, seconds: seconds || 0 }
 }
 
-export function sumTimeComponents ({ hours, minutes, seconds }) {
+export function sumTimeComponents ({ hours = 0, minutes = 0, seconds = 0 }) {
   if ([hours, minutes, seconds].filter(isNaN).length !== 0) {
     console.error('Cannot sum non-numeric time components.', { hours, minutes, seconds })
     throw Error('Cannot sum non-numeric time components.')
