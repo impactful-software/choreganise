@@ -14,7 +14,7 @@
   width: 100%;
 }
 
-.duration,
+.activeTask .duration,
 .activeTask .location {
   background-color: white;
   border-radius: 20px;
