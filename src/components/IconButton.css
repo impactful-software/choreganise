@@ -1,19 +1,22 @@
 .iconButton {
   background: transparent;
   border: none;
-  border-radius: 50%;
-  box-shadow: 0px 6px 10px -5px rgb(0, 0, 0, 0.5);
   color: white;
   cursor: pointer;
+  filter: drop-shadow(0px 2px 2px rgb(0, 0, 0, 0.4));
+  font-size: inherit;
   padding: 0;
+  transform: translateY(-1px);
 }
 
-.iconButton:not(:disabled):active {
-  box-shadow: 0px 2px 2px -1px rgb(0, 0, 0, 0.3);
-  transform: translateY(2px);
+.iconButton:active {
+  filter: drop-shadow(0px 1px 1px rgb(0, 0, 0, 0.4));
+  transform: translateY(1px);
 }
 
 .iconButton:disabled {
   cursor: default;
+  filter: none;
   opacity: 0.5;
+  transform: none;
 }
