@@ -1,0 +1,43 @@
+.completion {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.completion .controls {
+  display: inline-block;
+  flex: 0 0 fit-content;
+  font-size: 1.5rem;
+  margin: 0 0.5em;
+  text-align: right;
+}
+
+.completion .date {
+  flex: 0 0 fit-content;
+  line-height: 2;
+}
+
+.completion .durationWrap {
+  align-items: flex-start;
+  display: inline-block;
+  flex: 1 1 100%;
+  font-size: 90%;
+  font-style: italic;
+  margin-left: 1.5em;
+  text-align: right;
+}
+
+.completion .duration {
+  display: inline-block;
+  width: 4em;
+}
+
+.completion .hidden {
+  visibility: hidden;
+}
+
+.completion .input {
+  padding: 0.5em;
+}

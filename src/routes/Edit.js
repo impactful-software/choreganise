@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config.js'
 import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice.js'
 import { RealmAppContext } from '../components/RealmApp.js'
+import CompletionList from '../components/edit/CompletionList'
 
 class EditClass extends Component {
   static contextType = RealmAppContext
@@ -24,6 +25,7 @@ class EditClass extends Component {
       task: defaultTask
     }
 
+    this.handleCompletionsUpdate = this.handleCompletionsUpdate.bind(this)
     this.handleDeleteTaskClick = this.handleDeleteTaskClick.bind(this)
     this.handleFormFieldChange = this.handleFormFieldChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
@@ -135,14 +137,18 @@ class EditClass extends Component {
     }
   }
 
-  async handleFormFieldChange (event) {
+  async handleFieldChange (fieldName, value) {
     this.setState({
       saveTaskStatus: ACTION_STATUS_IDLE,
       task: {
         ...this.state.task,
-        [event.target.name]: event.target.value
+        [fieldName]: value
       }
     })
+  }
+
+  async handleFormFieldChange (event) {
+    this.handleFieldChange(event.target.name, event.target.value)
   }
 
   async handleFormSubmit (event) {
@@ -191,6 +197,31 @@ class EditClass extends Component {
       navigate(`./${insertedId}`)
     }
   }
+  async handleCompletionsUpdate (completions) {
+    const { deleted } = this.state
+    const { taskId } = this.props.params
+
+    if (taskId && !deleted) {
+      this.setState({ saveTaskStatus: ACTION_STATUS_LOADING })
+
+      const encodedData = encodeTask({ completions })
+
+      await this.tasksCollection.updateOne(
+        { _id: BSON.ObjectID(taskId) },
+        {
+          $set: {
+            completions: encodedData.completions
+          }
+        }
+      )
+
+      this.setState({ saveTaskStatus: ACTION_STATUS_SUCCEEDED })
+      toast.success('Task updated.')
+    } else {
+      console.error('Failed to update completions - task does not exist.')
+      toast.error('Failed to update completions - task does not exist.')
+    }
+  }
 
   render () {
     const { fetchTaskStatus, saveTaskStatus, task } = this.state
@@ -216,7 +247,7 @@ class EditClass extends Component {
             Enter the name of a <a href="https://fontawesome.com/v5/cheatsheet" rel="noreferrer" target="_blank">free, solid Font Awesome icon</a>.
           </p>
           <input
-            className="taskFormInput"
+            className="input"
             name="icon"
             onChange={this.handleFormFieldChange}
             placeholder="Font Awesome icon name"
@@ -228,7 +259,7 @@ class EditClass extends Component {
         <div>
           <label>Do this</label>
           <input
-            className="taskFormInput"
+            className="input"
             name="name"
             onChange={this.handleFormFieldChange}
             placeholder="task"
@@ -240,7 +271,7 @@ class EditClass extends Component {
         <div>
           <label>in/at the</label>
           <select
-            className="taskFormInput"
+            className="select"
             name="location"
             onChange={this.handleFormFieldChange}
             required
@@ -266,7 +297,7 @@ class EditClass extends Component {
           <label>every</label>
           <fieldset className="inlineFieldset">
             <input
-              className="taskFormInput frequencyNumberInput"
+              className="input frequencyNumberInput"
               name="frequency"
               onChange={this.handleFormFieldChange}
               placeholder="number"
@@ -274,7 +305,7 @@ class EditClass extends Component {
               type="number"
             />
             <select
-              className="taskFormInput"
+              className="select"
               onChange={this.handleFormFieldChange}
               name="frequencyUnit"
               type="text"
@@ -292,7 +323,7 @@ class EditClass extends Component {
           <label>for</label>
           <fieldset className="inlineFieldset">
             <input
-              className="taskFormInput durationInput"
+              className="input durationInput"
               name="duration"
               onChange={this.handleFormFieldChange}
               placeholder="duration"
@@ -303,11 +334,14 @@ class EditClass extends Component {
               minutes
             </p>
           </fieldset>
-          {completionDurations.length ? (
-            <p className="note">
-              Actual average: {Math.ceil(averageDuration / 60)} minutes
-            </p>
-          ) : null}
+          <p className="note">
+            Actual average:&nbsp;
+            {completionDurations.length ? (
+              Math.ceil(averageDuration / 60).toString() + ' minutes'
+            ) : (
+              "not yet measured"
+            )}
+          </p>
         </div>
 
         <div>
@@ -333,36 +367,14 @@ class EditClass extends Component {
           )}
         </div>
 
-        <section className="completionSection">
+        <section className="completions">
           {task.completions.length === 0 ? (
             <p className="placeholder">Not yet completed.</p>
           ) : (
             <Fragment>
               <label>Completed {task.completions.length} times</label>
-              <ul className="completionList">
-                {task.completions.map((completion, index) => {
-                  const completionDate = new Date(completion.time * 1000)
-                  return (
-                    <li className="completionListItem" key={index}>
-                      <span className="completionDate">
-                        {completionDate.toLocaleDateString()}
-                      </span>
-                      &nbsp;
-                      at
-                      &nbsp;
-                      <span className="completionTime">
-                        {completionDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </span>
-                      {completion.duration && (
-                        <span className="completionDuration">
-                          ({Math.ceil(completion.duration / 60)} minutes)
-                        </span>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-              </Fragment>
+              <CompletionList completions={task.completions} onChange={this.handleCompletionsUpdate} />
+            </Fragment>
           )}
         </section>
       </form>

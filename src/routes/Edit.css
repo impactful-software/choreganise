@@ -15,25 +15,8 @@
   margin: 1em auto;
 }
 
-.editTaskForm .completionList {
-  list-style: none;
-  margin: 1em auto;
-  padding: 0;
-  text-align: left;
-  width: fit-content;
-}
-
-.editTaskForm .completionListItem {
+.editTaskForm .completions {
   font-size: 80%;
-}
-
-.editTaskForm .completionListItem .completionDuration {
-  margin: 0 1em;
-  font-style: italic;
-}
-
-.editTaskForm .completionSection {
-  text-align: center;
 }
 
 .editTaskForm .frequencyNote {
@@ -61,31 +44,32 @@
   font-style: italic;
 }
 
-.editTaskForm .taskFormInput {
+.editTaskForm .input,
+.editTaskForm .select {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0;
+  padding: 0.75em;
+  margin: 0.5em 0;
   box-sizing: border-box;
 }
 
-.editTaskForm select option:disabled,
-.editTaskForm select:invalid {
+.editTaskForm .input.durationInput {
+  margin-right: 1em;
+  max-width: 6em;
+}
+
+.editTaskForm .input.frequencyNumberInput {
+  max-width: 6em;
+}
+
+.editTaskForm .select:invalid {
   color: #777;
 }
 
-.editTaskForm option:disabled {
-  font-style: italic;
-}
-
-.editTaskForm select option {
+.editTaskForm .select option {
   color: #000;
 }
 
-.editTaskForm .taskFormInput.durationInput {
-  margin-right: 1em;
-  max-width: 8em;
-}
-
-.editTaskForm .taskFormInput.frequencyNumberInput {
-  max-width: 8em;
+.editTaskForm .select option:disabled {
+  color: #777;
+  font-style: italic;
 }
