@@ -46,10 +46,11 @@
 
 .editTaskForm .input,
 .editTaskForm .select {
-  width: 100%;
-  padding: 0.75em;
-  margin: 0.5em 0;
   box-sizing: border-box;
+  height: 3em;
+  margin: 0.5em 0;
+  padding: 0 0.5em;
+  width: 100%;
 }
 
 .editTaskForm .input.durationInput {

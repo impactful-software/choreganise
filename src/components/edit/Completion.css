@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
+  font-size: 90%;
   justify-content: space-between;
   width: 100%;
 }
@@ -14,24 +15,36 @@
   text-align: right;
 }
 
+.completion .dateWrap {
+  display: inline-block;
+  flex: 0 0 11em;
+}
+
 .completion .date {
-  flex: 0 0 fit-content;
-  line-height: 2;
+  padding: 0 0.5em;
 }
 
 .completion .durationWrap {
-  align-items: flex-start;
-  display: inline-block;
+  align-items: center;
+  display: flex;
   flex: 1 1 100%;
-  font-size: 90%;
   font-style: italic;
-  margin-left: 1.5em;
-  text-align: right;
+  justify-content: flex-end;
+  margin-left: 0.5em;
+  position: relative;
 }
 
 .completion .duration {
   display: inline-block;
-  width: 4em;
+  padding: 0 0.5em;
+  width: 3.5rem;
+}
+
+
+.completion .durationUnits {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .completion .hidden {
@@ -39,5 +52,7 @@
 }
 
 .completion .input {
-  padding: 0.5em;
+  font-size: 90%;
+  height: 44px;
+  margin: 0;
 }
