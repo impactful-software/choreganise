@@ -38,8 +38,8 @@ const Completion = ({
   }
 
   return (
-    <div className="completion">
-      <span className="dateWrap">
+    <tr className="tableRow completion">
+      <td className="tableCell">
           {editing ? (
             <input
               className="input date"
@@ -54,9 +54,9 @@ const Completion = ({
             </span>
           )}
         {}
-      </span>
+      </td>
 
-      <span className="durationWrap">
+      <td className="tableCell">
         {editing ? (
           <Fragment>
             <input
@@ -80,21 +80,25 @@ const Completion = ({
             </span>
           </Fragment>
           )}
-      </span>
+      </td>
 
-      <span className="controls">
-        <span className="control">
-          {editing ? (
-            <IconButton icon='undo' onClick={stopEditing} />
-          ) : (
-            <IconButton icon='pencil' onClick={startEditing} />
-          )}
-        </span>
-        <span className={`control ${!editing && 'hidden'}`}>
-          <IconButton disabled={!editing} icon="save" onClick={save} />
-        </span>
-      </span>
-    </div>
+      <td className="tableCell controls">
+        {editing ? (
+          <Fragment>
+            <span className="control">
+              <IconButton icon="undo" onClick={stopEditing} />
+            </span>
+            <span className="control">
+              <IconButton icon="save" onClick={save} />
+            </span>
+          </Fragment>
+        ) : (
+          <span className="control">
+            <IconButton icon="pencil" onClick={startEditing} />
+          </span>
+        )}
+      </td>
+    </tr>
   )
 }
 

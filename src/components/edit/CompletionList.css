@@ -1,7 +1,12 @@
 .completionList {
-  font-family:'Courier New', Courier, monospace;
+  font-family: monospace;
   list-style: none;
   padding: 0;
   text-align: left;
   width: fit-content;
+}
+
+.completionList .new .tableCell {
+  font-size: 1.5rem;
+  padding: 0.2em 0.25em 0 0;
 }

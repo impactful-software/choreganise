@@ -2,6 +2,7 @@ import './CompletionList.css'
 import Completion from './Completion'
 import { useState } from 'react'
 import { getUnixTime } from 'date-fns'
+import IconButton from '../IconButton'
 
 const CompletionList = ({ completions, onChange }) => {
   const [inserting, setInserting] = useState(false)
@@ -27,16 +28,15 @@ const CompletionList = ({ completions, onChange }) => {
   }
 
   return (
-    <ul className="completionList">
-      {completions.map((completion, index) => (
-        <li key={index}>
-          <Completion
-            completion={completion}
-            onChange={handleChange.bind(this, index)}
-          />
-        </li>
-      ))}
-      <li>
+    <table className="completionList">
+      <tbody>
+        {completions.map((completion, index) => (
+            <Completion
+              completion={completion}
+              key={index}
+              onChange={handleChange.bind(this, index)}
+            />
+        ))}
         {inserting ? (
           <Completion
             completion={{
@@ -47,12 +47,16 @@ const CompletionList = ({ completions, onChange }) => {
             onChange={insert}
           />
         ) : (
-          <button onClick={showInsertForm} type="button">
-            + New
-          </button>
+          <tr className="completionListItem new">
+            <td className="tableCell"></td>
+            <td className="tableCell"></td>
+            <td className="tableCell newButtonWrap">
+              <IconButton icon='circle-plus' onClick={showInsertForm} />
+            </td>
+          </tr>
         )}
-      </li>
-    </ul>
+      </tbody>
+    </table>
   )
 }
 
