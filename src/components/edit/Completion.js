@@ -2,33 +2,43 @@ import './Completion.css'
 import { Fragment, useState } from 'react'
 import IconButton from '../IconButton'
 import { getUnixTime } from 'date-fns'
+import { noop } from 'lodash'
 
-const Completion = ({ completion, onChange }) => {
+const Completion = ({
+  completion,
+  onChange,
+  forceEdit = false,
+  onCancelEdit = noop
+}) => {
+  const initialDurationMinutes = completion.duration ? Math.ceil(completion.duration / 60) : null
+
   const [date, setDate] = useState(new Date(1000 * completion.time || 0))
-  const [durationMinutes, setDurationMinutes] = useState(Math.ceil(completion.duration / 60))
-  const [editing, setEditing] = useState(false)
+  const [durationMinutes, setDurationMinutes] = useState(initialDurationMinutes)
+  const [editing, setEditing] = useState(!!forceEdit)
+
+  const handleDateChange = (event) => setDate(new Date(event.target.value))
 
   const handleDurationChange = (event) => setDurationMinutes(+event.target.value)
-  const handleDateChange = (event) => setDate(new Date(event.target.value))
 
   const startEditing = () => setEditing(true)
 
   const stopEditing = () => {
     setEditing(false)
-    setDurationMinutes(+Math.ceil(completion.duration / 60))
+    setDurationMinutes(initialDurationMinutes)
+    onCancelEdit()
   }
 
   const save = () => {
     onChange({
       ...completion,
       time: getUnixTime(date),
-      duration: durationMinutes * 60
+      duration: +durationMinutes * 60
     })
     setEditing(false)
   }
 
   return (
-    <li className="completion">
+    <div className="completion">
       <span className="dateWrap">
           {editing ? (
             <input
@@ -54,7 +64,7 @@ const Completion = ({ completion, onChange }) => {
               name="duration"
               onChange={handleDurationChange}
               type="number"
-              value={durationMinutes}
+              value={durationMinutes === null ? '' : durationMinutes}
             />
             <span className="durationUnits">
               &nbsp;minutes
@@ -84,7 +94,7 @@ const Completion = ({ completion, onChange }) => {
           <IconButton disabled={!editing} icon="save" onClick={save} />
         </span>
       </span>
-    </li>
+    </div>
   )
 }
 
