@@ -1,13 +1,13 @@
-.editTaskForm {
+.editTaskPage {
   text-align: left;
 }
 
-.editTaskForm label {
+.editTaskPage label {
   margin-top: 0.6em;
   display: block;
 }
 
-.editTaskForm .buttonsWrap {
+.editTaskPage .buttonsWrap {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -15,16 +15,16 @@
   margin: 1em auto;
 }
 
-.editTaskForm .completions {
+.editTaskPage .completions {
   font-size: 80%;
 }
 
-.editTaskForm .frequencyNote {
+.editTaskPage .frequencyNote {
   font-size: 90%;
   margin-right: 1em;
 }
 
-.editTaskForm .inlineFieldset {
+.editTaskPage .inlineFieldset {
   align-items: center;
   border: 0;
   display: flex;
@@ -33,19 +33,19 @@
   padding: 0;
 }
 
-.editTaskForm .note {
+.editTaskPage .note {
   font-size: 70%;
   font-style: italic;
   margin: 0;
 }
 
-.editTaskForm .placeholder {
+.editTaskPage .placeholder {
   font-size: 80%;
   font-style: italic;
 }
 
-.editTaskForm .input,
-.editTaskForm .select {
+.editTaskPage .input,
+.editTaskPage .select {
   box-sizing: border-box;
   height: 3em;
   margin: 0.5em 0;
@@ -53,24 +53,24 @@
   width: 100%;
 }
 
-.editTaskForm .input.durationInput {
+.editTaskPage .input.durationInput {
   margin-right: 1em;
   max-width: 6em;
 }
 
-.editTaskForm .input.frequencyNumberInput {
+.editTaskPage .input.frequencyNumberInput {
   max-width: 6em;
 }
 
-.editTaskForm .select:invalid {
+.editTaskPage .select:invalid {
   color: #777;
 }
 
-.editTaskForm .select option {
+.editTaskPage .select option {
   color: #000;
 }
 
-.editTaskForm .select option:disabled {
+.editTaskPage .select option:disabled {
   color: #777;
   font-style: italic;
 }
