@@ -197,6 +197,7 @@ class EditClass extends Component {
       navigate(`./${insertedId}`)
     }
   }
+
   async handleCompletionsUpdate (completions) {
     const { deleted } = this.state
     const { taskId } = this.props.params
@@ -371,11 +372,12 @@ class EditClass extends Component {
           {task.completions.length === 0 ? (
             <p className="placeholder">Not yet completed.</p>
           ) : (
-            <Fragment>
-              <label>Completed {task.completions.length} times</label>
-              <CompletionList completions={task.completions} onChange={this.handleCompletionsUpdate} />
-            </Fragment>
+            <label>Completed {task.completions.length} times</label>
           )}
+          <CompletionList
+            completions={task.completions}
+            onChange={this.handleCompletionsUpdate}
+          />
         </section>
       </form>
     )
