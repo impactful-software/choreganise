@@ -13,6 +13,11 @@ const CompletionList = ({ completions, onChange }) => {
     onChange(modifiedCompletions)
   }
 
+  const handleDelete = (index) => {
+    const modifiedCompletions = [...completions.slice(0, index), ...completions.slice(index + 1)]
+    onChange(modifiedCompletions)
+  }
+
   const hideInsertForm = () => {
     setInserting(false)
   }
@@ -33,8 +38,9 @@ const CompletionList = ({ completions, onChange }) => {
         {completions.map((completion, index) => (
             <Completion
               completion={completion}
-              key={index}
+              key={`${completion.time}_${completion.duration}_${index}`}
               onChange={handleChange.bind(this, index)}
+              onDelete={handleDelete.bind(this, index)}
             />
         ))}
         {inserting ? (

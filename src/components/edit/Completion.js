@@ -7,9 +7,11 @@ import { noop } from 'lodash'
 const Completion = ({
   completion,
   onChange,
+  onDelete,
   forceEdit = false,
   onCancelEdit = noop
 }) => {
+  const allowDelete = (typeof onDelete === 'function')
   const initialDurationMinutes = completion.duration ? Math.ceil(completion.duration / 60) : null
 
   const [date, setDate] = useState(new Date(1000 * completion.time || 0))
@@ -17,8 +19,12 @@ const Completion = ({
   const [editing, setEditing] = useState(!!forceEdit)
 
   const handleDateChange = (event) => setDate(new Date(event.target.value))
-
   const handleDurationChange = (event) => setDurationMinutes(+event.target.value)
+
+  const handleClickDelete = () => {
+    setEditing(false)
+    onDelete()
+  }
 
   const startEditing = () => setEditing(true)
 
@@ -29,12 +35,12 @@ const Completion = ({
   }
 
   const save = () => {
+    setEditing(false)
     onChange({
       ...completion,
       time: getUnixTime(date),
       duration: +durationMinutes * 60
     })
-    setEditing(false)
   }
 
   return (
@@ -95,6 +101,11 @@ const Completion = ({
         ) : (
           <span className="control">
             <IconButton icon="pencil" onClick={startEditing} />
+          </span>
+        )}
+        {allowDelete && (
+          <span className="control">
+            <IconButton icon="trash" onClick={handleClickDelete} />
           </span>
         )}
       </td>
