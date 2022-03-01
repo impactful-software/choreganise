@@ -99,14 +99,16 @@ const Completion = ({
             </span>
           </Fragment>
         ) : (
-          <span className="control">
-            <IconButton icon="pencil" onClick={startEditing} />
-          </span>
-        )}
-        {allowDelete && (
-          <span className="control">
-            <IconButton icon="trash" onClick={handleClickDelete} />
-          </span>
+          <Fragment>
+            <span className="control">
+              <IconButton icon="pencil" onClick={startEditing} />
+            </span>
+            {allowDelete && (
+              <span className="control">
+                <IconButton icon="trash" onClick={handleClickDelete} />
+              </span>
+            )}
+          </Fragment>
         )}
       </td>
     </tr>
