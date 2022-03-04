@@ -1,11 +1,10 @@
 import "./IconButton.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const IconButton = (props) =>{
-  const { icon, type = 'button', ...buttonProps } = props
-
+const IconButton = ({ icon, dark = false, type = 'button', ...buttonProps }) => {
+  const classNames = 'iconButton' + (dark ? ' dark' : '')
   return (
-    <button {...buttonProps} type={type} className='iconButton'>
+    <button {...buttonProps} type={type} className={classNames}>
       <FontAwesomeIcon className="icon" icon={icon} />
     </button>
   )

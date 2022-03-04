@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useCallback, useEffect, useState } from 'react'
 
 import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTION_STATUS_SUCCEEDED } from '../utility/config.js'
+import ActiveTaskCompletionForm from './ActiveTaskCompletionForm'
 import { fetchTasks, prioritiseTasks } from '../store/taskListSlice.js'
-import { completeActiveTask, setTasks, startNextTask } from '../store/timerSlice.js'
-import { useRealmApp } from '../components/RealmApp.js'
 import IconButton from './IconButton.js'
+import Modal from './Modal'
+import { setTasks, startNextTask } from '../store/timerSlice.js'
+import { useRealmApp } from '../components/RealmApp.js'
 
 function ActiveTask () {
   const dispatch = useDispatch()
@@ -24,6 +26,7 @@ function ActiveTask () {
 
   const [deleted, setDeleted] = useState(false)
   const [nextTaskRequired, setNextTaskRequired] = useState(false)
+  const [showCompletionForm, setShowCompletionForm] = useState(false)
 
   const watchTask = useCallback(
     async (watchStream) => {
@@ -53,12 +56,14 @@ function ActiveTask () {
   )
 
   useEffect(() => {
+    // Fetch tasks if they haven't been fetched already
     if (fetchTasksStatus === ACTION_STATUS_IDLE) {
       dispatch(fetchTasks({ db }))
     }
   }, [db, dispatch, fetchTasksStatus])
 
   useEffect(() => {
+    // Keep in sync with any changes made to tasks
     if (
       fetchTasksStatus === ACTION_STATUS_SUCCEEDED &&
       (updateTaskStatus === ACTION_STATUS_IDLE || updateTaskStatus === ACTION_STATUS_SUCCEEDED)
@@ -69,6 +74,7 @@ function ActiveTask () {
   }, [dispatch, fetchTasksStatus, allTasks, updateTaskStatus])
 
   useEffect(() => {
+    // Progress through the session task list whenever a new task is required
     if (nextTaskRequired) {
       dispatch(startNextTask(sessionTasks))
       setNextTaskRequired(false)
@@ -76,6 +82,7 @@ function ActiveTask () {
   }, [dispatch, nextTaskRequired, sessionTasks])
 
   useEffect(() => {
+    // Keep in sync with any changes made to the active task
     if (activeTask && !deleted) {
       console.debug(`Creating a watch stream for task ${activeTask._id}.`)
 
@@ -90,24 +97,30 @@ function ActiveTask () {
   }, [db, deleted, dispatch, activeTask, tasksCollection, watchTask])
 
   useEffect(() => {
-    if (updateTaskStatus === ACTION_STATUS_REJECTED) {
-      toast.error('Failed to update task.')
-    }
+    // Reprioritise tasks if any have been updated
     if (updateTaskStatus === ACTION_STATUS_SUCCEEDED) {
       dispatch(prioritiseTasks())
+    }
+    if (updateTaskStatus === ACTION_STATUS_REJECTED) {
+      toast.error('Failed to update task.')
     }
   }, [dispatch, updateTaskStatus])
 
   useEffect(() => {
+    // Show an error if fetching tasks fails
     if (fetchTasksStatus === ACTION_STATUS_REJECTED) {
       toast.error('Failed to load task.')
     }
   }, [fetchTasksStatus])
 
-  const handleDoneClick = useCallback(event => {
-    dispatch(completeActiveTask({ db, props: activeTask }))
+  useEffect(() => {
+    // Hide the task completion form whenever the active task changes
+    setShowCompletionForm(false)
+  }, [activeTask])
+
+  const handleActiveTaskCompleted = () => {
     setNextTaskRequired(true)
-  }, [activeTask, db, dispatch])
+  }
 
   return fetchTasksStatus === ACTION_STATUS_IDLE || fetchTasksStatus === ACTION_STATUS_LOADING ? (
     <p>
@@ -144,8 +157,13 @@ function ActiveTask () {
         </div>
       </div>
       <div>
-        <IconButton icon='check-circle' onClick={handleDoneClick} />
+        <IconButton icon='check-circle' onClick={() => setShowCompletionForm(true)} />
       </div>
+      {showCompletionForm && (
+        <Modal onClose={() => setShowCompletionForm(false)}>
+          <ActiveTaskCompletionForm onSubmit={handleActiveTaskCompleted} task={activeTask} />
+        </Modal>
+      )}
     </section>
   )
 }

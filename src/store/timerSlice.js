@@ -28,8 +28,8 @@ export const completeActiveTask = createAsyncThunk(
   async ({ db }, { dispatch, getState }) => {
     console.debug('Completing active task.')
     const state = getState()
-    const activeTask = normalizeTask(state.timer.activeTask)
 
+    const activeTask = normalizeTask(state.timer.activeTask)
     const duration = selectTimeSpentOnCurrentTask(state)
     const completion = createTaskCompletion({ duration })
 
@@ -38,6 +38,22 @@ export const completeActiveTask = createAsyncThunk(
     dispatch(updateTask({ db, props: activeTask }))
 
     return activeTask
+  }
+)
+
+export const completeTask = createAsyncThunk(
+  'tasks/completeTask',
+  async ({ db, duration, task, time }, { dispatch, getState }) => {
+    console.debug('Completing task.', { duration, task, time })
+
+    const normalizedTask = normalizeTask(task)
+    const completion = createTaskCompletion({ duration, time })
+
+    normalizedTask.completions.push(completion)
+
+    dispatch(updateTask({ db, props: normalizedTask }))
+
+    return normalizedTask
   }
 )
 

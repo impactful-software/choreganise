@@ -1,0 +1,20 @@
+.taskCompletionForm {
+  color: #33405a;
+  font-size: 1.5rem;
+  max-width: 100%;
+  text-align: left;
+}
+
+.taskCompletionForm .taskCompletionFormField {
+  display: block;
+  margin: 1em auto;
+}
+
+.taskCompletionForm .taskCompletionFormField input {
+  display: block;
+}
+
+.taskCompletionForm .taskCompletionFormControls {
+  font-size: 1rem;
+  text-align: right;
+}

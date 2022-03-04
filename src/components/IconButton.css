@@ -22,3 +22,7 @@
   opacity: 0.5;
   transform: none;
 }
+
+.iconButton.dark {
+  color: #33405a;
+}
