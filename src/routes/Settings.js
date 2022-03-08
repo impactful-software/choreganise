@@ -1,8 +1,11 @@
-import './Settings.css'
+import { ACTION_STATUS_LOADING } from '../utility/config.js'
+import Container from '../components/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRealmApp } from '../components/RealmApp.js'
 import { resetDatabase } from '../store/settingsSlice.js'
-import { ACTION_STATUS_LOADING } from '../utility/config.js'
+import { Button } from '../components/Form'
+import Theme from '../components/Theme'
+import Section from '../components/Section'
 
 function Settings () {
   const { db } = useRealmApp()
@@ -16,18 +19,22 @@ function Settings () {
   }
 
   return (
-    <div className='settingsPage'>
-      <h2>Settings</h2>
-      <section>
-        <h3 className='dangerTitle'>Danger!</h3>
-        <p>
-          Pressing buttons below here may cause irrevocable changes to data.
-        </p>
-        <button className='button dangerButton' type='button' onClick={handleResetDatabaseClick}>
-          Reset database
-        </button>
-      </section>
-    </div>
+    <Container>
+      <Section>
+        <h2>Settings</h2>
+        <Theme danger>
+          <Container solid>
+            <h3>Danger!</h3>
+            <p>
+              These settings cause irrevocable changes to data.
+            </p>
+            <Button type='button' onClick={handleResetDatabaseClick}>
+              Reset database
+            </Button>
+          </Container>
+        </Theme>
+      </Section>
+    </Container>
   )
 }
 

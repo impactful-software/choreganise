@@ -1,46 +1,28 @@
 .timer {
-  background-color: #33405a;
   border-radius: 20px;
-  padding: 1em;
+  font-size: 1.2em;
   text-align: center;
 }
 
-.timer .time {
-  font-size: 1.5em;
-}
-
-.timer .time .timePart {
+.timer .timePart {
   background-color: transparent;
   border: none;
-  color: white;
+  color: var(--color-foreground);
   display: inline;
   font-size: inherit;
   width: 1.3em;
-  margin: 0.3em;
+  margin: 0 0.3em;
   text-align: right;
 }
 
 .timer .controls {
+  align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
-.timer .controls .control {
-  background-color: #383e4b;
-  border: none;
-  color: #83aab4;
-  padding: 0;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 30px;
-  border-radius: 50px;
-  line-height: 0px;
-  position: relative;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-  margin: 0.3em;
+.timer .controls .secondaryControl {
+  color: var(--color-accent);
 }
 
 .timer .controls .control.secondaryControl:disabled {
@@ -48,8 +30,8 @@
 }
 
 .timer .controls .control.primaryControl {
-  color: white;
-  font-size: 40px;
+  color: var(--color-foreground);
+  font-size: 130%;
 }
 
 .timer .controls .control.primaryControl:disabled {

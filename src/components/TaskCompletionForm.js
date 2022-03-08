@@ -2,10 +2,11 @@ import "./TaskCompletionForm.css"
 import { getTime } from "date-fns"
 import { noop } from "lodash"
 import { useCallback, useState } from "react"
-import { createTaskCompletion } from "../store/taskListSlice"
-import IconButton from "./IconButton"
+import Form, { Button, Fieldset, Input, Label } from "./Form"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Theme from "./Theme"
 
-const TaskCompletionForm = ({ completion, onSubmit = noop }) => {
+const TaskCompletionForm = ({ completion, onCancel = noop, onSubmit = noop }) => {
   const [date, setDate] = useState(completion.date || new Date().toISOString().slice(0, 10))
   const [duration, setDuration] = useState(Math.floor(completion.duration / 60))
 
@@ -20,43 +21,52 @@ const TaskCompletionForm = ({ completion, onSubmit = noop }) => {
   const handleSubmit = useCallback(event => {
     event.preventDefault()
 
-    const theDate = new Date(date)
-    const time = getTime(new Date(date))
-
     onSubmit({
       duration: +duration * 60,
-      time
+      time: getTime(new Date(date))
     })
   }, [date, duration, onSubmit])
 
   return (
-    <form className="taskCompletionForm" onSubmit={handleSubmit}>
-      <h2>Chore complete!</h2>
-
-      <label className="taskCompletionFormField">
+    <Form className="taskCompletionForm" onSubmit={handleSubmit}>
+      <Label>
         Date
-        <input
-          name="date"
-          onChange={handleChangeDate}
-          type="date"
-          value={date}
-        />
-      </label>
+      </Label>
+      <Input
+        name="date"
+        onChange={handleChangeDate}
+        type="date"
+        value={date}
+      />
 
-      <label className="taskCompletionFormField">
+      <Label>
         Duration
-        <input
+      </Label>
+      <Fieldset inline>
+        <Input
           name="duration"
           onChange={handleChangeDuration}
           type="number"
           value={duration}
         />
-      </label>
+        <span>
+          minutes
+        </span>
+      </Fieldset>
 
       <div className="taskCompletionFormControls">
-        <IconButton dark icon="check" type="submit" />
+        <Theme danger invert>
+          <Button onClick={onCancel} type="button">
+            <FontAwesomeIcon icon="rotate-left" /> Cancel
+          </Button>
+        </Theme>
+        <Theme accent invert>
+          <Button type="submit">
+            <FontAwesomeIcon icon="save" /> Save
+          </Button>
+        </Theme>
       </div>
-    </form>
+    </Form>
   )
 }
 

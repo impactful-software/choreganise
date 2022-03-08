@@ -5,16 +5,11 @@
   text-align: left;
 }
 
-.taskCompletionForm .taskCompletionFormField {
-  display: block;
-  margin: 1em auto;
-}
-
-.taskCompletionForm .taskCompletionFormField input {
-  display: block;
-}
-
 .taskCompletionForm .taskCompletionFormControls {
-  font-size: 1rem;
-  text-align: right;
+  gap: 1rem 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 80%;
+  justify-content: space-between;
+  margin: var(--padding-height) 0;
 }

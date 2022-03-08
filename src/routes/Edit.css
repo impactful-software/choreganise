@@ -1,7 +1,3 @@
-.editTaskPage {
-  text-align: left;
-}
-
 .editTaskPage label {
   margin-top: 0.6em;
   display: block;
@@ -39,7 +35,7 @@
   margin: 0;
 }
 
-.editTaskPage .placeholder {
+.editTaskPage .completions .placeholder {
   font-size: 80%;
   font-style: italic;
 }

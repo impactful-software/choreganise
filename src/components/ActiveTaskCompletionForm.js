@@ -4,7 +4,7 @@ import { completeTask, selectTimeSpentOnCurrentTask } from "../store/timerSlice"
 import { useRealmApp } from "./RealmApp"
 import TaskCompletionForm from "./TaskCompletionForm"
 
-const ActiveTaskCompletionForm = ({ onSubmit, task }) => {
+const ActiveTaskCompletionForm = ({ onCancel, onSubmit, task }) => {
   const dispatch = useDispatch()
 
   const { db } = useRealmApp()
@@ -20,6 +20,7 @@ const ActiveTaskCompletionForm = ({ onSubmit, task }) => {
   return (
     <TaskCompletionForm
       completion={{ duration }}
+      onCancel={onCancel}
       onSubmit={handleCompletionFormSubmit}
       task={activeTask}
     />

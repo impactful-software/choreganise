@@ -22,8 +22,14 @@
   color: #33405a;
 }
 
-.activeTask .icon {
+.activeTask .activeTaskCompleteButton {
+  font-size: 3em;
+}
+
+.activeTask .activeTaskIcon {
   font-size: 3.5em;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .activeTask .name {

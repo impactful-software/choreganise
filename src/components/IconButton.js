@@ -1,10 +1,15 @@
 import "./IconButton.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const IconButton = ({ icon, dark = false, type = 'button', ...buttonProps }) => {
-  const classNames = 'iconButton' + (dark ? ' dark' : '')
+const IconButton = ({ className, icon, dark = false, type = 'button', ...buttonProps }) => {
+  const classes = ['iconButton']
+
+  if (className) {
+    classes.push(className)
+  }
+
   return (
-    <button {...buttonProps} type={type} className={classNames}>
+    <button {...buttonProps} type={type} className={classes.join(' ')}>
       <FontAwesomeIcon className="icon" icon={icon} />
     </button>
   )

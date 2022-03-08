@@ -1,0 +1,18 @@
+.container {
+  border-radius: 20px;
+  margin: var(--padding-height) auto;
+  padding: 0 var(--padding-width);
+}
+
+.container.container-solid {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  overflow: auto;
+}
+
+.container.container-solid::after,
+.container.container-solid::before {
+  content: '';
+  display: block;
+  margin-bottom: var(--padding-height);
+}

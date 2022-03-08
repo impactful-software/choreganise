@@ -1,10 +1,11 @@
 import './Timer.css'
 import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getUnixTime } from 'date-fns'
 import { pause, resume, selectTimeRemaining, setDuration, skipActiveTask, start, stop } from '../store/timerSlice.js'
 import { getResidualSeconds, getWholeHours, getWholeMinutes, sumTimeComponents } from '../utility/dateTimeFunctions.js'
+import IconButton from './IconButton'
+import Container from './Container'
 
 class Timer extends Component {
   constructor (props) {
@@ -120,67 +121,73 @@ class Timer extends Component {
     const seconds = getResidualSeconds(timeRemaining)
 
     return (
-      <form className="timer" onSubmit={this.handleSubmit}>
-        <section className="time">
-          <input
-            className="timePart timePartInput"
-            disabled={started}
-            onChange={this.handleHoursChange}
-            name="hours"
-            placeholder="--"
-            value={started ? hours : initialHours || ''}
-            type="text"
-          />
-          <span>h</span>
-          <input
-            className="timePart timePartInput"
-            disabled={started}
-            onChange={this.handleMinutesChange}
-            name="minutes"
-            placeholder="--"
-            value={started ? minutes : initialMinutes || ''}
-            type="text"
-          />
-          <span>m</span>
-          {started && (
-            <Fragment>
-              <span className="timePart">
-                {seconds}
-              </span>
-              <span>s</span>
-            </Fragment>
-          )}
-        </section>
+      <Container>
+        <Container solid>
+        <form className="timer" onSubmit={this.handleSubmit}>
+          <section className="time">
+            <input
+              className="timePart"
+              disabled={started}
+              onChange={this.handleHoursChange}
+              name="hours"
+              placeholder="--"
+              value={started ? hours : initialHours || ""}
+              type="text"
+            />
+            <span>h</span>
+            <input
+              className="timePart"
+              disabled={started}
+              onChange={this.handleMinutesChange}
+              name="minutes"
+              placeholder="--"
+              value={started ? minutes : initialMinutes || ""}
+              type="text"
+            />
+            <span>m</span>
+            {started && (
+              <Fragment>
+                <span className="timePart">
+                  {seconds}
+                </span>
+                <span>s</span>
+              </Fragment>
+            )}
+          </section>
 
-        <hr />
+          <hr />
 
-        <section className="controls">
-          <button
-            className="control secondaryControl"
-            disabled={!started}
-            onClick={this.stop}
-            type="button"
-          >
-            <FontAwesomeIcon icon='stop' />
-          </button>
-          <button
-            className="control primaryControl"
-            disabled={started ? !activeTask : (!initialHours && !initialMinutes)}
-            onClick={started ? this.togglePause : null}
-            type={started? 'button' : 'submit'}
-          >
-            <FontAwesomeIcon icon={paused ? 'play' : 'pause'} />
-          </button>
-          <button
-            className="control secondaryControl"
-            disabled={!activeTask}
-            onClick={started ? this.handleSkipClick : null}
-            type="button"
-          >
-            <FontAwesomeIcon icon='forward-step' />
-          </button>
-        </section>
-      </form>
+          <section className="controls">
+            <span className="control secondaryControl">
+              <IconButton
+                className="secondaryControl"
+                disabled={!started}
+                icon="stop"
+                onClick={this.stop}
+                type="button"
+              />
+            </span>
+            <span className="control primaryControl">
+              <IconButton
+                disabled={started ? !activeTask : (!initialHours && !initialMinutes)}
+                icon={paused ? "play" : "pause"}
+                onClick={started ? this.togglePause : null}
+                type={started? "button" : "submit"}
+              />
+            </span>
+            <span className="control secondaryControl">
+              <IconButton
+                className="secondaryControl"
+                disabled={!activeTask}
+                icon="forward-step"
+                onClick={started ? this.handleSkipClick : null}
+                type="button"
+              />
+            </span>
+          </section>
+        </form>
+        </Container>
+      </Container>
     )
   }
 }

@@ -11,6 +11,9 @@ import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTI
 import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice.js'
 import { RealmAppContext } from '../components/RealmApp.js'
 import CompletionList from '../components/edit/CompletionList'
+import { Button } from '../components/Form'
+import Theme from '../components/Theme'
+import Container from '../components/Container'
 
 class EditClass extends Component {
   static contextType = RealmAppContext
@@ -241,7 +244,7 @@ class EditClass extends Component {
         Error finding task details.
       </p>
     ) : (
-      <div className="editTaskPage">
+      <Container className="editTaskPage">
         <form action="/view" onSubmit={this.handleFormSubmit}>
           <div>
             <label>Icon</label>
@@ -358,17 +361,20 @@ class EditClass extends Component {
           </div>
 
           <div className="buttonsWrap">
-            <button className="button submitButton" disabled={saveTaskStatus === ACTION_STATUS_SUCCEEDED} type="submit">
-              Save
-            </button>
+            <Theme accent>
+              <Button disabled={saveTaskStatus === ACTION_STATUS_SUCCEEDED} type="submit">
+                Save
+              </Button>
+            </Theme>
 
             {taskId && (
-              <button className="button dangerButton" type="delete" onClick={this.handleDeleteTaskClick}>
-                Delete task
-              </button>
+              <Theme danger>
+                <Button type="delete" onClick={this.handleDeleteTaskClick}>
+                  Delete task
+                </Button>
+              </Theme>
             )}
           </div>
-
         </form>
 
         <section className="completions">
@@ -382,7 +388,7 @@ class EditClass extends Component {
             onChange={this.handleCompletionsUpdate}
           />
         </section>
-      </div>
+      </Container>
     )
   }
 }

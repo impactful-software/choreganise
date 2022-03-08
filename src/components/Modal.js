@@ -1,17 +1,27 @@
-import IconButton from './IconButton'
 import './Modal.css'
+import ReactDOM from 'react-dom'
+import Theme from './Theme'
 
-const Modal = ({ children, controls, onClose }) => {
-  return (
-    <div className="modal">
-      <div className="modalContent">
-        <span className="modalClose">
-          <IconButton dark icon="close" onClick={onClose} />
-        </span>
+const Modal = ({ children, theme = 'default' }) => {
+  const themes = Object.fromEntries(
+    theme.split(' ').map(entry => [entry, true])
+  )
 
-        {children}
-      </div>
+  const modal = (
+    <div className="modalBackground">
+      <Theme {...themes}>
+        <div className="modal">
+          <div className="modalContent">
+            {children}
+          </div>
+        </div>
+      </Theme>
     </div>
+  )
+
+  return ReactDOM.createPortal(
+    modal,
+    document.body
   )
 }
 

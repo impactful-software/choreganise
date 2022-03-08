@@ -40,9 +40,8 @@ function View ({ taskList }) {
         <table>
           <thead>
             <tr>
-              <th>Priority</th>
-              <th className="taskColumn">Task</th>
-              <th className="locationColumn">
+              <th className="taskColumn" colSpan="2">Task</th>
+              <th className="locationColumn" colSpan="2">
                 <select className="selectRoom" type="text" name="taskLocation" defaultValue=''>
                   <option value="" disabled>Location</option>
                   <option value="hallLanding">Hall, stairs and Landing</option>
@@ -59,7 +58,6 @@ function View ({ taskList }) {
                   <option value="shopping">Shopping</option>
                 </select>
               </th>
-              <th className="iconColumn"></th>
             </tr>
           </thead>
           <tbody>

@@ -148,7 +148,7 @@ function ActiveTask () {
       </div>
       <div>
         {activeTask.icon && (
-          <div className="icon">
+          <div className="activeTaskIcon">
             <FontAwesomeIcon icon={activeTask.icon} />
           </div>
         )}
@@ -156,12 +156,15 @@ function ActiveTask () {
           {activeTask.name}
         </div>
       </div>
-      <div>
+      <div className="activeTaskCompleteButton">
         <IconButton icon='check-circle' onClick={() => setShowCompletionForm(true)} />
       </div>
       {showCompletionForm && (
-        <Modal onClose={() => setShowCompletionForm(false)}>
-          <ActiveTaskCompletionForm onSubmit={handleActiveTaskCompleted} task={activeTask} />
+        <Modal theme="dark invert">
+          <h2>
+            Chore complete!
+          </h2>
+          <ActiveTaskCompletionForm onCancel={() => setShowCompletionForm(false)} onSubmit={handleActiveTaskCompleted} task={activeTask} />
         </Modal>
       )}
     </section>

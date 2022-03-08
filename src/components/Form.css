@@ -1,0 +1,75 @@
+.button {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-foreground);
+  border-radius: 2em;
+  color: var(--color-foreground);
+  cursor: pointer;
+  filter: brightness(110%) drop-shadow(0px 2px 2px rgb(0, 0, 0, 0.3));
+  font-size: inherit;
+  padding: 0.5em;
+}
+
+.button:active,
+.button:active:hover {
+  filter: brightness(120%) drop-shadow(0px 1px 1px rgb(0, 0, 0, 0.3));
+  transform: translate(0, 2px);
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.button:hover {
+  filter: brightness(120%) drop-shadow(0px 2px 2px rgb(0, 0, 0, 0.3));
+}
+
+.fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fieldset.inline > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fieldset.inline input:not(:first-child) {
+  margin-left: 0.5rem;
+}
+
+.fieldset.inline input:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.input,
+.select {
+  box-sizing: border-box;
+  height: 3em;
+  margin: 0.5em 0;
+  padding: 0 0.5em;
+  width: 100%;
+}
+
+.input[type=number] {
+  max-width: 6em;
+}
+
+.label {
+  display: block;
+  margin: 1em auto 0;
+}
+
+.select:invalid {
+  color: #777;
+}
+
+.select option {
+  color: #000;
+}
+
+.select option:disabled {
+  color: #777;
+  font-style: italic;
+}

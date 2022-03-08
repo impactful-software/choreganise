@@ -1,0 +1,49 @@
+.theme {
+  --color-accent: #5d8e9b;
+  --color-danger: #ad0000;
+  --color-dark: #33405a;
+  --color-default: #6c7ba0;
+  --padding-height: 1.25em;
+  --padding-width: 1.25em;
+  color: var(--color-foreground);
+}
+
+.theme.theme-accent {
+  --color-background: var(--color-accent);
+  --color-foreground: ghostwhite;
+}
+
+.theme.theme-accent.theme-invert {
+  --color-background: ghostwhite;
+  --color-foreground: var(--color-accent);
+}
+
+.theme.theme-default {
+  --color-background: var(--color-default);
+  --color-foreground: ghostwhite;
+}
+
+.theme.theme-default.theme-invert {
+  --color-background: ghostwhite;
+  --color-foreground: var(--color-default);
+}
+
+.theme.theme-danger {
+  --color-background: var(--color-danger);
+  --color-foreground: ghostwhite;
+}
+
+.theme.theme-danger.theme-invert {
+  --color-background: ghostwhite;
+  --color-foreground: var(--color-danger);
+}
+
+.theme.theme-dark {
+  --color-background: var(--color-dark);
+  --color-foreground: ghostwhite;
+}
+
+.theme.theme-dark.theme-invert {
+  --color-background: ghostwhite;
+  --color-foreground: var(--color-dark);
+}
