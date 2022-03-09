@@ -126,7 +126,7 @@ class Timer extends Component {
         <form className="timer" onSubmit={this.handleSubmit}>
           <section className="time">
             <input
-              className="timePart"
+              className="timerInput"
               disabled={started}
               onChange={this.handleHoursChange}
               name="hours"
@@ -136,7 +136,7 @@ class Timer extends Component {
             />
             <span>h</span>
             <input
-              className="timePart"
+              className="timerInput"
               disabled={started}
               onChange={this.handleMinutesChange}
               name="minutes"
@@ -147,7 +147,7 @@ class Timer extends Component {
             <span>m</span>
             {started && (
               <Fragment>
-                <span className="timePart">
+                <span className="timerInput">
                   {seconds}
                 </span>
                 <span>s</span>
@@ -157,33 +157,28 @@ class Timer extends Component {
 
           <hr />
 
-          <section className="controls">
-            <span className="control secondaryControl">
-              <IconButton
-                className="secondaryControl"
-                disabled={!started}
-                icon="stop"
-                onClick={this.stop}
-                type="button"
-              />
-            </span>
-            <span className="control primaryControl">
-              <IconButton
-                disabled={started ? !activeTask : (!initialHours && !initialMinutes)}
-                icon={paused ? "play" : "pause"}
-                onClick={started ? this.togglePause : null}
-                type={started? "button" : "submit"}
-              />
-            </span>
-            <span className="control secondaryControl">
-              <IconButton
-                className="secondaryControl"
-                disabled={!activeTask}
-                icon="forward-step"
-                onClick={started ? this.handleSkipClick : null}
-                type="button"
-              />
-            </span>
+          <section className="timerControls">
+            <IconButton
+              className="timerSecondaryControl"
+              disabled={!started}
+              icon="stop"
+              onClick={this.stop}
+              type="button"
+            />
+            <IconButton
+              className="timerPrimaryControl"
+              disabled={started ? !activeTask : (!initialHours && !initialMinutes)}
+              icon={paused ? "play" : "pause"}
+              onClick={started ? this.togglePause : null}
+              type={started? "button" : "submit"}
+            />
+            <IconButton
+              className="timerSecondaryControl"
+              disabled={!activeTask}
+              icon="forward-step"
+              onClick={started ? this.handleSkipClick : null}
+              type="button"
+            />
           </section>
         </form>
         </Container>

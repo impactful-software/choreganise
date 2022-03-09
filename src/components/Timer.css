@@ -4,36 +4,32 @@
   text-align: center;
 }
 
-.timer .timePart {
-  background-color: transparent;
+.timer .timerInput {
+  background: transparent;
   border: none;
   color: var(--color-foreground);
-  display: inline;
   font-size: inherit;
-  width: 1.3em;
   margin: 0 0.3em;
+  padding: 0.25em;
   text-align: right;
+  width: 1.8em;
 }
 
-.timer .controls {
+.timer .timerControls {
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
-.timer .controls .secondaryControl {
+.timer .timerControls .timerSecondaryControl {
   color: var(--color-accent);
 }
 
-.timer .controls .control.secondaryControl:disabled {
+.timer .timerControls .timerSecondaryControl:disabled {
   visibility: hidden;
 }
 
-.timer .controls .control.primaryControl {
+.timer .timerControls .timerPrimaryControl {
   color: var(--color-foreground);
   font-size: 130%;
-}
-
-.timer .controls .control.primaryControl:disabled {
-  opacity: 0.6;
 }
