@@ -32,6 +32,8 @@ class EditClass extends Component {
     this.handleDeleteTaskClick = this.handleDeleteTaskClick.bind(this)
     this.handleFormFieldChange = this.handleFormFieldChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
+
+    this.unmounting = false
   }
 
   async componentDidMount () {
@@ -41,6 +43,8 @@ class EditClass extends Component {
   }
 
   async componentWillUnmount () {
+    this.unmounting = true
+
     if (this.changeStream) {
       const { taskId } = this.props.params
       console.debug(`Closing watch stream for task ${taskId}.`, this.changeStream)
@@ -65,6 +69,11 @@ class EditClass extends Component {
     if (taskId) {
       this.setState({ fetchTaskStatus: ACTION_STATUS_LOADING })
       const task = decodeTask(await this.tasksCollection.findOne({_id: BSON.ObjectID(taskId)}))
+
+      if (this.unmounting) {
+        // Avoid triggering state changes if the component is unmounting after the API call completes
+        return
+      }
 
       if (task === null) {
         toast.error('Task not found. Submitting this form will create a new task.')
