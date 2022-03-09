@@ -1,20 +1,27 @@
 import './App.css'
 import './fontAwesomeIcons.js'
-import { Route, Routes } from 'react-router-dom'
+
 import React from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import { useSelector } from 'react-redux'
+
 import Edit from './routes/Edit.js'
-import Home from './routes/Home.js'
-import View from './routes/View.js'
-import Settings from './routes/Settings.js'
-import Timer from './components/Timer.js'
-import HomeNav from './components/navigation/HomeNav.js'
 import EditNav from './components/navigation/EditNav.js'
+import Home from './routes/Home.js'
+import HomeNav from './components/navigation/HomeNav.js'
 import ListNav from './components/navigation/ListNav.js'
+import Settings from './routes/Settings.js'
 import SettingsNav from './components/navigation/SettingsNav.js'
 import Theme from './components/Theme'
+import Timer from './components/Timer.js'
+import View from './routes/View.js'
 
 function App () {
+  const timerStarted = useSelector(state => state.timer.started)
+  const location = useLocation()
+  const showTimer = timerStarted || location.pathname === '/'
+
   return (
     <Theme default>
       <div className="app">
@@ -40,11 +47,13 @@ function App () {
           </Routes>
         </main>
 
-        <footer className="footer">
-          <Theme dark>
-            <Timer />
-          </Theme>
-        </footer>
+        {showTimer && (
+          <footer className="footer">
+            <Theme dark>
+              <Timer />
+            </Theme>
+          </footer>
+        )}
       </div>
     </Theme>
   )
