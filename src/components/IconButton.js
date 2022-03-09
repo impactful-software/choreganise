@@ -10,7 +10,7 @@ const IconButton = ({ className, icon, dark = false, type = 'button', ...buttonP
 
   return (
     <button {...buttonProps} type={type} className={classes.join(' ')}>
-      <FontAwesomeIcon className="icon" icon={icon} />
+      <FontAwesomeIcon icon={icon} />
     </button>
   )
 }
