@@ -24,7 +24,7 @@ class EditClass extends Component {
     this.state = {
       deleted: false,
       fetchTaskStatus: ACTION_STATUS_IDLE,
-      saveTaskStatus: ACTION_STATUS_IDLE,
+      saveTaskStatus: ACTION_STATUS_SUCCEEDED,
       task: defaultTask
     }
 
