@@ -1,8 +1,12 @@
 .theme {
   --color-accent: #5d8e9b;
+  --color-caution: #f2c75c;
+  --color-caution-accent: #28a745;
+  --color-caution-contrast: #1b365d;
   --color-danger: #ad0000;
   --color-dark: #33405a;
   --color-default: #6c7ba0;
+  --color-success: #28a745;
   --padding-height: 1.25em;
   --padding-width: 1.25em;
   color: var(--color-foreground);
@@ -16,6 +20,19 @@
 .theme.theme-accent.theme-invert {
   --color-background: ghostwhite;
   --color-foreground: var(--color-accent);
+}
+
+.theme.theme-caution {
+  --color-accent: var(--color-caution-accent);
+  --color-background: var(--color-caution);
+  --color-foreground: var(--color-caution-contrast);
+  font-weight: 500;
+}
+
+.theme.theme-caution.theme-invert {
+  --color-background: var(--color-caution-contrast);
+  --color-foreground: var(--color-caution);
+  font-weight: 500;
 }
 
 .theme.theme-default {
@@ -46,4 +63,14 @@
 .theme.theme-dark.theme-invert {
   --color-background: ghostwhite;
   --color-foreground: var(--color-dark);
+}
+
+.theme.theme-success {
+  --color-background: var(--color-success);
+  --color-foreground: ghostwhite;
+}
+
+.theme.theme-success.theme-invert {
+  --color-background: ghostwhite;
+  --color-foreground: var(--color-success);
 }

@@ -2,7 +2,7 @@ import './Theme.css'
 
 
 const Theme = ({ children, invert = false, ...props }) => {
-  const themes = ['default', 'danger', 'dark', 'accent']
+  const themes = ['accent', 'caution', 'danger', 'dark', 'default', 'success']
 
   const classes = ['theme']
 

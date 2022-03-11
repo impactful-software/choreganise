@@ -11,7 +11,7 @@ import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTI
 import { defaultTask, decodeTask, resetTasks, encodeTask } from '../store/taskListSlice.js'
 import { RealmAppContext } from '../components/RealmApp.js'
 import CompletionList from '../components/edit/CompletionList'
-import { Button } from '../components/Form'
+import { Button, Fieldset, Form, Input, Label, Select, Option, CheckButton } from '../components/Form'
 import Theme from '../components/Theme'
 import Container from '../components/Container'
 
@@ -160,7 +160,13 @@ class EditClass extends Component {
   }
 
   async handleFormFieldChange (event) {
-    this.handleFieldChange(event.target.name, event.target.value)
+    switch (event.target.type) {
+      case 'checkbox':
+        this.handleFieldChange(event.target.name, event.target.checked)
+        break
+      default:
+        this.handleFieldChange(event.target.name, event.target.value)
+    }
   }
 
   async handleFormSubmit (event) {
@@ -254,14 +260,13 @@ class EditClass extends Component {
       </p>
     ) : (
       <Container className="editTaskPage">
-        <form action="/view" onSubmit={this.handleFormSubmit}>
+        <Form action="/view" onSubmit={this.handleFormSubmit}>
           <div>
-            <label>Icon</label>
+            <Label>Icon</Label>
             <p className="note">
               Enter the name of a <a href="https://fontawesome.com/v5/cheatsheet" rel="noreferrer" target="_blank">free, solid Font Awesome icon</a>.
             </p>
-            <input
-              className="input"
+            <Input
               name="icon"
               onChange={this.handleFormFieldChange}
               placeholder="Font Awesome icon name"
@@ -271,9 +276,8 @@ class EditClass extends Component {
           </div>
 
           <div>
-            <label>Do this</label>
-            <input
-              className="input"
+            <Label>Do this</Label>
+            <Input
               name="name"
               onChange={this.handleFormFieldChange}
               placeholder="task"
@@ -283,71 +287,69 @@ class EditClass extends Component {
           </div>
 
           <div>
-            <label>in/at the</label>
-            <select
-              className="select"
+            <Label>in/at the</Label>
+            <Select
               name="location"
               onChange={this.handleFormFieldChange}
               required
               type="text"
               value={task.location}
             >
-              <option disabled value="">location/category</option>
-              <option value="hall, stairs and landing">Hall, stairs and landing</option>
-              <option value="kitchen">Kitchen</option>
-              <option value="bathroom">Bathroom</option>
-              <option value="back bedroom">Back bedroom</option>
-              <option value="study">Study</option>
-              <option value="lounge">Lounge</option>
-              <option value="dining room">Dining room</option>
-              <option value="utility Room">Utility room</option>
-              <option value="garage">Garage</option>
-              <option value="cats">Cats</option>
-              <option value="food">Food</option>
-            </select>
+              <Option disabled value="">location/category</Option>
+              <Option value="hall, stairs and landing">Hall, stairs and landing</Option>
+              <Option value="kitchen">Kitchen</Option>
+              <Option value="bathroom">Bathroom</Option>
+              <Option value="back bedroom">Back bedroom</Option>
+              <Option value="study">Study</Option>
+              <Option value="lounge">Lounge</Option>
+              <Option value="dining room">Dining room</Option>
+              <Option value="utility Room">Utility room</Option>
+              <Option value="garage">Garage</Option>
+              <Option value="cats">Cats</Option>
+              <Option value="food">Food</Option>
+            </Select>
           </div>
 
           <div>
-            <label>every</label>
-            <fieldset className="inlineFieldset">
-              <input
-                className="input frequencyNumberInput"
+            <Label>every</Label>
+            <Fieldset inline>
+              <Input
+                className="frequencyNumberInput"
                 name="frequency"
                 onChange={this.handleFormFieldChange}
                 placeholder="number"
                 value={task.frequency}
                 type="number"
               />
-              <select
-                className="select"
+              <Select
                 onChange={this.handleFormFieldChange}
                 name="frequencyUnit"
                 type="text"
                 value={task.frequencyUnit}
               >
-                <option value="days">day(s)</option>
-                <option value="weeks">week(s)</option>
-                <option value="months">month(s)</option>
-                <option value="years">year(s)</option>
-              </select>
-            </fieldset>
+                <Option value="days">day(s)</Option>
+                <Option value="weeks">week(s)</Option>
+                <Option value="months">month(s)</Option>
+                <Option value="years">year(s)</Option>
+              </Select>
+            </Fieldset>
           </div>
 
           <div>
-            <label>for</label>
-            <fieldset className="inlineFieldset">
-              <input
-                className="input durationInput"
+            <Label>for</Label>
+            <Fieldset inline>
+              <Input
+                className="durationInput"
                 name="duration"
                 onChange={this.handleFormFieldChange}
                 placeholder="duration"
                 type="number"
                 value={task.duration}
               />
-              <p>
+              <span>
                 minutes
-              </p>
-            </fieldset>
+              </span>
+            </Fieldset>
             <p className="note">
               Actual average:&nbsp;
               {completionDurations.length ? (
@@ -358,22 +360,21 @@ class EditClass extends Component {
             </p>
           </div>
 
-          <div>
-            <label>Prioritise</label>
-            <input
-              checked={task.prioritise}
-              className="prioritise"
-              name="prioritise"
-              onChange={this.handleFormFieldChange}
-              type="checkbox"
-            />
-          </div>
-
           <div className="buttonsWrap">
-            <Theme accent>
+            <Theme success>
               <Button disabled={saveTaskStatus === ACTION_STATUS_SUCCEEDED} type="submit">
                 Save
               </Button>
+            </Theme>
+
+            <Theme accent>
+              <CheckButton
+                checked={task.prioritise}
+                name="prioritise"
+                onChange={this.handleFormFieldChange}
+              >
+                Prioritise
+              </CheckButton>
             </Theme>
 
             {taskId && (
@@ -384,13 +385,13 @@ class EditClass extends Component {
               </Theme>
             )}
           </div>
-        </form>
+        </Form>
 
         <section className="completions">
           {task.completions.length === 0 ? (
             <p className="placeholder">Not yet completed.</p>
           ) : (
-            <label>Completed {task.completions.length} times</label>
+            <Label>Completed {task.completions.length} times</Label>
           )}
           <CompletionList
             completions={task.completions}

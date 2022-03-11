@@ -14,6 +14,24 @@ export const Button = ({ children, className, ...props }) => {
   )
 }
 
+export const CheckButton = ({ children, className, ...props }) => {
+  const classes = ['checkbutton']
+
+  if (className) {
+    classes.push(className)
+  }
+
+  return (
+    <div className={classes.join(' ')}>
+      <input className='button' type='checkbox' {...props} />
+      <span className='checkbox' />
+      <span className='checkbuttonContent'>
+        {children}
+      </span>
+    </div>
+  )
+}
+
 export const Fieldset = ({ children, className, inline = false, ...props }) => {
   const classes = ['fieldset']
 
@@ -68,6 +86,20 @@ export const Label = ({ children, className, ...props }) => {
     <label className={classes.join(' ')} {...props}>
       {children}
     </label>
+  )
+}
+
+export const Option = ({ children, className, ...props }) => {
+  const classes = ['option']
+
+  if (className) {
+    classes.push(className)
+  }
+
+  return (
+    <option className={classes.join(' ')} {...props}>
+      {children}
+    </option>
   )
 }
 
