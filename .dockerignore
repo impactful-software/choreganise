@@ -1,0 +1,9 @@
+.config/
+.npm/
+node_modules/
+.dccache
+.gitattributes
+.gitignore
+docker-compose.yaml
+Dockerfile
+README.md
