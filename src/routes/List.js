@@ -79,7 +79,7 @@ function View ({ taskList }) {
                   {task.location}
                 </td>
                 <td className="tableCell iconColumn">
-                  <Link to={`/edit/${task._id}`}>
+                  <Link to={`/task/${task._id}`}>
                     <FontAwesomeIcon icon='edit' />
                   </Link>
                 </td>

@@ -2,7 +2,7 @@ import './Nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from "react-router-dom"
 
-function EditNav () {
+function TaskNav () {
   return (
     <nav className='nav'>
       <Link to="/">
@@ -15,4 +15,4 @@ function EditNav () {
   )
 }
 
-export default EditNav
+export default TaskNav

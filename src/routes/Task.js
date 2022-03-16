@@ -1,4 +1,4 @@
-import './Edit.css'
+import './Task.css'
 import { BSON } from 'realm-web'
 import { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,7 +16,7 @@ import Theme from '../components/Theme'
 import Container from '../components/Container'
 import { getTime } from 'date-fns'
 
-class EditClass extends Component {
+class TaskClass extends Component {
   static contextType = RealmAppContext
 
   constructor (props) {
@@ -274,7 +274,7 @@ class EditClass extends Component {
         Error finding task details.
       </p>
     ) : (
-      <Container className="editTaskPage">
+      <Container className="taskPage">
         <Form action="" onSubmit={this.handleFormSubmit}>
           <div>
             <Label>Icon</Label>
@@ -418,12 +418,12 @@ class EditClass extends Component {
   }
 }
 
-const Edit = (props) =>
-  <EditClass
+const Task = (props) =>
+  <TaskClass
     dispatch={useDispatch()}
     navigate={useNavigate()}
     params={useParams()}
     {...props}
   />
 
-export default Edit
+export default Task

@@ -8,7 +8,7 @@ function ListNav () {
       <Link to="/">
         <FontAwesomeIcon icon='stopwatch' />
       </Link>
-      <Link to="/edit">
+      <Link to="/task">
         <FontAwesomeIcon icon='plus-circle' />
       </Link>
     </nav>

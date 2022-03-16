@@ -6,8 +6,8 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 
-import Edit from './routes/Edit.js'
-import EditNav from './components/navigation/EditNav.js'
+import Task from './routes/Task.js'
+import TaskNav from './components/navigation/TaskNav.js'
 import Home from './routes/Home.js'
 import HomeNav from './components/navigation/HomeNav.js'
 import ListNav from './components/navigation/ListNav.js'
@@ -30,8 +30,8 @@ function App () {
         <header className="header">
           <Routes>
             <Route path="/" element={<HomeNav />} />
-            <Route path="/edit/:taskId" element={<EditNav />} />
-            <Route path="/edit" element={<EditNav />} />
+            <Route path="/task/:taskId" element={<TaskNav />} />
+            <Route path="/task" element={<TaskNav />} />
             <Route path="/settings" element={<SettingsNav />} />
             <Route path="/list" element={<ListNav />} />
           </Routes>
@@ -40,8 +40,8 @@ function App () {
         <main className="main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/edit/:taskId" element={<Edit />} />
-            <Route path="/edit" element={<Edit />} />
+            <Route path="/task/:taskId" element={<Task />} />
+            <Route path="/task" element={<Task />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/list" element={<List />} />
           </Routes>
