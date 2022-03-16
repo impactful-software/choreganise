@@ -12,7 +12,7 @@ const Completion = ({
   onCancelEdit = noop
 }) => {
   const allowDelete = (typeof onDelete === 'function')
-  const initialDurationMinutes = completion.duration ? Math.ceil(completion.duration / 60) : null
+  const initialDurationMinutes = completion.duration ? Math.ceil(completion.duration / 60) : ''
 
   const [date, setDate] = useState(new Date(1000 * completion.time || 0))
   const [durationMinutes, setDurationMinutes] = useState(initialDurationMinutes)
@@ -73,13 +73,13 @@ const Completion = ({
               name="duration"
               onChange={handleDurationChange}
               type="number"
-              value={durationMinutes === null ? '' : durationMinutes}
+              value={durationMinutes}
             />
             <span className="durationUnits">
               &nbsp;minutes
             </span>
           </Fragment>
-        ) : durationMinutes !== null && (
+        ) : +durationMinutes > 0 && (
           <Fragment>
             <span className="duration">
               {durationMinutes}
