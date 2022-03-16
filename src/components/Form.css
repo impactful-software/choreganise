@@ -94,6 +94,7 @@
   flex-flow: row nowrap;
   gap: 0.25em;
   height: 2.2em;
+  line-height: 2;
   padding: 0 1em;
   position: relative;
 }
