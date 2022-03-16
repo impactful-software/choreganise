@@ -15,7 +15,7 @@ import Settings from './routes/Settings.js'
 import SettingsNav from './components/navigation/SettingsNav.js'
 import Theme from './components/Theme'
 import Timer from './components/Timer.js'
-import View from './routes/View.js'
+import List from './routes/List.js'
 
 function App () {
   const timerStarted = useSelector(state => state.timer.started)
@@ -33,7 +33,7 @@ function App () {
             <Route path="/edit/:taskId" element={<EditNav />} />
             <Route path="/edit" element={<EditNav />} />
             <Route path="/settings" element={<SettingsNav />} />
-            <Route path="/view" element={<ListNav />} />
+            <Route path="/list" element={<ListNav />} />
           </Routes>
         </header>
 
@@ -43,7 +43,7 @@ function App () {
             <Route path="/edit/:taskId" element={<Edit />} />
             <Route path="/edit" element={<Edit />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/view" element={<View />} />
+            <Route path="/list" element={<List />} />
           </Routes>
         </main>
 

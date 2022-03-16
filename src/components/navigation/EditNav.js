@@ -8,7 +8,7 @@ function EditNav () {
       <Link to="/">
         <FontAwesomeIcon icon='stopwatch' />
       </Link>
-      <Link to="/view">
+      <Link to="/list">
         <FontAwesomeIcon icon='times' />
       </Link>
     </nav>

@@ -8,7 +8,7 @@ function HomeNav () {
       <Link to="/settings">
         <FontAwesomeIcon icon='cog' />
       </Link>
-      <Link to="/view">
+      <Link to="/list">
         <FontAwesomeIcon icon='th-list' />
       </Link>
     </nav>

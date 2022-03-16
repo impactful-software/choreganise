@@ -1,4 +1,4 @@
-import './View.css'
+import './List.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,7 +22,7 @@ function View ({ taskList }) {
   })
 
   return (
-    <div className="viewPage">
+    <div className="listPage">
       {Object.values(status).indexOf(ACTION_STATUS_LOADING) !== -1 && (
         <p className="loading">
           <FontAwesomeIcon icon='spinner' spin />

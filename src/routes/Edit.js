@@ -275,7 +275,7 @@ class EditClass extends Component {
       </p>
     ) : (
       <Container className="editTaskPage">
-        <Form action="/view" onSubmit={this.handleFormSubmit}>
+        <Form action="" onSubmit={this.handleFormSubmit}>
           <div>
             <Label>Icon</Label>
             <p className="note">
