@@ -7,6 +7,7 @@ import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTI
 import calculateTaskPriority from '../utility/calculateTaskPriority.js'
 import { fetchTasks } from '../store/taskListSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
+import { Option } from '../components/Form'
 
 function View ({ taskList }) {
   const { db } = useRealmApp()
@@ -37,25 +38,26 @@ function View ({ taskList }) {
       )}
 
       {status.fetchTasks === ACTION_STATUS_SUCCEEDED && (
-        <table>
+        <table className="table">
           <thead>
-            <tr>
-              <th className="taskColumn" colSpan="2">Task</th>
-              <th className="locationColumn" colSpan="2">
+            <tr className="tableHeadingRow">
+              <th className="tableCell" colSpan="2"></th>
+              <th className="tableCell taskColumn">Task</th>
+              <th className="tableCell locationColumn" colSpan="2">
                 <select className="selectRoom" type="text" name="taskLocation" defaultValue=''>
-                  <option value="" disabled>Location</option>
-                  <option value="hallLanding">Hall, stairs and Landing</option>
-                  <option value="kitchen">Kitchen</option>
-                  <option value="bathroom">Bathroom</option>
-                  <option value="backBedroom">Back Bedroom</option>
-                  <option value="study">Study</option>
-                  <option value="lounge">Lounge</option>
-                  <option value="utilityRoom">Utility Room</option>
-                  <option value="garage">Garage</option>
-                  <option value="cats">Cats</option>
-                  <option value="laundry">Laundry</option>
-                  <option value="food">Food</option>
-                  <option value="shopping">Shopping</option>
+                  <Option value="">Location</Option>
+                  <Option value="hallLanding">Hall, stairs and Landing</Option>
+                  <Option value="kitchen">Kitchen</Option>
+                  <Option value="bathroom">Bathroom</Option>
+                  <Option value="backBedroom">Back Bedroom</Option>
+                  <Option value="study">Study</Option>
+                  <Option value="lounge">Lounge</Option>
+                  <Option value="utilityRoom">Utility Room</Option>
+                  <Option value="garage">Garage</Option>
+                  <Option value="cats">Cats</Option>
+                  <Option value="laundry">Laundry</Option>
+                  <Option value="food">Food</Option>
+                  <Option value="shopping">Shopping</Option>
                 </select>
               </th>
             </tr>
@@ -63,16 +65,20 @@ function View ({ taskList }) {
           <tbody>
             {tasks.map(task => (
               <tr key={task._id}>
-                <td>
+                <td className="tableCell iconColumn">
+                  {task.prioritise ? <FontAwesomeIcon icon="flag" title={task.prioritise.toString()} /> : ''}
+                  &nbsp;&nbsp;&nbsp;
                   {calculateTaskPriority(task).toFixed(1)}
                 </td>
-                <td className="taskColumn">
+                <td className="tableCell taskColumn">
+                </td>
+                <td className="tableCell taskColumn">
                   {task.name}
                 </td>
-                <td className="locationColumn">
+                <td className="tableCell locationColumn">
                   {task.location}
                 </td>
-                <td className="iconColumn">
+                <td className="tableCell iconColumn">
                   <Link to={`/edit/${task._id}`}>
                     <FontAwesomeIcon icon='edit' />
                   </Link>

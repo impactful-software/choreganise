@@ -1,38 +1,35 @@
-table{
+.table {
   border-spacing: 0;
   width: 100%;
 }
 
-.taskColumn{
+.taskColumn {
   border-right: 1px solid rgb(182, 192, 211);
 }
 
-.iconColumn{
+.iconColumn {
   width: 1.2em;
 }
 
-th{
+.tableHeadingRow .tableCell {
   border-bottom: 1px solid rgb(182, 192, 211);
+  text-align: left;
 }
 
-td,th{
-  padding: 8px 10px;
+.tableCell {
+  padding: 0.25em 0.5em;
 }
 
-td:first-letter {
+.tableCell:first-letter {
   text-transform: capitalize;
 }
 
-.selectRoom{
-  font-size: 1em;
-  width: 6em;
-  font-weight: bold;
-  color: inherit;
+.selectRoom {
   background-color: transparent;
-}
-
-.selectRoom option {
-  background-color: white;
-  color: black;
-  font-size: 85%;
+  color: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  position: relative;
+  left: -0.25em;
+  width: 6em;
 }
