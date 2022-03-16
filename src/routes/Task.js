@@ -216,7 +216,7 @@ class TaskClass extends Component {
       { _id: BSON.ObjectID(taskId) },
       {
         $set: {
-          prioritise: event.target.checked ? getTime(new Date()) : null
+          prioritise: event.target.checked ? getTime(new Date()) : defaultTask.prioritise
         }
       }
     )

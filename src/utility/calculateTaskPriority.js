@@ -7,5 +7,5 @@ export default function calculateTaskPriority(task) {
   const daysBetweenDueDates = differenceInDays(dateDue, dateLastCompleted)
   const daysPastDue = differenceInDays(new Date(), dateDue)
 
-  return daysPastDue / daysBetweenDueDates
+  return 10 * daysPastDue / daysBetweenDueDates
 }

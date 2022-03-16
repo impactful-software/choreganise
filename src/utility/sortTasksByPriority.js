@@ -1,10 +1,10 @@
-import { sortBy } from "lodash";
+import { reverse, sortBy } from "lodash";
 import calculateTaskPriority from "./calculateTaskPriority.js";
 
 export default function sortTasksByPriority (tasks) {
-  return sortBy(
+  return reverse(sortBy(
     Object.values(tasks),
-    (task) => -1 * task.prioritise,
-    (task) => -1 * calculateTaskPriority(task)
-  )
+    'prioritise',
+    (task) => calculateTaskPriority(task)
+  ))
 }

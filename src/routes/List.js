@@ -8,12 +8,19 @@ import calculateTaskPriority from '../utility/calculateTaskPriority.js'
 import { fetchTasks } from '../store/taskListSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
 import { Option } from '../components/Form'
+import { getDateString, getTimeString } from '../utility/dateTimeFunctions'
 
 function View ({ taskList }) {
   const { db } = useRealmApp()
   const dispatch = useDispatch()
   const status = useSelector(state => state.taskList.status)
-  const tasks = useSelector(state => state.taskList.tasks)
+  const tasks = useSelector(state => state.taskList.tasks).map(
+    task => ({
+      prioritisedDate: new Date(task.prioritise),
+      priority: Math.round(calculateTaskPriority(task)),
+      task
+    })
+  )
 
   useEffect(() => {
     if (status.fetchTasks === ACTION_STATUS_IDLE && tasks.length === 0) {
@@ -63,14 +70,18 @@ function View ({ taskList }) {
             </tr>
           </thead>
           <tbody>
-            {tasks.map(task => (
+            {tasks.map(({ prioritisedDate, priority, task }) => (
               <tr key={task._id}>
                 <td className="tableCell iconColumn">
-                  {task.prioritise ? <FontAwesomeIcon icon="flag" title={task.prioritise.toString()} /> : ''}
-                  &nbsp;&nbsp;&nbsp;
-                  {calculateTaskPriority(task).toFixed(1)}
+                  {task.prioritise ? (
+                    <FontAwesomeIcon
+                      icon="flag"
+                      title={`Prioritised at ${getTimeString(prioritisedDate)} on ${getDateString(prioritisedDate)}`}
+                    />
+                  ) : ''}
                 </td>
-                <td className="tableCell taskColumn">
+                <td className="tableCell iconColumn" title={`Priority score: ${priority}`}>
+                  {priority < 100 ? priority : <FontAwesomeIcon icon='infinity' />}
                 </td>
                 <td className="tableCell taskColumn">
                   {task.name}

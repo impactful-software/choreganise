@@ -8,7 +8,8 @@
 }
 
 .iconColumn {
-  width: 1.2em;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 .tableHeadingRow .tableCell {

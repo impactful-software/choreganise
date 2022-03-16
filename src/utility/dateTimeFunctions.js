@@ -10,17 +10,25 @@ export function convertSecondsToTimeString (seconds) {
     .join(':')
 }
 
-export function getDateNextDue (task) {
-  const dateLastCompleted = getDateLastCompleted(task)
-  return add(dateLastCompleted, { [task.frequencyUnit]: task.frequency })
-}
-
 export function getDateLastCompleted (task) {
   if (task.completions && task.completions.length > 0) {
     return new Date(task.completions[task.completions.length -1].time * 1000)
   } else {
     return new Date(0)
   }
+}
+
+export function getDateNextDue (task) {
+  const dateLastCompleted = getDateLastCompleted(task)
+  return add(dateLastCompleted, { [task.frequencyUnit]: task.frequency })
+}
+
+export function getDateString (date) {
+  return date.toLocaleDateString()
+}
+
+export function getTimeString(date) {
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 }
 
 export function getWholeHours (seconds) {
