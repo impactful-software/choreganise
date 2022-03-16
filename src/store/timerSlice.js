@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { getUnixTime } from "date-fns"
 import { sum } from "lodash"
-import { createTaskCompletion, normalizeTask, updateTask } from "./taskListSlice.js"
+import { createTaskCompletion, defaultTask, normalizeTask, updateTask } from "./taskListSlice.js"
 import { sumTimeComponents } from "../utility/dateTimeFunctions.js"
 
 const initialState = {
@@ -50,6 +50,7 @@ export const completeTask = createAsyncThunk(
     const completion = createTaskCompletion({ duration, time })
 
     normalizedTask.completions.push(completion)
+    normalizedTask.prioritise = defaultTask.prioritise
 
     dispatch(updateTask({ db, props: normalizedTask }))
 

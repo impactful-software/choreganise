@@ -79,7 +79,7 @@ const Completion = ({
               &nbsp;minutes
             </span>
           </Fragment>
-        ) : completion.duration && (
+        ) : durationMinutes !== null && (
           <Fragment>
             <span className="duration">
               {durationMinutes}

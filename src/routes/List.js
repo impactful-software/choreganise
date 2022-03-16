@@ -48,7 +48,7 @@ function View ({ taskList }) {
         <table className="table">
           <thead>
             <tr className="tableHeadingRow">
-              <th className="tableCell" colSpan="2"></th>
+              <th className="tableCell" colSpan="2">Priority</th>
               <th className="tableCell taskColumn">Task</th>
               <th className="tableCell locationColumn" colSpan="2">
                 <select className="selectRoom" type="text" name="taskLocation" defaultValue=''>
