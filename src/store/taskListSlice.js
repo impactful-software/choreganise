@@ -18,7 +18,7 @@ export const defaultTask = {
   icon: '',
   location: '',
   name: '',
-  prioritise: false,
+  prioritise: null,
 }
 
 const initialState = {

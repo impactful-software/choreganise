@@ -14,6 +14,7 @@ import CompletionList from '../components/edit/CompletionList'
 import { Button, Fieldset, Form, Input, Label, Select, Option, CheckButton } from '../components/Form'
 import Theme from '../components/Theme'
 import Container from '../components/Container'
+import { getTime } from 'date-fns'
 
 class EditClass extends Component {
   static contextType = RealmAppContext
@@ -32,6 +33,7 @@ class EditClass extends Component {
     this.handleDeleteTaskClick = this.handleDeleteTaskClick.bind(this)
     this.handleFormFieldChange = this.handleFormFieldChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handlePrioritiseChange = this.handlePrioritiseChange.bind(this)
 
     this.unmounting = false
   }
@@ -216,6 +218,19 @@ class EditClass extends Component {
     }
   }
 
+  async handlePrioritiseChange (event) {
+    const { taskId } = this.props.params
+
+    await this.tasksCollection.updateOne(
+      { _id: BSON.ObjectID(taskId) },
+      {
+        $set: {
+          prioritise: event.target.checked ? getTime(new Date()) : null
+        }
+      }
+    )
+  }
+
   async handleCompletionsUpdate (completions) {
     const { deleted } = this.state
     const { taskId } = this.props.params
@@ -369,9 +384,9 @@ class EditClass extends Component {
 
             <Theme accent>
               <CheckButton
-                checked={task.prioritise}
+                checked={!!task.prioritise}
                 name="prioritise"
-                onChange={this.handleFormFieldChange}
+                onChange={this.handlePrioritiseChange}
               >
                 Prioritise
               </CheckButton>
