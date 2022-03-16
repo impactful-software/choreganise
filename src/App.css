@@ -21,7 +21,7 @@ a:hover{
   color: var(--color-foreground);
   display: flex;
   flex-flow: column nowrap;
-  font-size: calc(10px + 2vmin);
+  font-size: 16pt;
   height: 100vh;
   max-height: 100vh;
 }
