@@ -98,38 +98,29 @@ class EditClass extends Component {
     }
   }
 
-  async watchTask (taskId) {
-    this.changeStream = this.tasksCollection.watch({ ids: [BSON.ObjectID(taskId)]})
+  async handleCompletionsUpdate (completions) {
+    const { deleted } = this.state
+    const { taskId } = this.props.params
 
-    for await (const event of this.changeStream) {
-      const { fetchTaskStatus } = this.state
+    if (taskId && !deleted) {
+      this.setState({ saveTaskStatus: ACTION_STATUS_LOADING })
 
-      if (fetchTaskStatus === ACTION_STATUS_REJECTED) {
-        // Stop watching for events if the task failed to load.
-        break
-      } else if (fetchTaskStatus !== ACTION_STATUS_SUCCEEDED) {
-        // Ignore events detected before the task has loaded.
-        continue
-      }
+      const encodedData = encodeTask({ completions })
 
-      switch (event.operationType) {
-        case 'update':
-        case 'replace': {
-          console.debug('Task updated.', event, this.changeStream)
-          this.setState({ task: event.fullDocument })
-          break
+      await this.tasksCollection.updateOne(
+        { _id: BSON.ObjectID(taskId) },
+        {
+          $set: {
+            completions: encodedData.completions
+          }
         }
+      )
 
-        case 'delete': {
-          console.debug('Task deleted.', event, this.changeStream)
-          this.setState({ deleted: true })
-          break
-        }
-
-        default: {
-          console.debug('Unexpected task operation received.', event, this.changeStream)
-        }
-      }
+      this.setState({ saveTaskStatus: ACTION_STATUS_SUCCEEDED })
+      toast.success('Task updated.')
+    } else {
+      console.error('Failed to update completions - task does not exist.')
+      toast.error('Failed to update completions - task does not exist.')
     }
   }
 
@@ -231,29 +222,38 @@ class EditClass extends Component {
     )
   }
 
-  async handleCompletionsUpdate (completions) {
-    const { deleted } = this.state
-    const { taskId } = this.props.params
+  async watchTask (taskId) {
+    this.changeStream = this.tasksCollection.watch({ ids: [BSON.ObjectID(taskId)]})
 
-    if (taskId && !deleted) {
-      this.setState({ saveTaskStatus: ACTION_STATUS_LOADING })
+    for await (const event of this.changeStream) {
+      const { fetchTaskStatus } = this.state
 
-      const encodedData = encodeTask({ completions })
+      if (fetchTaskStatus === ACTION_STATUS_REJECTED) {
+        // Stop watching for events if the task failed to load.
+        break
+      } else if (fetchTaskStatus !== ACTION_STATUS_SUCCEEDED) {
+        // Ignore events detected before the task has loaded.
+        continue
+      }
 
-      await this.tasksCollection.updateOne(
-        { _id: BSON.ObjectID(taskId) },
-        {
-          $set: {
-            completions: encodedData.completions
-          }
+      switch (event.operationType) {
+        case 'update':
+        case 'replace': {
+          console.debug('Task updated.', event, this.changeStream)
+          this.setState({ task: event.fullDocument })
+          break
         }
-      )
 
-      this.setState({ saveTaskStatus: ACTION_STATUS_SUCCEEDED })
-      toast.success('Task updated.')
-    } else {
-      console.error('Failed to update completions - task does not exist.')
-      toast.error('Failed to update completions - task does not exist.')
+        case 'delete': {
+          console.debug('Task deleted.', event, this.changeStream)
+          this.setState({ deleted: true })
+          break
+        }
+
+        default: {
+          console.debug('Unexpected task operation received.', event, this.changeStream)
+        }
+      }
     }
   }
 
