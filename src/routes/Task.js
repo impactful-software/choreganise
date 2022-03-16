@@ -15,6 +15,7 @@ import { Button, Fieldset, Form, Input, Label, Select, Option, CheckButton } fro
 import Theme from '../components/Theme'
 import Container from '../components/Container'
 import { getTime } from 'date-fns'
+import { getDateString, getTimeString } from '../utility/dateTimeFunctions'
 
 class TaskClass extends Component {
   static contextType = RealmAppContext
@@ -33,7 +34,7 @@ class TaskClass extends Component {
     this.handleDeleteTaskClick = this.handleDeleteTaskClick.bind(this)
     this.handleFormFieldChange = this.handleFormFieldChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
-    this.handlePrioritiseChange = this.handlePrioritiseChange.bind(this)
+    this.handleIsBoostedToggle = this.handleIsBoostedToggle.bind(this)
 
     this.unmounting = false
   }
@@ -173,7 +174,7 @@ class TaskClass extends Component {
     const data = {
       "name": formData.get('name'),
       "icon": formData.get('icon'),
-      "prioritise": formData.has('prioritise'),
+      "boostedAt": formData.has('boostedAt'),
       "duration": +formData.get('duration'),
       "frequency": +formData.get('frequency'),
       "frequencyUnit": formData.get('frequencyUnit'),
@@ -209,14 +210,14 @@ class TaskClass extends Component {
     }
   }
 
-  async handlePrioritiseChange (event) {
+  async handleIsBoostedToggle (event) {
     const { taskId } = this.props.params
 
     await this.tasksCollection.updateOne(
       { _id: BSON.ObjectID(taskId) },
       {
         $set: {
-          prioritise: event.target.checked ? getTime(new Date()) : defaultTask.prioritise
+          boostedAt: event.target.checked ? getTime(new Date()) : defaultTask.boostedAt
         }
       }
     )
@@ -260,8 +261,10 @@ class TaskClass extends Component {
   render () {
     const { fetchTaskStatus, saveTaskStatus, task } = this.state
     const { taskId } = this.props.params
+    const isBoosted = (task.boostedAt > 0)
+    const boostedDate = new Date(task.boostedAt)
     const completionDurations = task.completions
-      .filter(completion => completion.duration !== null)
+      .filter(completion => +completion.duration > 0)
       .map(completion => +completion.duration)
     const averageDuration = mean(completionDurations)
 
@@ -384,11 +387,12 @@ class TaskClass extends Component {
 
             <Theme accent>
               <CheckButton
-                checked={!!task.prioritise}
-                name="prioritise"
-                onChange={this.handlePrioritiseChange}
+                checked={isBoosted}
+                name="isBoosted"
+                onChange={this.handleIsBoostedToggle}
+                title={boostedDate > 0 ? `Boosted at ${getTimeString(boostedDate)} on ${getDateString(boostedDate)}` : 'Click to boost priority'}
               >
-                Prioritise
+                {isBoosted ? 'Boosted' : 'Boost'}
               </CheckButton>
             </Theme>
 

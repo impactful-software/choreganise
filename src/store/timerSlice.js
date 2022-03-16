@@ -50,7 +50,7 @@ export const completeTask = createAsyncThunk(
     const completion = createTaskCompletion({ duration, time })
 
     normalizedTask.completions.push(completion)
-    normalizedTask.prioritise = defaultTask.prioritise
+    normalizedTask.boostedAt = defaultTask.boostedAt
 
     dispatch(updateTask({ db, props: normalizedTask }))
 

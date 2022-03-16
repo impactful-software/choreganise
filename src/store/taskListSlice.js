@@ -11,14 +11,14 @@ import {
 import sortTasksByPriority from '../utility/sortTasksByPriority.js'
 
 export const defaultTask = {
+  boostedAt: 0,
   completions: [],
   duration: '',
   frequency: 1,
   frequencyUnit: 'days',
   icon: '',
   location: '',
-  name: '',
-  prioritise: 0,
+  name: ''
 }
 
 const initialState = {

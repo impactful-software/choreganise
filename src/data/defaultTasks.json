@@ -1,7 +1,7 @@
 [
   {
     "name": "hoover hall floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "days",
@@ -12,7 +12,7 @@
   },
   {
     "name": "mop floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -23,7 +23,7 @@
   },
   {
     "name": "hoover stairs",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
@@ -34,7 +34,7 @@
   },
   {
     "name": "clean litter trays",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:25",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -45,7 +45,7 @@
   },
   {
     "name": "dust hall cabinet",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "months",
@@ -56,7 +56,7 @@
   },
   {
     "name": "hoover landing",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "days",
@@ -67,7 +67,7 @@
   },
   {
     "name": "dust fixtures",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
@@ -78,7 +78,7 @@
   },
   {
     "name": "hoover floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
@@ -89,7 +89,7 @@
   },
   {
     "name": "mop floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -100,7 +100,7 @@
   },
   {
     "name": "wipe hob",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
@@ -111,7 +111,7 @@
   },
   {
     "name": "deep clean counters",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -122,7 +122,7 @@
   },
   {
     "name": "clean sink and draining board",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -133,7 +133,7 @@
   },
   {
     "name": "clean oven",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:30",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -144,7 +144,7 @@
   },
   {
     "name": "wipe cupboard fronts",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -155,7 +155,7 @@
   },
   {
     "name": "clean hob hood",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -166,7 +166,7 @@
   },
   {
     "name": "clean pantry",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:00",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -177,7 +177,7 @@
   },
   {
     "name": "wipe top of cupboards",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:30",
     "frequency": 1,
     "frequencyUnit": "years",
@@ -188,7 +188,7 @@
   },
   {
     "name": "clean windows",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 4,
     "frequencyUnit": "months",
@@ -199,7 +199,7 @@
   },
   {
     "name": "clean toilet",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 1,
     "frequencyUnit": "weeks",
@@ -210,7 +210,7 @@
   },
   {
     "name": "clean floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -221,7 +221,7 @@
   },
   {
     "name": "clean sink",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -232,7 +232,7 @@
   },
   {
     "name": "clean shower",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:30",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -243,7 +243,7 @@
   },
   {
     "name": "clean and tidy window ledge",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
@@ -254,7 +254,7 @@
   },
   {
     "name": "clean windows",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 4,
     "frequencyUnit": "months",
@@ -265,7 +265,7 @@
   },
   {
     "name": "scrub grout",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:00",
     "frequency": 9,
     "frequencyUnit": "months",
@@ -276,7 +276,7 @@
   },
   {
     "name": "hoover",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -287,7 +287,7 @@
   },
   {
     "name": "hoover under furniture",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:25",
     "frequency": 3,
     "frequencyUnit": "months",
@@ -298,7 +298,7 @@
   },
   {
     "name": "change bedding",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -309,7 +309,7 @@
   },
   {
     "name": "dust surfaces",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
@@ -320,7 +320,7 @@
   },
   {
     "name": "tidy wardrobe",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
@@ -331,7 +331,7 @@
   },
   {
     "name": "go through charity shop clothes",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:40",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -342,7 +342,7 @@
   },
   {
     "name": "tidy bookcase",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:40",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -353,7 +353,7 @@
   },
   {
     "name": "tidy floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
@@ -364,7 +364,7 @@
   },
   {
     "name": "dust fixtures",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
@@ -375,7 +375,7 @@
   },
   {
     "name": "hoover floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -386,7 +386,7 @@
   },
   {
     "name": "wipe desk",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -397,7 +397,7 @@
   },
   {
     "name": "tidy surfaces",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 3,
     "frequencyUnit": "months",
@@ -408,7 +408,7 @@
   },
   {
     "name": "clean windows",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -419,7 +419,7 @@
   },
   {
     "name": "dust fixtures",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
@@ -430,7 +430,7 @@
   },
   {
     "name": "hoover ",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -441,7 +441,7 @@
   },
   {
     "name": "hoover under furniture",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -452,7 +452,7 @@
   },
   {
     "name": "clean surfaces",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
@@ -463,7 +463,7 @@
   },
   {
     "name": "tidy coffee table",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -474,7 +474,7 @@
   },
   {
     "name": "clean windows",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:25",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -485,7 +485,7 @@
   },
   {
     "name": "dust fixtures",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
@@ -496,7 +496,7 @@
   },
   {
     "name": "clean dining table",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -507,7 +507,7 @@
   },
   {
     "name": "tidy and dust dresser",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:40",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -518,7 +518,7 @@
   },
   {
     "name": "tidy bookcase",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -529,7 +529,7 @@
   },
   {
     "name": "hoover floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:10",
     "frequency": 10,
     "frequencyUnit": "days",
@@ -540,7 +540,7 @@
   },
   {
     "name": "mop floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
@@ -551,7 +551,7 @@
   },
   {
     "name": "dust fixtures",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
@@ -562,7 +562,7 @@
   },
   {
     "name": "hoover floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 3,
     "frequencyUnit": "months",
@@ -573,7 +573,7 @@
   },
   {
     "name": "tidy floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:40",
     "frequency": 5,
     "frequencyUnit": "months",
@@ -584,7 +584,7 @@
   },
   {
     "name": "clean fridge",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:40",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -595,7 +595,7 @@
   },
   {
     "name": "clean laundry area",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -606,7 +606,7 @@
   },
   {
     "name": "tidy floor",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:20",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -617,7 +617,7 @@
   },
   {
     "name": "clean worm cupboard",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "1:00",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -628,7 +628,7 @@
   },
   {
     "name": "clean bike chains",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:40",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -639,7 +639,7 @@
   },
   {
     "name": "wipe table ",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 6,
     "frequencyUnit": "months",
@@ -650,7 +650,7 @@
   },
   {
     "name": "clean feeders",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:20",
     "frequency": 3,
     "frequencyUnit": "weeks",
@@ -661,7 +661,7 @@
   },
   {
     "name": "wash bedding",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "months",
@@ -672,7 +672,7 @@
   },
   {
     "name": "sort and order cat food",
-    "prioritise": false,
+    "boostedAt": 0,
     "duration": "00:30",
     "frequency": 1,
     "frequencyUnit": "months",

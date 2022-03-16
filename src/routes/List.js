@@ -16,7 +16,7 @@ function View ({ taskList }) {
   const status = useSelector(state => state.taskList.status)
   const tasks = useSelector(state => state.taskList.tasks).map(
     task => ({
-      prioritisedDate: new Date(task.prioritise),
+      boostedDate: new Date(task.boostedAt),
       priority: Math.round(calculateTaskPriority(task)),
       task
     })
@@ -70,13 +70,13 @@ function View ({ taskList }) {
             </tr>
           </thead>
           <tbody>
-            {tasks.map(({ prioritisedDate, priority, task }) => (
+            {tasks.map(({ boostedDate, priority, task }) => (
               <tr key={task._id}>
                 <td className="tableCell iconColumn">
-                  {task.prioritise ? (
+                  {boostedDate > 0 ? (
                     <FontAwesomeIcon
                       icon="flag"
-                      title={`Prioritised at ${getTimeString(prioritisedDate)} on ${getDateString(prioritisedDate)}`}
+                      title={`Prioritised at ${getTimeString(boostedDate)} on ${getDateString(boostedDate)}`}
                     />
                   ) : ''}
                 </td>
