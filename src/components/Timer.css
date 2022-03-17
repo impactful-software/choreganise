@@ -33,3 +33,10 @@
   color: var(--color-foreground);
   font-size: 130%;
 }
+
+.timerModalControls {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  margin-top: 4em;
+}
