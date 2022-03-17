@@ -174,7 +174,6 @@ class TaskClass extends Component {
     const data = {
       "name": formData.get('name'),
       "icon": formData.get('icon'),
-      "boostedAt": formData.has('boostedAt'),
       "duration": +formData.get('duration'),
       "frequency": +formData.get('frequency'),
       "frequencyUnit": formData.get('frequencyUnit'),
@@ -221,6 +220,8 @@ class TaskClass extends Component {
         }
       }
     )
+
+    this.props.dispatch(resetTasks())
   }
 
   async watchTask (taskId) {
