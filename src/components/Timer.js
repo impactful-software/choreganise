@@ -37,7 +37,7 @@ class Timer extends Component {
 
   componentWillUnmount () {
     if (this.props.timer.started) {
-      this.stop()
+      this.props.stop()
     }
     cancelAnimationFrame(this.frameId)
   }
