@@ -126,7 +126,6 @@ export const taskListSlice = createSlice({
     },
     resetTasks: (state, action) => {
       state.status.fetchTasks = initialState.status.fetchTasks
-      state.tasks = initialState.tasks
     }
   },
   extraReducers(builder) {
