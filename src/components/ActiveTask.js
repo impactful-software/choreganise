@@ -11,6 +11,7 @@ import IconButton from './IconButton.js'
 import Modal from './Modal'
 import { setTasks, startNextTask } from '../store/timerSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
+import Loading from './Loading'
 
 function ActiveTask () {
   const dispatch = useDispatch()
@@ -123,9 +124,7 @@ function ActiveTask () {
   }
 
   return fetchTasksStatus === ACTION_STATUS_IDLE || fetchTasksStatus === ACTION_STATUS_LOADING ? (
-    <p>
-      <FontAwesomeIcon icon="spinner" spin />
-    </p>
+    <Loading />
   ) : fetchTasksStatus === ACTION_STATUS_REJECTED ? (
     <p>
       Error loading tasks.

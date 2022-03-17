@@ -6,7 +6,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 998;
+  z-index: 997;
 }
 
 .modal {
@@ -21,7 +21,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: fit-content;
-  z-index: 999;
+  z-index: 998;
 }
 
 .modal .modalContent {

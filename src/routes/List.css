@@ -1,31 +1,9 @@
-.table {
-  border-spacing: 0;
-  width: 100%;
-}
-
-.taskColumn {
-  border-right: 1px solid rgb(182, 192, 211);
-}
-
-.iconColumn {
+.listPage .iconColumn {
   white-space: nowrap;
   width: fit-content;
 }
 
-.tableHeadingRow .tableCell {
-  border-bottom: 1px solid rgb(182, 192, 211);
-  text-align: left;
-}
-
-.tableCell {
-  padding: 0.25em 0.5em;
-}
-
-.tableCell:first-letter {
-  text-transform: capitalize;
-}
-
-.selectRoom {
+.listPage .selectRoom {
   background-color: transparent;
   color: inherit;
   font-size: 1em;
@@ -33,4 +11,26 @@
   position: relative;
   left: -0.25em;
   width: 6em;
+}
+
+.listPage .table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.listPage .tableHeadingRow .tableCell {
+  border-bottom: 1px solid rgb(182, 192, 211);
+  text-align: left;
+}
+
+.listPage .tableCell {
+  padding: 0.25em 0.5em;
+}
+
+.listPage .tableCell:first-letter {
+  text-transform: capitalize;
+}
+
+.listPage .taskColumn {
+  border-right: 1px solid rgb(182, 192, 211);
 }

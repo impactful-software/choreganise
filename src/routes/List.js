@@ -9,6 +9,7 @@ import { fetchTasks } from '../store/taskListSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
 import { Option } from '../components/Form'
 import { getDateString, getTimeString } from '../utility/dateTimeFunctions'
+import Loading from '../components/Loading'
 
 function View ({ taskList }) {
   const { db } = useRealmApp()
@@ -23,7 +24,7 @@ function View ({ taskList }) {
   )
 
   useEffect(() => {
-    if (status.fetchTasks === ACTION_STATUS_IDLE && tasks.length === 0) {
+    if (status.fetchTasks === ACTION_STATUS_IDLE) {
       dispatch(fetchTasks({ db }))
     }
   })
@@ -31,9 +32,7 @@ function View ({ taskList }) {
   return (
     <div className="listPage">
       {Object.values(status).indexOf(ACTION_STATUS_LOADING) !== -1 && (
-        <p className="loading">
-          <FontAwesomeIcon icon='spinner' spin />
-        </p>
+        <Loading />
       )}
 
       {status.fetchTasks === ACTION_STATUS_REJECTED && (
@@ -44,7 +43,7 @@ function View ({ taskList }) {
         <p>No tasks found.</p>
       )}
 
-      {status.fetchTasks === ACTION_STATUS_SUCCEEDED && (
+      {tasks.length > 0 && (
         <table className="table">
           <thead>
             <tr className="tableHeadingRow">
