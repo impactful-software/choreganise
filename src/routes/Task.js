@@ -177,7 +177,7 @@ class TaskClass extends Component {
       "duration": +formData.get('duration'),
       "frequency": +formData.get('frequency'),
       "frequencyUnit": formData.get('frequencyUnit'),
-      "location": formData.get('location'),
+      "category": formData.get('category'),
       "completions": task.completions
     }
 
@@ -299,33 +299,33 @@ class TaskClass extends Component {
             <Input
               name="name"
               onChange={this.handleFormFieldChange}
-              placeholder="task"
+              placeholder="Task"
               value={task.name}
               type="text"
             />
           </div>
 
           <div>
-            <Label>in/at the</Label>
+            <Label>for, in or at the</Label>
             <Select
-              name="location"
+              name="category"
               onChange={this.handleFormFieldChange}
               required
               type="text"
-              value={task.location}
+              value={task.category}
             >
-              <Option disabled value="">location/category</Option>
+              <Option disabled value="">Select a category</Option>
+              <Option value="back bedroom">Back bedroom</Option>
+              <Option value="bathroom">Bathroom</Option>
+              <Option value="cats">Cats</Option>
+              <Option value="dining room">Dining room</Option>
+              <Option value="food">Food</Option>
+              <Option value="garage">Garage</Option>
               <Option value="hall, stairs and landing">Hall, stairs and landing</Option>
               <Option value="kitchen">Kitchen</Option>
-              <Option value="bathroom">Bathroom</Option>
-              <Option value="back bedroom">Back bedroom</Option>
-              <Option value="study">Study</Option>
               <Option value="lounge">Lounge</Option>
-              <Option value="dining room">Dining room</Option>
-              <Option value="utility Room">Utility room</Option>
-              <Option value="garage">Garage</Option>
-              <Option value="cats">Cats</Option>
-              <Option value="food">Food</Option>
+              <Option value="study">Study</Option>
+              <Option value="utility room">Utility room</Option>
             </Select>
           </div>
 

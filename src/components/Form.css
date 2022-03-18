@@ -151,7 +151,12 @@
   color: #000;
 }
 
-option:disabled {
+.option:disabled {
+  color: #777;
+  font-style: italic;
+}
+
+.placeholder {
   color: #777;
   font-style: italic;
 }

@@ -89,11 +89,15 @@ export const Label = ({ children, className, ...props }) => {
   )
 }
 
-export const Option = ({ children, className, ...props }) => {
+export const Option = ({ children, className, placeholder=false, ...props }) => {
   const classes = ['option']
 
   if (className) {
     classes.push(className)
+  }
+
+  if (placeholder) {
+    classes.push('placeholder')
   }
 
   return (

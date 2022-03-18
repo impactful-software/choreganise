@@ -9,7 +9,7 @@ import ActiveTaskCompletionForm from './ActiveTaskCompletionForm'
 import { fetchTasks, prioritiseTasks } from '../store/taskListSlice.js'
 import IconButton from './IconButton.js'
 import Modal from './Modal'
-import { setTasks, startNextTask } from '../store/timerSlice.js'
+import { setTasks as setSessionTasks, startNextTask } from '../store/timerSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
 import Loading from './Loading'
 
@@ -20,7 +20,7 @@ function ActiveTask () {
   const tasksCollection = db.collection('tasks')
 
   const activeTask = useSelector(state => state.timer.activeTask)
-  const allTasks = useSelector(state => state.taskList.tasks)
+  const prioritisedTasks = useSelector(state => state.taskList.tasksMatchingFilter)
   const fetchTasksStatus = useSelector(state => state.taskList.status.fetchTasks)
   const sessionTasks = useSelector(state => state.timer.tasks)
   const updateTaskStatus = useSelector(state => state.taskList.status.updateTask)
@@ -69,10 +69,10 @@ function ActiveTask () {
       fetchTasksStatus === ACTION_STATUS_SUCCEEDED &&
       (updateTaskStatus === ACTION_STATUS_IDLE || updateTaskStatus === ACTION_STATUS_SUCCEEDED)
     ) {
-      dispatch(setTasks(allTasks))
+      dispatch(setSessionTasks(prioritisedTasks))
       setNextTaskRequired(true)
     }
-  }, [dispatch, fetchTasksStatus, allTasks, updateTaskStatus])
+  }, [dispatch, fetchTasksStatus, prioritisedTasks, updateTaskStatus])
 
   useEffect(() => {
     // Progress through the session task list whenever a new task is required
@@ -135,14 +135,14 @@ function ActiveTask () {
     </p>
   ) : (
     <section className="activeTask">
-      <div className="durationAndLocation">
+      <div className="durationAndCategory">
         <div className="duration">
           <FontAwesomeIcon icon='hourglass-start' />
           &nbsp;
           {activeTask.duration} minutes
         </div>
-        <div className="location">
-          {activeTask.location}
+        <div className="category">
+          {activeTask.category}
         </div>
       </div>
       <div>

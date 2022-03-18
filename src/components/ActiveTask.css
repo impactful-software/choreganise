@@ -2,12 +2,13 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: 100%;
+  text-align: center;
   width: 100%;
 }
 
-.activeTask .durationAndLocation {
+.activeTask .durationAndCategory {
   display: flex;
   justify-content: space-between;
   padding: 1em;
@@ -15,7 +16,7 @@
 }
 
 .activeTask .duration,
-.activeTask .location {
+.activeTask .category {
   background-color: white;
   border-radius: 20px;
   padding: 0.4em;

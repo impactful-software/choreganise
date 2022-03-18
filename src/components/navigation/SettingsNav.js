@@ -5,9 +5,11 @@ import { Link } from "react-router-dom"
 function SettingsNav () {
   return (
     <nav className='nav'>
-      <Link to="/">
-        <FontAwesomeIcon icon='stopwatch' />
-      </Link>
+      <div className="navIconWrap">
+        <Link to="/">
+          <FontAwesomeIcon icon='stopwatch' />
+        </Link>
+      </div>
     </nav>
   )
 }

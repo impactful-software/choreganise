@@ -7,15 +7,17 @@ import { ACTION_STATUS_IDLE, ACTION_STATUS_LOADING, ACTION_STATUS_REJECTED, ACTI
 import calculateTaskPriority from '../utility/calculateTaskPriority.js'
 import { fetchTasks } from '../store/taskListSlice.js'
 import { useRealmApp } from '../components/RealmApp.js'
-import { Option } from '../components/Form'
 import { getDateString, getTimeString } from '../utility/dateTimeFunctions'
 import Loading from '../components/Loading'
 
-function View ({ taskList }) {
+function List () {
   const { db } = useRealmApp()
   const dispatch = useDispatch()
+
   const status = useSelector(state => state.taskList.status)
-  const tasks = useSelector(state => state.taskList.tasks).map(
+  const tasks = useSelector(state => state.taskList.tasksMatchingFilter)
+
+  const taskList = tasks.map(
     task => ({
       boostedDate: new Date(task.boostedAt),
       priority: Math.round(calculateTaskPriority(task)),
@@ -39,37 +41,27 @@ function View ({ taskList }) {
         <p>Failed to load task list.</p>
       )}
 
-      {status.fetchTasks === ACTION_STATUS_SUCCEEDED && (!tasks || tasks.length === 0) && (
+      {status.fetchTasks === ACTION_STATUS_SUCCEEDED && (!taskList || taskList.length === 0) && (
         <p>No tasks found.</p>
       )}
 
-      {tasks.length > 0 && (
+      {taskList.length > 0 && (
         <table className="table">
           <thead>
             <tr className="tableHeadingRow">
-              <th className="tableCell" colSpan="2">Priority</th>
-              <th className="tableCell taskColumn">Task</th>
-              <th className="tableCell locationColumn" colSpan="2">
-                <select className="selectRoom" type="text" name="taskLocation" defaultValue=''>
-                  <Option value="">Location</Option>
-                  <Option value="hallLanding">Hall, stairs and Landing</Option>
-                  <Option value="kitchen">Kitchen</Option>
-                  <Option value="bathroom">Bathroom</Option>
-                  <Option value="backBedroom">Back Bedroom</Option>
-                  <Option value="study">Study</Option>
-                  <Option value="lounge">Lounge</Option>
-                  <Option value="utilityRoom">Utility Room</Option>
-                  <Option value="garage">Garage</Option>
-                  <Option value="cats">Cats</Option>
-                  <Option value="laundry">Laundry</Option>
-                  <Option value="food">Food</Option>
-                  <Option value="shopping">Shopping</Option>
-                </select>
+              <th className="tableCell" colSpan="2">
+                Priority
+              </th>
+              <th className="tableCell taskColumn">
+                Task
+              </th>
+              <th className="tableCell categoryColumn" colSpan="2">
+                Category
               </th>
             </tr>
           </thead>
           <tbody>
-            {tasks.map(({ boostedDate, priority, task }) => (
+            {taskList.map(({ boostedDate, priority, task }) => (
               <tr key={task._id}>
                 <td className="tableCell iconColumn">
                   {boostedDate > 0 ? (
@@ -85,8 +77,8 @@ function View ({ taskList }) {
                 <td className="tableCell taskColumn">
                   {task.name}
                 </td>
-                <td className="tableCell locationColumn">
-                  {task.location}
+                <td className="tableCell categoryColumn">
+                  {task.category}
                 </td>
                 <td className="tableCell iconColumn">
                   <Link to={`/task/${task._id}`}>
@@ -102,4 +94,4 @@ function View ({ taskList }) {
   )
 }
 
-export default View
+export default List

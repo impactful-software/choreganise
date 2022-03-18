@@ -9,24 +9,29 @@ import {
   ACTION_STATUS_SUCCEEDED
 } from '../utility/config.js'
 import sortTasksByPriority from '../utility/sortTasksByPriority.js'
+import filterTasks from '../utility/filterTasks.js'
 
 export const defaultTask = {
   boostedAt: 0,
+  category: '',
   completions: [],
   duration: '',
   frequency: 1,
   frequencyUnit: 'days',
   icon: '',
-  location: '',
   name: ''
 }
 
 const initialState = {
+  filter: {
+    category: ''
+  },
   status: {
     fetchTasks: ACTION_STATUS_IDLE,
     updateTask: ACTION_STATUS_IDLE
   },
-  tasks: []
+  tasks: [],
+  tasksMatchingFilter: []
 }
 
 export function decodeTask (task) {
@@ -51,9 +56,9 @@ export function normalizeTask (task) {
   return defaultsDeep(
     decodedId,
     {
+      category: task.category ? task.category.toLowerCase() : '',
       frequencyUnit: task.frequencyUnit ? task.frequencyUnit.toLowerCase() : '',
       icon: task.icon ? task.icon.toLowerCase() : '',
-      location: task.location ? task.location.toLowerCase() : '',
       name: task.name ? task.name.toLowerCase() : ''
     },
     task
@@ -126,6 +131,10 @@ export const taskListSlice = createSlice({
     },
     resetTasks: (state, action) => {
       state.status.fetchTasks = initialState.status.fetchTasks
+    },
+    setFilterCategory: (state, action) => {
+      state.filter.category = action.payload
+      state.tasksMatchingFilter = filterTasks(state.tasks, state.filter)
     }
   },
   extraReducers(builder) {
@@ -137,6 +146,7 @@ export const taskListSlice = createSlice({
       .addCase(fetchTasks.fulfilled, (state, action) => {
         state.status.fetchTasks = ACTION_STATUS_SUCCEEDED
         state.tasks = action.payload
+        state.tasksMatchingFilter = filterTasks(state.tasks, state.filter)
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         state.status.fetchTasks = ACTION_STATUS_REJECTED
@@ -156,6 +166,6 @@ export const taskListSlice = createSlice({
   }
 })
 
-export const { prioritiseTasks, resetTasks } = taskListSlice.actions
+export const { prioritiseTasks, resetTasks, setFilterCategory } = taskListSlice.actions
 
 export default taskListSlice.reducer

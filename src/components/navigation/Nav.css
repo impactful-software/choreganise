@@ -4,3 +4,12 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.nav .navFilterWrap {
+  font-size: 1rem;
+}
+
+.nav .navIconWrap {
+  text-align: center;
+  width: 1.6em;
+}

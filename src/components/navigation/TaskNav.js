@@ -5,12 +5,17 @@ import { Link } from "react-router-dom"
 function TaskNav () {
   return (
     <nav className='nav'>
-      <Link to="/">
-        <FontAwesomeIcon icon='stopwatch' />
-      </Link>
-      <Link to="/list">
-        <FontAwesomeIcon icon='times' />
-      </Link>
+      <div className="navIconWrap">
+        <Link to="/">
+          <FontAwesomeIcon icon='stopwatch' />
+        </Link>
+      </div>
+
+      <div className="navIconWrap">
+        <Link to="/list">
+          <FontAwesomeIcon icon='times' />
+        </Link>
+      </div>
     </nav>
   )
 }

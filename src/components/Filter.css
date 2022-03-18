@@ -1,0 +1,11 @@
+.filter {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.5em;
+  width: fit-content;
+}
+
+.filter .filterIcon {
+  font-size: 150%;
+}

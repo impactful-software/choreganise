@@ -6,7 +6,7 @@ a,
 a:active,
 a:link,
 a:visited {
-  color: #ffffff;
+  color: var(--color-foreground);
   padding: 5px 10px;
   display: inline-block;
   border: 1px solid transparent;
@@ -28,6 +28,7 @@ a:hover{
 
 .header {
   background-color: var(--color-accent);
+  color: var(--color-foreground);
   flex: 0 0 fit-content;
   font-size: 2.7rem;
   line-height: 1;

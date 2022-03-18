@@ -1,682 +1,682 @@
 [
   {
+    "category": "hall, stairs and landing",
     "name": "hoover hall floor",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "days",
-    "location": "hall, stairs and landing",
     "completions": [
       { "date": "2022-01-02" }
     ]
   },
   {
+    "category": "hall, stairs and landing",
     "name": "mop floor",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "hall, stairs and landing",
     "completions": [
       { "date": "2021-12-19" }
     ]
   },
   {
+    "category": "hall, stairs and landing",
     "name": "hoover stairs",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
-    "location": "hall, stairs and landing",
     "completions": [
       { "date": "2021-12-19" }
     ]
   },
   {
+    "category": "cats",
     "name": "clean litter trays",
     "boostedAt": 0,
     "duration": "00:25",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "cats",
     "completions": [
       { "date": "2021-12-10" }
     ]
   },
   {
+    "category": "hall, stairs and landing",
     "name": "dust hall cabinet",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "months",
-    "location": "hall, stairs and landing",
     "completions": [
       { "date": "2021-12-01" }
     ]
   },
   {
+    "category": "hall, stairs and landing",
     "name": "hoover landing",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "days",
-    "location": "hall, stairs and landing",
     "completions": [
       { "date": "2022-01-02" }
     ]
   },
   {
+    "category": "hall, stairs and landing",
     "name": "dust fixtures",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
-    "location": "hall, stairs and landing",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "hoover floor",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-12-23" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "mop floor",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-12-23" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "wipe hob",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-12-30" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "deep clean counters",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-12-30" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "clean sink and draining board",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "kitchen",
     "completions": [
       { "date": "2022-01-01" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "clean oven",
     "boostedAt": 0,
     "duration": "1:30",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "wipe cupboard fronts",
     "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "clean hob hood",
     "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "clean pantry",
     "boostedAt": 0,
     "duration": "1:00",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-05-10" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "wipe top of cupboards",
     "boostedAt": 0,
     "duration": "1:30",
     "frequency": 1,
     "frequencyUnit": "years",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "kitchen",
     "name": "clean windows",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 4,
     "frequencyUnit": "months",
-    "location": "kitchen",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "clean toilet",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 1,
     "frequencyUnit": "weeks",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-12-19" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "clean floor",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-12-10" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "clean sink",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-12-11" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "clean shower",
     "boostedAt": 0,
     "duration": "00:30",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-12-11" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "clean and tidy window ledge",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-09-17" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "clean windows",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 4,
     "frequencyUnit": "months",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "bathroom",
     "name": "scrub grout",
     "boostedAt": 0,
     "duration": "1:00",
     "frequency": 9,
     "frequencyUnit": "months",
-    "location": "bathroom",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "hoover",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-12-11" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "hoover under furniture",
     "boostedAt": 0,
     "duration": "00:25",
     "frequency": 3,
     "frequencyUnit": "months",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-04-11" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "change bedding",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "back bedroom",
     "completions": [
       { "date": "2022-01-01" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "dust surfaces",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-12-19" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "tidy wardrobe",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-11-15" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "go through charity shop clothes",
     "boostedAt": 0,
     "duration": "00:40",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-04-11" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "tidy bookcase",
     "boostedAt": 0,
     "duration": "1:40",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-08-12" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "tidy floor",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 1,
     "frequencyUnit": "weeks",
-    "location": "back bedroom",
     "completions": [
       { "date": "2022-01-01" }
     ]
   },
   {
+    "category": "back bedroom",
     "name": "dust fixtures",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
-    "location": "back bedroom",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "study",
     "name": "hoover floor",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "study",
     "completions": [
       { "date": "2021-12-11" }
     ]
   },
   {
+    "category": "study",
     "name": "wipe desk",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "study",
     "completions": [
       { "date": "2021-12-12" }
     ]
   },
   {
+    "category": "study",
     "name": "tidy surfaces",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 3,
     "frequencyUnit": "months",
-    "location": "study",
     "completions": [
       { "date": "2021-11-15" }
     ]
   },
   {
+    "category": "study",
     "name": "clean windows",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "study",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "study",
     "name": "dust fixtures",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
-    "location": "study",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "lounge",
     "name": "hoover ",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "lounge",
     "completions": [
       { "date": "2021-12-25" }
     ]
   },
   {
+    "category": "lounge",
     "name": "hoover under furniture",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "lounge",
     "completions": [
       { "date": "2021-08-12" }
     ]
   },
   {
+    "category": "lounge",
     "name": "clean surfaces",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 2,
     "frequencyUnit": "months",
-    "location": "lounge",
     "completions": [
       { "date": "2021-12-25" }
     ]
   },
   {
+    "category": "lounge",
     "name": "tidy coffee table",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "lounge",
     "completions": [
       { "date": "2021-12-25" }
     ]
   },
   {
+    "category": "lounge",
     "name": "clean windows",
     "boostedAt": 0,
     "duration": "00:25",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "lounge",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "lounge",
     "name": "dust fixtures",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
-    "location": "lounge",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "dining room",
     "name": "clean dining table",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "dining room",
     "completions": [
       { "date": "2022-01-01" }
     ]
   },
   {
+    "category": "dining room",
     "name": "tidy and dust dresser",
     "boostedAt": 0,
     "duration": "00:40",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "dining room",
     "completions": [
       { "date": "2021-08-12" }
     ]
   },
   {
+    "category": "dining room",
     "name": "tidy bookcase",
     "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "dining room",
     "completions": [
       { "date": "2021-08-13" }
     ]
   },
   {
+    "category": "dining room",
     "name": "hoover floor",
     "boostedAt": 0,
     "duration": "00:10",
     "frequency": 10,
     "frequencyUnit": "days",
-    "location": "dining room",
     "completions": [
       { "date": "2021-12-25" }
     ]
   },
   {
+    "category": "dining room",
     "name": "mop floor",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "weeks",
-    "location": "dining room",
     "completions": [
       { "date": "2021-12-19" }
     ]
   },
   {
+    "category": "dining room",
     "name": "dust fixtures",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 8,
     "frequencyUnit": "months",
-    "location": "dining room",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "utility room",
     "name": "hoover floor",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 3,
     "frequencyUnit": "months",
-    "location": "utility room",
     "completions": [
       { "date": "2021-08-12" }
     ]
   },
   {
+    "category": "utility room",
     "name": "tidy floor",
     "boostedAt": 0,
     "duration": "1:40",
     "frequency": 5,
     "frequencyUnit": "months",
-    "location": "utility room",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "utility room",
     "name": "clean fridge",
     "boostedAt": 0,
     "duration": "1:40",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "utility room",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "utility room",
     "name": "clean laundry area",
     "boostedAt": 0,
     "duration": "00:30",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "utility room",
     "completions": [
       { "date": "2021-05-05" }
     ]
   },
   {
+    "category": "garage",
     "name": "tidy floor",
     "boostedAt": 0,
     "duration": "1:20",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "garage",
     "completions": [
       { "date": "2021-08-05" }
     ]
   },
   {
+    "category": "garage",
     "name": "clean worm cupboard",
     "boostedAt": 0,
     "duration": "1:00",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "garage",
     "completions": [
       { "date": "2021-07-13" }
     ]
   },
   {
+    "category": "garage",
     "name": "clean bike chains",
     "boostedAt": 0,
     "duration": "00:40",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "garage",
     "completions": [
       { "date": "2021-07-13" }
     ]
   },
   {
+    "category": "garage",
     "name": "wipe table ",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 6,
     "frequencyUnit": "months",
-    "location": "garage",
     "completions": [
       { "date": "2021-09-13" }
     ]
   },
   {
+    "category": "cats",
     "name": "clean feeders",
     "boostedAt": 0,
     "duration": "00:20",
     "frequency": 3,
     "frequencyUnit": "weeks",
-    "location": "cats",
     "completions": [
       { "date": "2021-12-12" }
     ]
   },
   {
+    "category": "cats",
     "name": "wash bedding",
     "boostedAt": 0,
     "duration": "00:15",
     "frequency": 2,
     "frequencyUnit": "months",
-    "location": "cats",
     "completions": [
       { "date": "2021-11-26" }
     ]
   },
   {
+    "category": "cats",
     "name": "sort and order cat food",
     "boostedAt": 0,
     "duration": "00:30",
     "frequency": 1,
     "frequencyUnit": "months",
-    "location": "cats",
     "completions": [
       { "date": "2021-11-26" }
     ]
