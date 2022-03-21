@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Choreganise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple way to organise your household chores and get them done more efficiently.
+
+Motivating yourself to do chores can be tough enough without having to make a series of decisions about which ones to prioritise and which you don't have time for right now. If you struggle with decision anxiety or overwhelm whenever you think about housework, you might like to meet Choregi - your faithful housework companion!
+
+When Choregi makes the decisions, you can focus on getting things done. Choregi prioritises your housework and compiles a list of the most important tasks that will fit into the time you have available. Then it shows you which task is top of the list. Only one task is shown so you don't get overwhelmed. Once that one task is complete, you'll see one more. When you run out of time, Choregi stops showing new tasks and leaves you to enjoy the rest of your day.
+
+## Caution
+
+This project is not in a stable condition. It is at an early stage of development and may be subject to major changes without notice. Updates may result in data loss or other issues.
 
 ## Available Scripts
 
@@ -41,7 +49,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
@@ -68,3 +76,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## License & Copyright
+
+Copyright (C) 2022 David and Felicity Bingham
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
