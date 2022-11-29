@@ -10,7 +10,32 @@ When Choregi makes the decisions, you can focus on getting things done. Choregi 
 
 This project is not in a stable condition. It is at an early stage of development and may be subject to major changes without notice. Updates may result in data loss or other issues.
 
-## Available Scripts
+## Deployment
+
+This project has been tested on Heroku using the `heroku/nodejs` buildpack. It should be straightforward to deploy a new copy of Choreganise to any platform which supports Node.js or Docker containers.
+
+For example, assuming you are somewhat familiar with GitHub and the Heroku platform, the following steps should give you a decent starting point for managing your own deployment:
+
+1. Clone this repository in GitHub
+1. Create a Heroku pipeline with an app linked to the new repository
+1. Deploy the `main` branch using the controls in the Heroku pipeline view
+
+Once the app is deployed and working, there are a couple of optional steps to streamline the testing and deployment process if you plan to make changes to your Choreganise clone:
+
+1. Configure the Heroku pipeline to automatically create review apps for new PRs
+1. Configure the Heroku app to use automatic deploys from the `main` branch
+
+## Development
+
+Use Docker Compose to build and run this project in development:
+
+```
+docker-compose up
+```
+
+Alternative, you can run this project directly in Node.js using the NPM scripts declared in [`package.json`](./package.json).
+
+## NPM Scripts
 
 In the project directory, you can run:
 
